@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Portal – Diamix Europe GmbH</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #f4f6f9; color: #1a2332; min-height: 100vh; }
+
+    :root {
+      --green: #2d6a4f;
+      --green-light: #40916c;
+      --navy: #1a2332;
+      --gray: #6b7280;
+      --gray-light: #f4f6f9;
+      --gray-mid: #e5e7eb;
+      --white: #ffffff;
+      --gold: #c8963e;
+      --red: #dc2626;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--navy);
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.75rem; }
+    .nav-logo img { height: 40px; width: auto; background: white; border-radius: 6px; padding: 3px 8px; }
+    .nav-logo span { color: white; font-size: 0.85rem; font-weight: 500; opacity: 0.7; }
+    .nav-actions { display: flex; align-items: center; gap: 1rem; }
+    .nav-user { color: rgba(255,255,255,0.75); font-size: 0.85rem; }
+    .btn-logout {
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-logout:hover { background: rgba(255,255,255,0.2); }
+
+    /* ── LOGIN SCREEN ── */
+    #login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1a2332 0%, #2d6a4f 100%);
+      padding: 2rem;
+    }
+    .login-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .login-logo { text-align: center; margin-bottom: 2rem; }
+    .login-logo img { height: 56px; margin: 0 auto 0.75rem; }
+    .login-logo h1 { font-size: 1.2rem; font-weight: 700; color: var(--navy); }
+    .login-logo p { font-size: 0.85rem; color: var(--gray); margin-top: 0.3rem; }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--navy); margin-bottom: 0.4rem; }
+    .form-group input {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--gray-mid);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--navy);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-group input:focus { border-color: var(--green); }
+    .btn-login {
+      width: 100%;
+      background: var(--green);
+      color: white;
+      border: none;
+      padding: 13px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+    }
+    .btn-login:hover { background: var(--green-light); }
+    .btn-login:disabled { background: var(--gray); cursor: not-allowed; }
+    .login-error {
+      color: var(--red);
+      font-size: 0.82rem;
+      margin-top: 0.75rem;
+      text-align: center;
+      display: none;
+    }
+    .login-back {
+      display: block;
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.82rem;
+      color: var(--gray);
+    }
+    .login-back a { color: var(--green); font-weight: 500; }
+
+    /* ── PORTAL SCREEN ── */
+    #portal-screen { display: none; }
+    .portal-header {
+      background: white;
+      border-bottom: 1px solid var(--gray-mid);
+      padding: 1.5rem 2rem;
+    }
+    .portal-header h2 { font-size: 1.3rem; font-weight: 700; color: var(--navy); }
+    .portal-header p { font-size: 0.85rem; color: var(--gray); margin-top: 0.25rem; }
+    .portal-body { padding: 2rem; max-width: 1100px; margin: 0 auto; }
+
+    /* ── PRODUCTS TABLE ── */
+    .section-card {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid var(--gray-mid);
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    .section-card-header {
+      padding: 1.2rem 1.5rem;
+      border-bottom: 1px solid var(--gray-mid);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .section-card-header h3 { font-size: 1rem; font-weight: 700; color: var(--navy); }
+    .section-card-header span { font-size: 0.8rem; color: var(--gray); }
+    table { width: 100%; border-collapse: collapse; }
+    th {
+      background: var(--gray-light);
+      padding: 0.75rem 1.5rem;
+      text-align: left;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    td {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--gray-mid);
+      font-size: 0.9rem;
+    }
+    tr:hover td { background: #fafafa; }
+    .stock-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .stock-ok { background: #d1fae5; color: #065f46; }
+    .stock-low { background: #fef3c7; color: #92400e; }
+    .stock-empty { background: #fee2e2; color: #991b1b; }
+    .qty-input {
+      width: 90px;
+      padding: 7px 10px;
+      border: 1.5px solid var(--gray-mid);
+      border-radius: 7px;
+      font-size: 0.88rem;
+      font-family: 'Inter', sans-serif;
+      text-align: center;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .qty-input:focus { border-color: var(--green); }
+
+    /* ── ORDER FORM ── */
+    .order-summary {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid var(--gray-mid);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .order-summary h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 1rem; }
+    .order-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .order-meta input, .order-meta textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid var(--gray-mid);
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .order-meta input:focus, .order-meta textarea:focus { border-color: var(--green); }
+    .order-notes { grid-column: 1 / -1; }
+    .order-notes textarea { resize: vertical; min-height: 80px; }
+    .btn-order {
+      background: var(--green);
+      color: white;
+      border: none;
+      padding: 13px 32px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s;
+    }
+    .btn-order:hover { background: var(--green-light); }
+    .btn-order:disabled { background: var(--gray); cursor: not-allowed; }
+
+    /* ── SUCCESS BANNER ── */
+    #success-banner {
+      display: none;
+      background: #d1fae5;
+      border: 1px solid #6ee7b7;
+      border-radius: 10px;
+      padding: 1.2rem 1.5rem;
+      color: #065f46;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    /* ── ADMIN PANEL ── */
+    #admin-panel { display: none; }
+    .admin-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--gold);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-left: 0.75rem;
+    }
+    .status-badge {
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .status-new       { background: #dbeafe; color: #1e40af; }
+    .status-confirmed { background: #d1fae5; color: #065f46; }
+    .status-shipped   { background: #fef3c7; color: #92400e; }
+    .status-done      { background: #e5e7eb; color: #374151; }
+
+    .btn-status {
+      border: none; cursor: pointer; padding: 5px 10px; border-radius: 6px;
+      font-size: 0.75rem; font-weight: 600; font-family: 'Inter', sans-serif;
+      margin-right: 4px; transition: opacity 0.2s;
+    }
+    .btn-status:hover { opacity: 0.8; }
+    .btn-s-confirm  { background: #d1fae5; color: #065f46; }
+    .btn-s-ship     { background: #fef3c7; color: #92400e; }
+    .btn-s-done     { background: #e5e7eb; color: #374151; }
+
+    /* ── REQUEST ACCESS ── */
+    #request-form { display: none; }
+    .login-toggle {
+      display: block; text-align: center; margin-top: 1.2rem;
+      font-size: 0.82rem; color: var(--gray);
+    }
+    .login-toggle a { color: var(--green); font-weight: 600; cursor: pointer; }
+    .request-success {
+      display: none; background: #d1fae5; border-radius: 8px;
+      padding: 1rem; color: #065f46; font-size: 0.88rem;
+      text-align: center; margin-top: 1rem; font-weight: 500;
+    }
+    .form-group textarea {
+      width: 100%; padding: 11px 14px; border: 1.5px solid var(--gray-mid);
+      border-radius: 8px; font-size: 0.88rem; font-family: 'Inter', sans-serif;
+      color: var(--navy); outline: none; resize: vertical; min-height: 80px;
+      transition: border-color 0.2s;
+    }
+    .form-group textarea:focus { border-color: var(--green); }
+
+    /* ── MY ORDERS ── */
+    #my-orders-section { display: none; }
+
+    /* ── EDIT STOCK ── */
+    .btn-edit-stock {
+      background: var(--navy);
+      color: white;
+      border: none;
+      padding: 7px 16px;
+      border-radius: 7px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s;
+    }
+    .btn-edit-stock:hover { background: #2d3e55; }
+    .btn-edit-stock.save-mode { background: var(--green); }
+    .btn-edit-stock.save-mode:hover { background: var(--green-light); }
+    .stock-edit-input {
+      width: 90px;
+      padding: 7px 10px;
+      border: 1.5px solid var(--green);
+      border-radius: 7px;
+      font-size: 0.88rem;
+      font-family: 'Inter', sans-serif;
+      text-align: center;
+      outline: none;
+      background: #f0faf5;
+    }
+    .edit-field {
+      width: 100%;
+      padding: 7px 10px;
+      border: 1.5px solid var(--green);
+      border-radius: 7px;
+      font-size: 0.88rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      background: #f0faf5;
+    }
+    .btn-delete-row {
+      background: #fee2e2;
+      color: var(--red);
+      border: none;
+      width: 30px; height: 30px;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background 0.2s;
+    }
+    .btn-delete-row:hover { background: #fca5a5; }
+    .row-deleted td { opacity: 0.3; text-decoration: line-through; }
+    .btn-cancel-edit {
+      background: transparent;
+      color: var(--gray);
+      border: 1px solid var(--gray-mid);
+      padding: 7px 14px;
+      border-radius: 7px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-cancel-edit:hover { background: var(--gray-light); }
+
+    /* ── LOADING ── */
+    .spinner {
+      display: inline-block;
+      width: 18px; height: 18px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── ADMIN TABS ── */
+    .admin-tabs { display: flex; gap: 0; margin-bottom: 1.5rem; border-bottom: 2px solid var(--gray-mid); }
+    .admin-tab { background: none; border: none; border-bottom: 3px solid transparent; margin-bottom: -2px; padding: 0.7rem 1.4rem; font-size: 0.88rem; font-weight: 600; color: var(--gray); cursor: pointer; font-family: 'Inter', sans-serif; transition: color 0.2s, border-color 0.2s; }
+    .admin-tab:hover { color: var(--navy); }
+    .admin-tab.active { color: var(--green); border-bottom-color: var(--green); }
+
+    /* ── CRM ── */
+    .crm-customer-row { cursor: pointer; }
+    .crm-customer-row:hover td { background: #f0faf5 !important; }
+    .customer-detail-panel { background: #f8fffe; border-top: 3px solid var(--green); padding: 1.5rem; }
+    .cust-status-lead      { background: #e0e7ff; color: #3730a3; }
+    .cust-status-contacted { background: #dbeafe; color: #1e40af; }
+    .cust-status-active    { background: #d1fae5; color: #065f46; }
+    .cust-status-inactive  { background: #f3f4f6; color: #6b7280; }
+    .cust-status-lost      { background: #fee2e2; color: #991b1b; }
+    .btn-sm { padding: 6px 13px; border-radius: 7px; font-size: 0.8rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; border: none; transition: opacity 0.2s; }
+    .btn-sm-green { background: var(--green); color: white; }
+    .btn-sm-green:hover { background: var(--green-light); }
+    .btn-sm-gray { background: var(--gray-mid); color: var(--navy); }
+    .btn-sm-gray:hover { opacity: 0.8; }
+    .inline-form { background: white; border: 1.5px solid var(--gray-mid); border-radius: 10px; padding: 1rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.75rem; align-items: end; }
+    .inline-form input, .inline-form select { width: 100%; padding: 8px 10px; border: 1.5px solid var(--gray-mid); border-radius: 7px; font-size: 0.85rem; font-family: 'Inter', sans-serif; outline: none; background: white; }
+    .inline-form input:focus, .inline-form select:focus { border-color: var(--green); }
+    .inline-form label { display: block; font-size: 0.75rem; font-weight: 600; color: var(--gray); margin-bottom: 3px; }
+    .task-item { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.7rem 0.9rem; background: white; border-radius: 8px; margin-bottom: 0.5rem; border: 1px solid var(--gray-mid); }
+    .task-item.task-done { opacity: 0.45; }
+    .task-check { width: 17px; height: 17px; cursor: pointer; margin-top: 2px; flex-shrink: 0; accent-color: var(--green); }
+
+    /* ── PIPELINE KANBAN ── */
+    #tab-pipeline { overflow-x: auto; padding-bottom: 1rem; }
+    .pipeline-board { display: flex; gap: 1rem; min-width: max-content; align-items: flex-start; }
+    .pipeline-col { width: 210px; flex-shrink: 0; }
+    .pipeline-col-header {
+      padding: 0.55rem 0.75rem;
+      border-radius: 8px 8px 0 0;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .pipeline-col-body {
+      background: #eef0f3;
+      border-radius: 0 0 8px 8px;
+      min-height: 260px;
+      padding: 0.5rem;
+      border: 2px dashed transparent;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .pipeline-col-body.drag-over {
+      border-color: var(--green);
+      background: #e4f5ec;
+    }
+    .pipeline-card {
+      background: white;
+      border-radius: 8px;
+      padding: 0.7rem 0.75rem;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      cursor: grab;
+      border-left: 3px solid var(--green-light);
+      transition: box-shadow 0.15s, transform 0.15s, opacity 0.15s;
+      user-select: none;
+    }
+    .pipeline-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.13); transform: translateY(-1px); }
+    .pipeline-card.dragging { opacity: 0.4; cursor: grabbing; transform: scale(0.97); }
+    .pipeline-card-company { font-size: 0.85rem; font-weight: 700; color: var(--navy); margin-bottom: 0.25rem; line-height: 1.3; }
+    .pipeline-card-row { font-size: 0.75rem; color: var(--gray); margin-bottom: 0.15rem; }
+    .pipeline-card-footer { display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap; margin-top: 0.4rem; }
+    .deal-badge { font-size: 0.68rem; font-weight: 700; padding: 2px 7px; border-radius: 100px; }
+    .deal-badge-value { background: #d1fae5; color: #065f46; }
+    .deal-badge-vol   { background: #e0e7ff; color: #3730a3; }
+    .deal-badge-hot   { background: #fee2e2; color: #991b1b; }
+    .deal-badge-warm  { background: #fef3c7; color: #92400e; }
+    .deal-badge-cold  { background: #dbeafe; color: #1e40af; }
+    .pipeline-empty { font-size: 0.75rem; color: #9ca3af; text-align: center; padding: 1.5rem 0; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .portal-body { padding: 1rem; }
+      .order-meta { grid-template-columns: 1fr; }
+      th, td { padding: 0.75rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     LOGIN SCREEN
+════════════════════════════════════════════════ -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">
+      <img src="images/diamix-logo.png" alt="Diamix Europe GmbH" />
+      <h1 id="card-title">Client Portal</h1>
+      <p>Diamix Europe GmbH</p>
+    </div>
+
+    <!-- Sign In form -->
+    <div id="signin-form">
+      <div class="form-group">
+        <label>E-Mail</label>
+        <input type="email" id="login-email" placeholder="your@email.com" autocomplete="email" />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password" />
+      </div>
+      <button class="btn-login" id="btn-login" onclick="login()">Sign In</button>
+      <div class="login-error" id="login-error"></div>
+      <span class="login-toggle">No access yet? <a onclick="toggleRequestForm(true)">Request Access →</a></span>
+    </div>
+
+    <!-- Request Access form -->
+    <div id="request-form">
+      <div class="form-group">
+        <label>Company Name</label>
+        <input type="text" id="req-company" placeholder="Your company" />
+      </div>
+      <div class="form-group">
+        <label>E-Mail</label>
+        <input type="email" id="req-email" placeholder="your@email.com" />
+      </div>
+      <div class="form-group">
+        <label>Address</label>
+        <input type="text" id="req-address" placeholder="Street, City, Country" />
+      </div>
+      <div class="form-group">
+        <label>VAT Number (USt-IdNr.) <span id="vat-status" style="font-size:0.8rem;margin-left:6px;"></span></label>
+        <input type="text" id="req-vat" placeholder="DE123456789" oninput="checkVAT(this.value)" style="text-transform:uppercase;" />
+        <div id="vat-hint" style="font-size:0.78rem;color:var(--gray);margin-top:4px;">Format: DE123456789, FR12345678901, ...</div>
+      </div>
+      <div class="form-group">
+        <label>Message (optional)</label>
+        <textarea id="req-message" placeholder="Tell us about your interest in Diamix products..."></textarea>
+      </div>
+      <button class="btn-login" id="btn-request" onclick="submitRequest()">Send Request</button>
+      <div class="request-success" id="request-success">
+        ✅ Request sent! We will contact you within 24 hours.
+      </div>
+      <span class="login-toggle">Already have access? <a onclick="toggleRequestForm(false)">← Sign In</a></span>
+    </div>
+
+    <span class="login-back"><a href="index.html">← Back to diamix.eu</a></span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PORTAL SCREEN
+════════════════════════════════════════════════ -->
+<div id="portal-screen">
+  <!-- Nav -->
+  <nav>
+    <div class="nav-logo">
+      <img src="images/diamix-logo.png" alt="Diamix" />
+      <span>Client Portal</span>
+    </div>
+    <div class="nav-actions">
+      <span class="nav-user" id="nav-user-email"></span>
+      <button class="btn-logout" onclick="logout()">Sign Out</button>
+    </div>
+  </nav>
+
+  <!-- Portal Header -->
+  <div class="portal-header">
+    <h2 id="portal-title">Stock &amp; Order</h2>
+    <p id="portal-subtitle">Current inventory — place your order below</p>
+  </div>
+
+  <div class="portal-body">
+
+    <!-- Success banner -->
+    <div id="success-banner">
+      ✅ Your order has been submitted! We will contact you within 24 hours to confirm.
+    </div>
+
+    <!-- ── ADMIN PANEL ── -->
+    <div id="admin-panel">
+
+      <!-- Admin tabs -->
+      <div class="admin-tabs">
+        <button class="admin-tab active" data-tab="requests" onclick="switchAdminTab('requests')">Access Requests</button>
+        <button class="admin-tab" data-tab="orders" onclick="switchAdminTab('orders')">Orders</button>
+        <button class="admin-tab" data-tab="crm" onclick="switchAdminTab('crm')">CRM</button>
+        <button class="admin-tab" data-tab="pipeline" onclick="switchAdminTab('pipeline')">Pipeline</button>
+        <button class="admin-tab" data-tab="products" onclick="switchAdminTab('products')">Products</button>
+      </div>
+
+      <!-- Tab: Access Requests -->
+      <div id="tab-requests">
+        <div class="section-card" style="margin-bottom: 2rem;">
+          <div class="section-card-header">
+            <h3>Access Requests <span class="admin-badge">Admin</span></h3>
+            <div style="display:flex;align-items:center;gap:1rem;">
+              <span id="requests-count"></span>
+              <button id="btn-show-done" onclick="toggleShowDone()" style="font-size:0.78rem;padding:4px 10px;border:1px solid var(--gray);border-radius:6px;background:white;color:var(--gray);cursor:pointer;">Show done</button>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th><th>Company</th><th>E-Mail</th><th>Address</th><th>VAT Nr.</th><th>Message</th><th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="access-requests-tbody">
+              <tr><td colspan="7" style="text-align:center;color:var(--gray);padding:2rem;">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab: Orders -->
+      <div id="tab-orders" style="display:none;">
+        <div class="section-card" style="margin-bottom: 2rem;">
+          <div class="section-card-header">
+            <h3>All Orders <span class="admin-badge">Admin</span></h3>
+            <span id="orders-count"></span>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th><th>Company</th><th>E-Mail</th><th>Products</th><th>Notes</th><th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="admin-orders-tbody">
+              <tr><td colspan="6" style="text-align:center;color:var(--gray);padding:2rem;">Loading orders...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab: Products (admin) -->
+      <div id="tab-products" style="display:none;">
+        <div id="admin-products-slot"></div>
+      </div>
+
+      <!-- Tab: Pipeline -->
+      <div id="tab-pipeline" style="display:none;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+          <span style="font-size:0.85rem;color:var(--gray);">Drag cards between columns to update deal stage</span>
+          <button class="btn-sm btn-sm-gray" onclick="loadPipeline()" style="font-size:0.78rem;">↻ Refresh</button>
+        </div>
+        <div class="pipeline-board" id="pipeline-board">
+          <div style="padding:2rem;color:var(--gray);">Loading pipeline...</div>
+        </div>
+      </div>
+
+      <!-- Tab: CRM -->
+      <div id="tab-crm" style="display:none;">
+
+        <!-- Add Customer form (hidden by default) -->
+        <div id="add-customer-form" style="display:none;" class="section-card" style="margin-bottom:1.5rem;">
+          <div class="section-card-header"><h3>Add Customer</h3></div>
+          <div style="padding:1.5rem;">
+            <div class="inline-form" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr));">
+              <div><label>Company Name *</label><input id="new-cust-company" placeholder="Acme GmbH" /></div>
+              <div><label>Country</label><input id="new-cust-country" placeholder="DE" /></div>
+              <div><label>E-Mail</label><input type="email" id="new-cust-email" placeholder="contact@company.com" /></div>
+              <div><label>Phone</label><input id="new-cust-phone" placeholder="+49..." /></div>
+              <div><label>VAT Nr.</label><input id="new-cust-vat" placeholder="DE123456789" /></div>
+              <div><label>Address</label><input id="new-cust-address" placeholder="Street, City" /></div>
+              <div>
+                <label>Status</label>
+                <select id="new-cust-status">
+                  <option value="lead">Lead</option>
+                  <option value="contacted">Contacted</option>
+                  <option value="active">Active</option>
+                </select>
+              </div>
+              <div>
+                <label>Source</label>
+                <select id="new-cust-source">
+                  <option value="manual">Manual</option>
+                  <option value="website">Website</option>
+                  <option value="portal">Portal</option>
+                  <option value="email">Email</option>
+                  <option value="referral">Referral</option>
+                  <option value="exhibition">Exhibition</option>
+                </select>
+              </div>
+              <div><label>Notes</label><input id="new-cust-notes" placeholder="Optional" /></div>
+              <div style="display:flex;gap:0.5rem;align-items:flex-end;">
+                <button class="btn-sm btn-sm-green" onclick="saveNewCustomer()">Save Customer</button>
+                <button class="btn-sm btn-sm-gray" onclick="document.getElementById('add-customer-form').style.display='none'">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Customers table -->
+        <div class="section-card">
+          <div class="section-card-header">
+            <h3>Customers <span class="admin-badge">CRM</span></h3>
+            <button class="btn-sm btn-sm-green" onclick="showAddCustomerForm()">+ Add Customer</button>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Company</th><th>Country</th><th>E-Mail</th><th>Status</th><th>Source</th><th></th>
+              </tr>
+            </thead>
+            <tbody id="crm-customers-tbody">
+              <tr><td colspan="6" style="text-align:center;color:var(--gray);padding:2rem;">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── PRODUCTS TABLE ── -->
+    <div class="section-card" id="products-outer">
+      <div class="section-card-header">
+        <h3>Available Products</h3>
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <span id="updated-at"></span>
+          <button id="btn-cancel-edit" style="display:none;" onclick="cancelEdit()" class="btn-cancel-edit">Cancel</button>
+          <button id="btn-edit-stock" style="display:none;" onclick="toggleEditStock()" class="btn-edit-stock">Edit Products</button>
+        </div>
+      </div>
+      <table id="products-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Description</th>
+            <th>Stock</th>
+            <th>Price / t</th>
+            <th id="th-order-qty">Order Qty (t)</th>
+          </tr>
+        </thead>
+        <tbody id="products-tbody">
+          <tr><td colspan="5" style="text-align:center;color:var(--gray);padding:2rem;">Loading products...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ── MY ORDERS (clients) ── -->
+    <div id="my-orders-section" class="section-card">
+      <div class="section-card-header">
+        <h3>My Orders</h3>
+        <span id="my-orders-count"></span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Products</th>
+            <th>Notes</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="my-orders-tbody">
+          <tr><td colspan="4" style="text-align:center;color:var(--gray);padding:2rem;">No orders yet.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ── ORDER FORM ── -->
+    <div class="order-summary" id="order-outer">
+      <h3>Place Order</h3>
+      <div class="order-meta">
+        <input type="text" id="order-company" placeholder="Company name" />
+        <input type="email" id="order-email" placeholder="Contact e-mail" />
+        <div class="order-notes">
+          <textarea id="order-notes" placeholder="Additional notes, delivery address, preferred dates..."></textarea>
+        </div>
+      </div>
+      <button class="btn-order" id="btn-order" onclick="placeOrder()">Submit Order →</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const SUPABASE_URL = 'https://tucmaxyzgfsocwkaxpsu.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_GOtloiMg0UXjJYb37jfFuQ_Pg67cNIg';
+  const ADMIN_EMAIL  = 'office@diamix.eu';
+
+  const { createClient } = supabase;
+  const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  let products = [];
+  let currentUser = null;
+
+  // ── AUTH ──────────────────────────────────────
+  async function login() {
+    const email    = document.getElementById('login-email').value.trim();
+    const password = document.getElementById('login-password').value;
+    const btn      = document.getElementById('btn-login');
+    const errEl    = document.getElementById('login-error');
+
+    if (!email || !password) {
+      showError('Please enter your email and password.');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>Signing in...';
+    errEl.style.display = 'none';
+
+    const { data, error } = await sb.auth.signInWithPassword({ email, password });
+
+    if (error) {
+      showError(error.message);
+      btn.disabled = false;
+      btn.textContent = 'Sign In';
+      return;
+    }
+
+    showPortal(data.user);
+  }
+
+  async function logout() {
+    await sb.auth.signOut();
+    location.reload();
+  }
+
+  function showError(msg) {
+    const el = document.getElementById('login-error');
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+
+  // ── INIT ──────────────────────────────────────
+  sb.auth.onAuthStateChange(async (event, session) => {
+    if (session && session.user) {
+      showPortal(session.user);
+    }
+  });
+
+  async function showPortal(user) {
+    currentUser = user;
+    document.getElementById('login-screen').style.display  = 'none';
+    document.getElementById('portal-screen').style.display = 'block';
+    document.getElementById('nav-user-email').textContent  = user.email;
+    document.getElementById('order-email').value           = user.email;
+
+    // Pre-fill company name from metadata or access_requests
+    if (user.user_metadata && user.user_metadata.company) {
+      document.getElementById('order-company').value = user.user_metadata.company;
+    } else {
+      const { data: req } = await sb
+        .from('access_requests')
+        .select('company_name')
+        .eq('email', user.email)
+        .order('created_at', { ascending: false })
+        .limit(1)
+        .maybeSingle();
+      if (req?.company_name) {
+        document.getElementById('order-company').value = req.company_name;
+      }
+    }
+
+    // Admin view
+    if (user.email === ADMIN_EMAIL) {
+      document.getElementById('admin-panel').style.display    = 'block';
+      document.getElementById('portal-title').textContent     = 'Admin Dashboard';
+      document.getElementById('portal-subtitle').textContent  = 'Manage stock and view all orders';
+      document.getElementById('btn-edit-stock').style.display = 'inline-block';
+      document.getElementById('th-order-qty').style.display   = 'none';
+
+      // Move products + order form into Products tab
+      const slot = document.getElementById('admin-products-slot');
+      const productsEl = document.getElementById('products-outer');
+      const orderEl    = document.getElementById('order-outer');
+      if (productsEl) slot.appendChild(productsEl);
+      if (orderEl)    slot.appendChild(orderEl);
+
+      loadAdminOrders();
+      loadAccessRequests();
+    } else {
+      document.getElementById('my-orders-section').style.display = 'block';
+      loadMyOrders();
+    }
+
+    loadProducts();
+  }
+
+  // ── PRODUCTS ──────────────────────────────────
+  async function loadProducts() {
+    const { data, error } = await sb
+      .from('products')
+      .select('*')
+      .order('name');
+
+    if (error) {
+      document.getElementById('products-tbody').innerHTML =
+        '<tr><td colspan="5" style="text-align:center;color:var(--red);">Error loading products.</td></tr>';
+      return;
+    }
+
+    products = data;
+
+    if (data.length > 0) {
+      const latest = new Date(Math.max(...data.map(p => new Date(p.updated_at))));
+      document.getElementById('updated-at').textContent =
+        'Updated: ' + latest.toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+    }
+
+    renderProductsTable();
+  }
+
+  function renderProductsTable() {
+    const isAdmin = currentUser && currentUser.email === ADMIN_EMAIL;
+    const tbody   = document.getElementById('products-tbody');
+    const thead   = document.querySelector('#products-table thead tr');
+
+    // Manage Actions column header
+    let actionTh = document.getElementById('th-action');
+    if (editMode && !actionTh) {
+      actionTh = document.createElement('th');
+      actionTh.id = 'th-action';
+      thead.appendChild(actionTh);
+    } else if (!editMode && actionTh) {
+      actionTh.remove();
+    }
+
+    if (products.length === 0 && !editMode) {
+      tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--gray);padding:2rem;">No products available.</td></tr>';
+      return;
+    }
+
+    const rows = products.map(p => {
+      const qty = p.stock_quantity;
+
+      if (editMode) {
+        return `
+          <tr id="row-${p.id}">
+            <td><input class="edit-field" type="text" id="edit-name-${p.id}" value="${escHtml(p.name)}" /></td>
+            <td><input class="edit-field" type="text" id="edit-desc-${p.id}" value="${escHtml(p.description || '')}" /></td>
+            <td><input class="stock-edit-input" type="number" min="0" step="0.5" id="edit-stock-${p.id}" value="${qty}" /></td>
+            <td><input class="stock-edit-input" type="number" min="0" step="1" id="edit-price-${p.id}" value="${p.price_per_unit || ''}" placeholder="0" /></td>
+            <td><button class="btn-delete-row" onclick="markDelete('${p.id}')" title="Delete">✕</button></td>
+          </tr>`;
+      }
+
+      const badge = qty <= 0
+        ? `<span class="stock-badge stock-empty">Out of stock</span>`
+        : qty < 20
+          ? `<span class="stock-badge stock-low">${qty} t</span>`
+          : `<span class="stock-badge stock-ok">${qty} t</span>`;
+      const price = p.price_per_unit
+        ? `€ ${Number(p.price_per_unit).toLocaleString('de-DE')}`
+        : '—';
+
+      return `
+        <tr>
+          <td><strong>${escHtml(p.name)}</strong></td>
+          <td style="color:var(--gray);font-size:0.85rem;">${escHtml(p.description || '')}</td>
+          <td>${badge}</td>
+          <td>${price}</td>
+          <td ${isAdmin ? 'style="display:none"' : ''}>
+            <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+              <input class="qty-input" type="number" min="0" step="0.5" max="${qty}" id="qty-${p.id}" placeholder="0"
+                ${qty <= 0 ? 'disabled title="Out of stock"' : ''} />
+              <label style="display:flex;align-items:center;gap:4px;font-size:0.75rem;color:var(--gray);cursor:pointer;white-space:nowrap;">
+                <input type="checkbox" id="preorder-${p.id}" onchange="togglePreorder('${p.id}','${qty}')" style="cursor:pointer;" />
+                Pre-order
+              </label>
+            </div>
+          </td>
+        </tr>`;
+    });
+
+    // New product row in edit mode
+    if (editMode) {
+      rows.push(`
+        <tr id="row-new" style="background:#f0faf5;">
+          <td><input class="edit-field" type="text" id="new-name" placeholder="New product name" /></td>
+          <td><input class="edit-field" type="text" id="new-desc" placeholder="Description" /></td>
+          <td><input class="stock-edit-input" type="number" min="0" step="0.5" id="new-stock" placeholder="0" /></td>
+          <td><input class="stock-edit-input" type="number" min="0" step="1" id="new-price" placeholder="0" /></td>
+          <td style="color:var(--gray);font-size:0.75rem;">new</td>
+        </tr>`);
+    }
+
+    tbody.innerHTML = rows.join('');
+  }
+
+  // ── PLACE ORDER ───────────────────────────────
+  async function placeOrder() {
+    const company = document.getElementById('order-company').value.trim();
+    const email   = document.getElementById('order-email').value.trim();
+    const notes   = document.getElementById('order-notes').value.trim();
+    const btn     = document.getElementById('btn-order');
+
+    // Collect quantities
+    const items = products
+      .map(p => ({
+        product_id: p.id,
+        quantity:   parseFloat(document.getElementById('qty-' + p.id)?.value || 0),
+        stock:      p.stock_quantity,
+        preorder:   document.getElementById('preorder-' + p.id)?.checked || false,
+      }))
+      .filter(i => i.quantity > 0);
+
+    if (items.length === 0) {
+      alert('Please enter a quantity for at least one product.');
+      return;
+    }
+
+    // Check against stock (skip if pre-order)
+    const overStock = items.find(i => !i.preorder && i.quantity > i.stock);
+    if (overStock) {
+      const p = products.find(p => p.id === overStock.product_id);
+      alert(`Not enough stock for "${p.name}". Available: ${overStock.stock} t\n\nTick "Pre-order" to order beyond current stock.`);
+      return;
+    }
+
+    // Add pre-order note to notes if any
+    const preorderItems = items.filter(i => i.preorder).map(i => products.find(p => p.id === i.product_id)?.name);
+    const preorderNote  = preorderItems.length ? `\n[PRE-ORDER: ${preorderItems.join(', ')}]` : '';
+    if (!company) {
+      alert('Please enter your company name.');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>Submitting...';
+
+    // Insert order
+    const { data: order, error: orderErr } = await sb
+      .from('orders')
+      .insert({ user_id: currentUser.id, company_name: company, email, notes: notes + preorderNote, status: 'new' })
+      .select()
+      .single();
+
+    if (orderErr) {
+      alert('Error placing order: ' + orderErr.message);
+      btn.disabled = false;
+      btn.textContent = 'Submit Order →';
+      return;
+    }
+
+    // Insert order items
+    const { error: itemsErr } = await sb
+      .from('order_items')
+      .insert(items.map(i => ({ order_id: order.id, product_id: i.product_id, quantity: i.quantity })));
+
+    if (itemsErr) {
+      alert('Order saved, but items error: ' + itemsErr.message);
+    }
+
+    // Success
+    document.getElementById('success-banner').style.display = 'block';
+    document.getElementById('success-banner').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    loadMyOrders();
+
+    // Reset form
+    products.forEach(p => {
+      const inp = document.getElementById('qty-' + p.id);
+      if (inp) inp.value = '';
+    });
+    document.getElementById('order-notes').value = '';
+
+    btn.disabled = false;
+    btn.textContent = 'Submit Order →';
+  }
+
+  // ── EDIT PRODUCTS ─────────────────────────────
+  let editMode  = false;
+  let toDelete  = new Set();
+
+  function toggleEditStock() {
+    const btn    = document.getElementById('btn-edit-stock');
+    const cancel = document.getElementById('btn-cancel-edit');
+
+    if (!editMode) {
+      editMode = true;
+      toDelete = new Set();
+      btn.textContent = 'Save Changes';
+      btn.classList.add('save-mode');
+      cancel.style.display = 'inline-block';
+      renderProductsTable();
+    } else {
+      saveStock(btn, cancel);
+    }
+  }
+
+  function cancelEdit() {
+    editMode = false;
+    toDelete = new Set();
+    const btn    = document.getElementById('btn-edit-stock');
+    const cancel = document.getElementById('btn-cancel-edit');
+    btn.textContent = 'Edit Products';
+    btn.classList.remove('save-mode');
+    cancel.style.display = 'none';
+    renderProductsTable();
+  }
+
+  function markDelete(id) {
+    if (toDelete.has(id)) {
+      toDelete.delete(id);
+      document.getElementById('row-' + id)?.classList.remove('row-deleted');
+    } else {
+      toDelete.add(id);
+      document.getElementById('row-' + id)?.classList.add('row-deleted');
+    }
+  }
+
+  async function saveStock(btn, cancel) {
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>Saving...';
+
+    const now = new Date().toISOString();
+
+    // Update existing products
+    const updateOps = products
+      .filter(p => !toDelete.has(p.id))
+      .map(p => sb.from('products').update({
+        name:           (document.getElementById('edit-name-'  + p.id)?.value || p.name).trim(),
+        description:    (document.getElementById('edit-desc-'  + p.id)?.value || '').trim(),
+        stock_quantity: parseFloat(document.getElementById('edit-stock-' + p.id)?.value ?? p.stock_quantity),
+        price_per_unit: parseFloat(document.getElementById('edit-price-' + p.id)?.value) || null,
+        updated_at:     now,
+      }).eq('id', p.id));
+
+    // Delete
+    const deleteOps = [...toDelete].map(id => sb.from('products').delete().eq('id', id));
+
+    // Insert new product if name filled
+    const newName  = document.getElementById('new-name')?.value.trim();
+    const insertOps = [];
+    if (newName) {
+      insertOps.push(sb.from('products').insert({
+        name:           newName,
+        description:    document.getElementById('new-desc')?.value.trim() || '',
+        stock_quantity: parseFloat(document.getElementById('new-stock')?.value) || 0,
+        price_per_unit: parseFloat(document.getElementById('new-price')?.value) || null,
+      }));
+    }
+
+    await Promise.all([...updateOps, ...deleteOps, ...insertOps]);
+
+    editMode = false;
+    toDelete = new Set();
+    btn.disabled = false;
+    btn.textContent = 'Edit Products';
+    btn.classList.remove('save-mode');
+    cancel.style.display = 'none';
+    loadProducts();
+  }
+
+  // ── REQUEST ACCESS ────────────────────────────
+  function toggleRequestForm(show) {
+    document.getElementById('signin-form').style.display  = show ? 'none' : 'block';
+    document.getElementById('request-form').style.display = show ? 'block' : 'none';
+    document.getElementById('card-title').textContent     = show ? 'Request Access' : 'Client Portal';
+    document.getElementById('request-success').style.display = 'none';
+  }
+
+  let vatValid = false;
+  let vatCheckTimer = null;
+
+  async function checkVAT(value) {
+    const val = value.trim().toUpperCase().replace(/\s/g, '');
+    const statusEl = document.getElementById('vat-status');
+    const hintEl   = document.getElementById('vat-hint');
+    const btn      = document.getElementById('btn-request');
+
+    if (!val) {
+      statusEl.textContent = '';
+      hintEl.textContent = 'Format: DE123456789, FR12345678901, ...';
+      vatValid = false;
+      return;
+    }
+
+    const countryCode = val.substring(0, 2);
+    const vatNumber   = val.substring(2);
+
+    if (!/^[A-Z]{2}/.test(val) || vatNumber.length < 5) {
+      statusEl.textContent = '❌ Ungültiges Format';
+      statusEl.style.color = 'var(--red)';
+      vatValid = false;
+      btn.disabled = false;
+      return;
+    }
+
+    clearTimeout(vatCheckTimer);
+    vatCheckTimer = setTimeout(async () => {
+      statusEl.textContent = '⏳ Prüfe...';
+      statusEl.style.color = 'var(--gray)';
+      try {
+        const res = await fetch(`https://api.vatcomply.com/vat?vat_number=${val}`);
+        const data = await res.json();
+        if (data.valid) {
+          statusEl.textContent = '✅ Gültig';
+          statusEl.style.color = 'var(--green)';
+          hintEl.textContent = data.name ? data.name : '';
+          vatValid = true;
+        } else {
+          statusEl.textContent = '❌ Nicht gefunden';
+          statusEl.style.color = 'var(--red)';
+          hintEl.textContent = 'Bitte prüfen Sie die Nummer.';
+          vatValid = false;
+        }
+      } catch {
+        statusEl.textContent = '⚠️ Prüfung nicht möglich';
+        statusEl.style.color = 'var(--gray)';
+        hintEl.textContent = 'VIES-Service vorübergehend nicht verfügbar.';
+        vatValid = true; // allow submit if API unavailable
+      }
+    }, 800);
+  }
+
+  async function submitRequest() {
+    const company = document.getElementById('req-company').value.trim();
+    const email   = document.getElementById('req-email').value.trim();
+    const address = document.getElementById('req-address').value.trim();
+    const vat     = document.getElementById('req-vat').value.trim().toUpperCase();
+    const message = document.getElementById('req-message').value.trim();
+    const btn     = document.getElementById('btn-request');
+
+    if (!company || !email || !address || !vat) { alert('Please fill in all required fields.'); return; }
+    if (!vatValid) { alert('Please enter a valid VAT number.'); return; }
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>Sending...';
+
+    const { error } = await sb.from('access_requests').insert({ company_name: company, email, address, vat_number: vat, message });
+
+    btn.disabled = false;
+    btn.textContent = 'Send Request';
+
+    if (error) { alert('Error: ' + error.message); return; }
+
+    try {
+      await fetch('https://n8n.diamix.eu/webhook/contact-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ company_name: company, email, address, vat_number: vat, message })
+      });
+    } catch (err) {
+      console.error('Webhook error:', err);
+    }
+
+    document.getElementById('request-success').style.display = 'block';
+    document.getElementById('req-company').value = '';
+    document.getElementById('req-email').value   = '';
+    document.getElementById('req-address').value = '';
+    document.getElementById('req-vat').value     = '';
+    document.getElementById('req-message').value = '';
+    document.getElementById('vat-status').textContent = '';
+    vatValid = false;
+  }
+
+  // ── ACCESS REQUESTS (admin) ────────────────────
+  let arCache = {};
+  let arShowDone = false;
+
+  function toggleShowDone() {
+    arShowDone = !arShowDone;
+    const btn = document.getElementById('btn-show-done');
+    btn.textContent = arShowDone ? 'Hide done' : 'Show done';
+    btn.style.color = arShowDone ? 'var(--green)' : 'var(--gray)';
+    btn.style.borderColor = arShowDone ? 'var(--green)' : 'var(--gray)';
+    loadAccessRequests();
+  }
+
+  async function loadAccessRequests() {
+    let query = sb.from('access_requests').select('*').order('created_at', { ascending: false });
+    if (!arShowDone) query = query.eq('status', 'pending');
+
+    const { data, error } = await query;
+
+    const tbody = document.getElementById('access-requests-tbody');
+    if (error || !data) {
+      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--red);">Error loading.</td></tr>';
+      return;
+    }
+
+    arCache = {};
+    data.forEach(r => arCache[r.id] = r);
+
+    document.getElementById('requests-count').textContent = data.length + (arShowDone ? ' total' : ' pending');
+
+    if (data.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--gray);padding:2rem;">No requests yet.</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = data.map(r => {
+      const date = new Date(r.created_at).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+      const sc   = r.status === 'pending' ? 'status-new' : 'status-confirmed';
+      const co   = escHtml(r.company_name);
+      const em   = escHtml(r.email       || '');
+      const ad   = escHtml(r.address     || '');
+      const vt   = escHtml(r.vat_number  || '');
+      return `
+        <tr>
+          <td style="white-space:nowrap;">${date}</td>
+          <td><strong>${co}</strong></td>
+          <td style="font-size:0.83rem;">${em || '—'}</td>
+          <td style="font-size:0.83rem;">${ad || '—'}</td>
+          <td style="font-size:0.83rem;font-weight:600;">${vt || '—'}</td>
+          <td style="font-size:0.83rem;color:var(--gray);">${escHtml(r.message || '—')}</td>
+          <td>
+            <span class="status-badge ${sc}">${r.status}</span>
+            <div style="margin-top:5px;display:flex;gap:4px;flex-wrap:wrap;">
+              ${r.status === 'pending' ? `<button class="btn-status btn-s-confirm" onclick="markRequestDone('${r.id}')">Mark done</button>` : ''}
+              <button class="btn-status" style="background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe;"
+                onclick="convertToCustomer('${r.id}')">→ CRM</button>
+            </div>
+          </td>
+        </tr>`;
+    }).join('');
+  }
+
+  async function markRequestDone(id) {
+    const { error } = await sb.from('access_requests').update({ status: 'done' }).eq('id', id);
+    if (error) { alert('Error: ' + error.message); return; }
+    loadAccessRequests();
+  }
+
+  // ── MY ORDERS (client) ─────────────────────────
+  async function loadMyOrders() {
+    const { data, error } = await sb
+      .from('orders')
+      .select(`id, created_at, status, notes, order_items ( quantity, products ( name ) )`)
+      .order('created_at', { ascending: false });
+
+    const tbody = document.getElementById('my-orders-tbody');
+    if (error || !data) {
+      tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--red);">Error loading.</td></tr>';
+      return;
+    }
+
+    document.getElementById('my-orders-count').textContent = data.length + ' order(s)';
+
+    if (data.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--gray);padding:1.5rem;">No orders yet.</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = data.map(o => {
+      const date  = new Date(o.created_at).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+      const items = (o.order_items || []).map(i => `${i.products?.name}: <strong>${i.quantity} t</strong>`).join('<br>');
+      const sc    = { new:'status-new', confirmed:'status-confirmed', shipped:'status-shipped', done:'status-done' }[o.status] || 'status-new';
+      return `
+        <tr>
+          <td style="white-space:nowrap;">${date}</td>
+          <td style="font-size:0.85rem;">${items || '—'}</td>
+          <td style="font-size:0.83rem;color:var(--gray);">${escHtml(o.notes || '—')}</td>
+          <td><span class="status-badge ${sc}">${o.status}</span></td>
+        </tr>`;
+    }).join('');
+  }
+
+  // ── ADMIN ORDERS ──────────────────────────────
+  async function loadAdminOrders() {
+    const { data, error } = await sb
+      .from('orders')
+      .select(`
+        id, created_at, company_name, email, notes, status,
+        order_items ( quantity, products ( name ) )
+      `)
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      document.getElementById('admin-orders-tbody').innerHTML =
+        '<tr><td colspan="6" style="text-align:center;color:var(--red);">Error loading orders.</td></tr>';
+      return;
+    }
+
+    document.getElementById('orders-count').textContent = data.length + ' order(s)';
+
+    if (data.length === 0) {
+      document.getElementById('admin-orders-tbody').innerHTML =
+        '<tr><td colspan="6" style="text-align:center;color:var(--gray);padding:2rem;">No orders yet.</td></tr>';
+      return;
+    }
+
+    document.getElementById('admin-orders-tbody').innerHTML = data.map(o => {
+      const date  = new Date(o.created_at).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+      const items = (o.order_items || []).map(i => `${i.products?.name}: <strong>${i.quantity} t</strong>`).join('<br>');
+      const sc    = { new:'status-new', confirmed:'status-confirmed', shipped:'status-shipped', done:'status-done' }[o.status] || 'status-new';
+      return `
+        <tr>
+          <td style="white-space:nowrap;">${date}</td>
+          <td><strong>${escHtml(o.company_name || '—')}</strong></td>
+          <td style="font-size:0.83rem;">${escHtml(o.email || '—')}</td>
+          <td style="font-size:0.85rem;">${items || '—'}</td>
+          <td style="font-size:0.83rem;color:var(--gray);">${escHtml(o.notes || '—')}</td>
+          <td>
+            <span class="status-badge ${sc}">${o.status}</span>
+            <div style="margin-top:6px;display:flex;gap:4px;flex-wrap:wrap;">
+              ${o.status !== 'confirmed' ? `<button class="btn-status btn-s-confirm" onclick="setOrderStatus('${o.id}','confirmed')">Confirm</button>` : ''}
+              ${o.status !== 'shipped'   ? `<button class="btn-status btn-s-ship"    onclick="setOrderStatus('${o.id}','shipped')">Shipped</button>` : ''}
+              ${o.status !== 'done'      ? `<button class="btn-status btn-s-done"    onclick="setOrderStatus('${o.id}','done')">Done</button>` : ''}
+              <button class="btn-status" style="background:#fee2e2;color:#dc2626;border:1px solid #fca5a5;" onclick="deleteOrder('${o.id}')">Delete</button>
+            </div>
+          </td>
+        </tr>`;
+    }).join('');
+  }
+
+  function togglePreorder(productId, stock) {
+    const inp      = document.getElementById('qty-' + productId);
+    const isPreorder = document.getElementById('preorder-' + productId).checked;
+    if (isPreorder) {
+      inp.removeAttribute('max');
+      inp.removeAttribute('disabled');
+      inp.placeholder = 'Pre-order qty';
+    } else {
+      inp.setAttribute('max', stock);
+      if (parseFloat(stock) <= 0) inp.setAttribute('disabled', true);
+      inp.placeholder = '0';
+    }
+  }
+
+  async function setOrderStatus(id, status) {
+    await sb.from('orders').update({ status }).eq('id', id);
+    loadAdminOrders();
+  }
+
+  async function deleteOrder(id) {
+    if (!confirm('Delete this order?')) return;
+    await sb.from('order_items').delete().eq('order_id', id);
+    await sb.from('orders').delete().eq('id', id);
+    loadAdminOrders();
+  }
+
+  // ── ADMIN TABS ────────────────────────────────
+  function switchAdminTab(tab) {
+    ['requests', 'orders', 'pipeline', 'crm', 'products'].forEach(t => {
+      const el  = document.getElementById(`tab-${t}`);
+      const btn = document.querySelector(`[data-tab="${t}"]`);
+      if (el)  el.style.display = t === tab ? 'block' : 'none';
+      if (btn) btn.classList.toggle('active', t === tab);
+    });
+    if (tab === 'crm')      loadCustomers();
+    if (tab === 'pipeline') loadPipeline();
+    if (tab === 'products') loadProducts();
+  }
+
+  // ── CRM ───────────────────────────────────────
+  let crmCustomers = [];
+
+  async function loadCustomers() {
+    const tbody = document.getElementById('crm-customers-tbody');
+    const { data, error } = await sb
+      .from('customers')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--red);">Error loading customers.</td></tr>';
+      return;
+    }
+    crmCustomers = data || [];
+    renderCustomers();
+  }
+
+  function renderCustomers() {
+    const tbody = document.getElementById('crm-customers-tbody');
+    if (!crmCustomers.length) {
+      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--gray);padding:2rem;">No customers yet. Use "→ CRM" from Access Requests or "+ Add Customer".</td></tr>';
+      return;
+    }
+    tbody.innerHTML = crmCustomers.map(c => `
+      <tr class="crm-customer-row" onclick="toggleCustomerDetail('${c.id}')">
+        <td><strong>${escHtml(c.company_name)}</strong></td>
+        <td style="font-size:0.83rem;">${escHtml(c.country || '—')}</td>
+        <td style="font-size:0.83rem;">${escHtml(c.email || '—')}</td>
+        <td><span class="status-badge cust-status-${c.status}">${c.status}</span></td>
+        <td style="font-size:0.83rem;color:var(--gray);">${escHtml(c.source)}</td>
+        <td>
+          <button class="btn-status" style="background:#fee2e2;color:#dc2626;border:1px solid #fca5a5;"
+            onclick="event.stopPropagation();deleteCustomer('${c.id}')">Delete</button>
+        </td>
+      </tr>
+      <tr id="cust-detail-${c.id}" style="display:none;">
+        <td colspan="6" style="padding:0;">
+          <div class="customer-detail-panel" id="cust-panel-${c.id}">Loading...</div>
+        </td>
+      </tr>`).join('');
+  }
+
+  async function toggleCustomerDetail(id) {
+    const row = document.getElementById(`cust-detail-${id}`);
+    if (!row) return;
+    const isOpen = row.style.display !== 'none';
+    crmCustomers.forEach(c => {
+      const r = document.getElementById(`cust-detail-${c.id}`);
+      if (r) r.style.display = 'none';
+    });
+    if (!isOpen) {
+      row.style.display = '';
+      await loadCustomerDetail(id);
+    }
+  }
+
+  async function loadCustomerDetail(customerId) {
+    const panel = document.getElementById(`cust-panel-${customerId}`);
+    if (!panel) return;
+    panel.innerHTML = '<div style="padding:1rem;color:var(--gray);">Loading...</div>';
+    const [dealsRes, tasksRes] = await Promise.all([
+      sb.from('deals').select('*').eq('customer_id', customerId).order('created_at', { ascending: false }),
+      sb.from('tasks').select('*').eq('customer_id', customerId).order('due_date',    { ascending: true }),
+    ]);
+    panel.innerHTML = renderCustomerDetail(customerId, dealsRes.data || [], tasksRes.data || []);
+  }
+
+  function renderCustomerDetail(customerId, deals, tasks) {
+    const stageOptions = ['new','contacted','sample_sent','quoted','negotiating','won','lost'];
+
+    const dealsHtml = deals.length
+      ? `<table style="width:100%;border-collapse:collapse;">
+          <thead><tr>
+            ${['Title','Product','Volume','Value','Stage','Notes'].map(h =>
+              `<th style="text-align:left;padding:6px 8px;font-size:0.73rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.05em;">${h}</th>`
+            ).join('')}
+          </tr></thead>
+          <tbody>${deals.map(d => `
+            <tr style="border-top:1px solid var(--gray-mid);">
+              <td style="padding:8px;font-size:0.85rem;"><strong>${escHtml(d.title)}</strong></td>
+              <td style="padding:8px;font-size:0.83rem;">${escHtml(d.product_name || '—')}</td>
+              <td style="padding:8px;font-size:0.83rem;">${d.volume_tons ? d.volume_tons + ' t' : '—'}</td>
+              <td style="padding:8px;font-size:0.83rem;">${d.value_eur ? '€ ' + Number(d.value_eur).toLocaleString('de-DE') : '—'}</td>
+              <td style="padding:8px;">
+                <select onchange="setDealStage('${d.id}','${customerId}',this.value)"
+                  style="padding:4px 6px;border:1px solid var(--gray-mid);border-radius:6px;font-size:0.78rem;font-family:'Inter',sans-serif;background:white;">
+                  ${stageOptions.map(s => `<option value="${s}" ${s===d.stage?'selected':''}>${s.replace(/_/g,' ')}</option>`).join('')}
+                </select>
+              </td>
+              <td style="padding:8px;font-size:0.83rem;color:var(--gray);">${escHtml(d.notes || '—')}</td>
+            </tr>`).join('')}
+          </tbody>
+        </table>`
+      : '<p style="color:var(--gray);font-size:0.85rem;padding:0.5rem 0;">No deals yet.</p>';
+
+    const tasksHtml = tasks.length
+      ? tasks.map(t => {
+          const done    = t.status === 'done';
+          const due     = t.due_date ? new Date(t.due_date + 'T00:00:00').toLocaleDateString('en-GB', { day:'numeric', month:'short' }) : '—';
+          const overdue = t.due_date && !done && new Date(t.due_date) < new Date();
+          return `<div class="task-item ${done ? 'task-done' : ''}">
+            <input type="checkbox" class="task-check" ${done ? 'checked' : ''} onchange="setTaskStatus('${t.id}','${customerId}',this.checked)">
+            <div style="flex:1;">
+              <div style="font-size:0.88rem;font-weight:${done?'400':'600'};">${escHtml(t.title)}</div>
+              <div style="font-size:0.75rem;color:var(--gray);">${t.type} · <span ${overdue ? 'style="color:var(--red);font-weight:700;"' : ''}>${due}</span></div>
+            </div>
+            <button onclick="deleteTask('${t.id}','${customerId}')"
+              style="background:none;border:none;cursor:pointer;color:var(--gray);font-size:1.1rem;padding:0 4px;">×</button>
+          </div>`;
+        }).join('')
+      : '<p style="color:var(--gray);font-size:0.85rem;padding:0.5rem 0;">No tasks.</p>';
+
+    const dealForm = `
+      <div id="add-deal-form-${customerId}" style="display:none;margin-bottom:1rem;">
+        <div class="inline-form">
+          <div><label>Title *</label><input id="deal-title-${customerId}" placeholder="e.g. CORETRON offer Q2" /></div>
+          <div><label>Product</label><input id="deal-product-${customerId}" placeholder="CORETRON E551c" /></div>
+          <div><label>Volume (t)</label><input type="number" id="deal-vol-${customerId}" placeholder="0" /></div>
+          <div><label>Value (€)</label><input type="number" id="deal-val-${customerId}" placeholder="0" /></div>
+          <div><label>Stage</label>
+            <select id="deal-stage-${customerId}">
+              ${stageOptions.map(s => `<option value="${s}">${s.replace(/_/g,' ')}</option>`).join('')}
+            </select>
+          </div>
+          <div><label>Notes</label><input id="deal-notes-${customerId}" placeholder="Optional" /></div>
+          <div style="display:flex;gap:0.5rem;align-items:flex-end;">
+            <button class="btn-sm btn-sm-green" onclick="saveDeal('${customerId}')">Save</button>
+            <button class="btn-sm btn-sm-gray"  onclick="toggleAddDealForm('${customerId}')">Cancel</button>
+          </div>
+        </div>
+      </div>`;
+
+    const taskForm = `
+      <div id="add-task-form-${customerId}" style="display:none;margin-bottom:1rem;">
+        <div class="inline-form" style="grid-template-columns:1fr 1fr;">
+          <div><label>Title *</label><input id="task-title-${customerId}" placeholder="e.g. Send sample" /></div>
+          <div><label>Type</label>
+            <select id="task-type-${customerId}">
+              <option value="followup">Follow-up</option>
+              <option value="email">Email</option>
+              <option value="call">Call</option>
+              <option value="meeting">Meeting</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div><label>Due Date</label><input type="date" id="task-due-${customerId}" /></div>
+          <div style="display:flex;gap:0.5rem;align-items:flex-end;">
+            <button class="btn-sm btn-sm-green" onclick="saveTask('${customerId}')">Save</button>
+            <button class="btn-sm btn-sm-gray"  onclick="toggleAddTaskForm('${customerId}')">Cancel</button>
+          </div>
+        </div>
+      </div>`;
+
+    return `<div style="display:grid;grid-template-columns:3fr 2fr;gap:1.5rem;">
+      <div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;">
+          <strong style="font-size:0.9rem;">Deals</strong>
+          <button class="btn-sm btn-sm-green" onclick="toggleAddDealForm('${customerId}')">+ Add Deal</button>
+        </div>
+        ${dealForm}
+        ${dealsHtml}
+      </div>
+      <div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;">
+          <strong style="font-size:0.9rem;">Tasks</strong>
+          <button class="btn-sm btn-sm-green" onclick="toggleAddTaskForm('${customerId}')">+ Add Task</button>
+        </div>
+        ${taskForm}
+        ${tasksHtml}
+      </div>
+    </div>`;
+  }
+
+  function toggleAddDealForm(id) {
+    const el = document.getElementById(`add-deal-form-${id}`);
+    if (el) el.style.display = el.style.display === 'none' ? '' : 'none';
+  }
+  function toggleAddTaskForm(id) {
+    const el = document.getElementById(`add-task-form-${id}`);
+    if (el) el.style.display = el.style.display === 'none' ? '' : 'none';
+  }
+
+  async function saveDeal(customerId) {
+    const title = document.getElementById(`deal-title-${customerId}`)?.value.trim();
+    if (!title) { alert('Deal title is required.'); return; }
+    const { error } = await sb.from('deals').insert({
+      customer_id:  customerId,
+      title,
+      product_name: document.getElementById(`deal-product-${customerId}`)?.value.trim() || null,
+      volume_tons:  parseFloat(document.getElementById(`deal-vol-${customerId}`)?.value)  || null,
+      value_eur:    parseFloat(document.getElementById(`deal-val-${customerId}`)?.value)   || null,
+      stage:        document.getElementById(`deal-stage-${customerId}`)?.value || 'new',
+      notes:        document.getElementById(`deal-notes-${customerId}`)?.value.trim() || null,
+    });
+    if (error) { alert('Error: ' + error.message); return; }
+    loadCustomerDetail(customerId);
+  }
+
+  async function saveTask(customerId) {
+    const title = document.getElementById(`task-title-${customerId}`)?.value.trim();
+    if (!title) { alert('Task title is required.'); return; }
+    const { error } = await sb.from('tasks').insert({
+      customer_id: customerId,
+      title,
+      type:     document.getElementById(`task-type-${customerId}`)?.value || 'followup',
+      due_date: document.getElementById(`task-due-${customerId}`)?.value  || null,
+      status:   'new',
+    });
+    if (error) { alert('Error: ' + error.message); return; }
+    loadCustomerDetail(customerId);
+  }
+
+  async function setDealStage(dealId, customerId, stage) {
+    await sb.from('deals').update({ stage }).eq('id', dealId);
+  }
+
+  async function setTaskStatus(taskId, customerId, done) {
+    await sb.from('tasks').update({ status: done ? 'done' : 'new' }).eq('id', taskId);
+    loadCustomerDetail(customerId);
+  }
+
+  async function deleteTask(taskId, customerId) {
+    if (!confirm('Delete this task?')) return;
+    await sb.from('tasks').delete().eq('id', taskId);
+    loadCustomerDetail(customerId);
+  }
+
+  async function deleteCustomer(id) {
+    if (!confirm('Delete this customer and all their deals and tasks?')) return;
+    await sb.from('customers').delete().eq('id', id);
+    loadCustomers();
+  }
+
+  function showAddCustomerForm() {
+    const el = document.getElementById('add-customer-form');
+    el.style.display = 'block';
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  async function saveNewCustomer() {
+    const company = document.getElementById('new-cust-company')?.value.trim();
+    if (!company) { alert('Company name is required.'); return; }
+    const { error } = await sb.from('customers').insert({
+      company_name: company,
+      country:     document.getElementById('new-cust-country')?.value.trim() || null,
+      email:       document.getElementById('new-cust-email')?.value.trim()   || null,
+      phone:       document.getElementById('new-cust-phone')?.value.trim()   || null,
+      vat_number:  document.getElementById('new-cust-vat')?.value.trim()     || null,
+      address:     document.getElementById('new-cust-address')?.value.trim() || null,
+      status:      document.getElementById('new-cust-status')?.value || 'lead',
+      source:      document.getElementById('new-cust-source')?.value || 'manual',
+      notes:       document.getElementById('new-cust-notes')?.value.trim()   || null,
+    });
+    if (error) { alert('Error: ' + error.message); return; }
+    document.getElementById('add-customer-form').style.display = 'none';
+    // Clear form
+    ['company','country','email','phone','vat','address','notes'].forEach(f => {
+      const el = document.getElementById(`new-cust-${f}`);
+      if (el) el.value = '';
+    });
+    loadCustomers();
+  }
+
+  async function convertToCustomer(requestId) {
+    const r = arCache[requestId];
+    if (!r) { alert('Request not found. Please reload the page.'); return; }
+
+    const company = r.company_name || '';
+    const email   = r.email        || null;
+    const address = r.address      || null;
+    const vat     = r.vat_number   || null;
+
+    if (!confirm(`Create CRM customer for "${company}"?`)) return;
+
+    // Check for duplicates by VAT first, then company name
+    let existing = null;
+    if (vat) {
+      const { data } = await sb.from('customers').select('id,company_name').eq('vat_number', vat).maybeSingle();
+      existing = data;
+    }
+    if (!existing && company) {
+      const { data } = await sb.from('customers').select('id,company_name').ilike('company_name', company).maybeSingle();
+      existing = data;
+    }
+    if (existing) {
+      alert(`Customer already exists: "${existing.company_name}". Marking request as done.`);
+      const { error: upErr } = await sb.from('access_requests').update({ status: 'done' }).eq('id', requestId);
+      if (upErr) alert('Could not update request status: ' + upErr.message);
+      loadAccessRequests();
+      return;
+    }
+
+    const { data, error } = await sb.from('customers').insert({
+      company_name: company,
+      email,
+      address,
+      vat_number: vat,
+      status: 'lead',
+      source: 'portal',
+    }).select().single();
+
+    if (error) { alert('Error creating customer: ' + error.message); return; }
+
+    const customerId = data.id;
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    const [dealR, taskR, reqR] = await Promise.all([
+      sb.from('deals').insert({ customer_id: customerId, title: `Initial inquiry – ${company}`, stage: 'new' }),
+      sb.from('tasks').insert({ customer_id: customerId, title: `Follow up with ${company}`, type: 'followup', due_date: tomorrow.toISOString().split('T')[0], status: 'new' }),
+      sb.from('access_requests').update({ status: 'done' }).eq('id', requestId),
+    ]);
+
+    if (dealR.error) console.warn('Deal creation failed:', dealR.error.message);
+    if (taskR.error) console.warn('Task creation failed:', taskR.error.message);
+    if (reqR.error)  alert('Customer created, but could not mark request as done: ' + reqR.error.message);
+
+    loadAccessRequests();
+    switchAdminTab('crm');
+  }
+
+  // ── PIPELINE KANBAN ───────────────────────────
+  const PIPELINE_STAGES = [
+    { key: 'new',         label: 'New',         color: '#dbeafe', text: '#1e40af' },
+    { key: 'contacted',   label: 'Contacted',   color: '#e0e7ff', text: '#3730a3' },
+    { key: 'sample_sent', label: 'Sample Sent', color: '#fef3c7', text: '#92400e' },
+    { key: 'quoted',      label: 'Quoted',      color: '#d1fae5', text: '#065f46' },
+    { key: 'negotiating', label: 'Negotiating', color: '#fce7f3', text: '#9d174d' },
+    { key: 'won',         label: 'Won ✓',       color: '#bbf7d0', text: '#14532d' },
+    { key: 'lost',        label: 'Lost',        color: '#fee2e2', text: '#991b1b' },
+  ];
+
+  let pipelineDeals = [];
+  let dragSrcId     = null;
+
+  async function loadPipeline() {
+    const board = document.getElementById('pipeline-board');
+    board.innerHTML = '<div style="padding:2rem;color:var(--gray);">Loading...</div>';
+
+    const { data, error } = await sb
+      .from('deals')
+      .select('id, title, stage, product_name, volume_tons, value_eur, notes, customer_id, created_at, customers(company_name, country)')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      board.innerHTML = `<div style="padding:2rem;color:var(--red);">Error: ${escHtml(error.message)}</div>`;
+      return;
+    }
+    pipelineDeals = data || [];
+    renderPipeline();
+  }
+
+  function renderPipeline() {
+    const board = document.getElementById('pipeline-board');
+    board.innerHTML = PIPELINE_STAGES.map(stage => {
+      const deals = pipelineDeals.filter(d => d.stage === stage.key);
+
+      const cards = deals.map(d => {
+        const company = d.customers?.company_name || 'Unknown';
+        const country = d.customers?.country      || '';
+        const product = d.product_name            || '';
+        const value   = d.value_eur   ? `<span class="deal-badge deal-badge-value">€${Number(d.value_eur).toLocaleString('de-DE')}</span>` : '';
+        const vol     = d.volume_tons ? `<span class="deal-badge deal-badge-vol">${d.volume_tons}t</span>` : '';
+        const borderColor = stage.key === 'won' ? '#16a34a' : stage.key === 'lost' ? '#dc2626' : 'var(--green-light)';
+
+        return `<div class="pipeline-card"
+          draggable="true"
+          data-id="${d.id}"
+          style="border-left-color:${borderColor};"
+          ondragstart="onPipelineDragStart(event,'${d.id}')"
+          ondragend="onPipelineDragEnd(event)"
+          onclick="pipelineOpenCustomer('${d.customer_id}')">
+          <div class="pipeline-card-company">${escHtml(company)}</div>
+          ${country ? `<div class="pipeline-card-row">🌍 ${escHtml(country)}</div>` : ''}
+          <div class="pipeline-card-footer">${value}${vol}</div>
+        </div>`;
+      }).join('');
+
+      return `<div class="pipeline-col">
+        <div class="pipeline-col-header" style="background:${stage.color};color:${stage.text};">
+          <span>${stage.label}</span>
+          <span style="font-weight:500;opacity:0.8;">${deals.length}</span>
+        </div>
+        <div class="pipeline-col-body"
+          data-stage="${stage.key}"
+          ondragover="onPipelineDragOver(event)"
+          ondragleave="onPipelineDragLeave(event)"
+          ondrop="onPipelineDrop(event,'${stage.key}')">
+          ${cards || '<div class="pipeline-empty">No deals</div>'}
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  function onPipelineDragStart(e, id) {
+    dragSrcId = id;
+    e.currentTarget.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+  }
+
+  function onPipelineDragEnd(e) {
+    e.currentTarget.classList.remove('dragging');
+    document.querySelectorAll('.pipeline-col-body').forEach(c => c.classList.remove('drag-over'));
+  }
+
+  function onPipelineDragOver(e) {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    e.currentTarget.classList.add('drag-over');
+  }
+
+  function onPipelineDragLeave(e) {
+    e.currentTarget.classList.remove('drag-over');
+  }
+
+  async function onPipelineDrop(e, newStage) {
+    e.preventDefault();
+    e.currentTarget.classList.remove('drag-over');
+    if (!dragSrcId) return;
+
+    const deal = pipelineDeals.find(d => d.id === dragSrcId);
+    if (!deal || deal.stage === newStage) { dragSrcId = null; return; }
+
+    deal.stage = newStage;   // optimistic update
+    renderPipeline();
+
+    const { error } = await sb.from('deals').update({ stage: newStage }).eq('id', dragSrcId);
+    if (error) { alert('Error updating stage: ' + error.message); loadPipeline(); }
+    dragSrcId = null;
+  }
+
+  function pipelineOpenCustomer(customerId) {
+    switchAdminTab('crm');
+    setTimeout(async () => {
+      await loadCustomers();
+      const row = document.getElementById(`cust-detail-${customerId}`);
+      if (row && row.style.display === 'none') toggleCustomerDetail(customerId);
+      const el = document.getElementById(`cust-detail-${customerId}`);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300);
+  }
+
+  // ── UTILS ─────────────────────────────────────
+  function escHtml(s) {
+    return String(s)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;');
+  }
+
+  // Enter key on login
+  document.addEventListener('DOMContentLoaded', () => {
+    ['login-email','login-password'].forEach(id => {
+      document.getElementById(id)?.addEventListener('keydown', e => {
+        if (e.key === 'Enter') login();
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

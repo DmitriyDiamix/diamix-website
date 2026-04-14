@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impressum – Diamix Europe GmbH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: #1a2332; background: #fff; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --green: #2d6a4f;
+      --green-light: #40916c;
+      --green-pale: #d8f3dc;
+      --navy: #1a2332;
+      --gray: #6b7280;
+      --gray-light: #f8f9fa;
+      --gray-mid: #e5e7eb;
+      --white: #ffffff;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: #ffffff;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding: 0 2.5rem; height: 72px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo img { height: 68px; width: auto; mix-blend-mode: multiply; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { font-size: 0.88rem; font-weight: 500; color: var(--navy); opacity: 0.75; transition: opacity 0.2s; }
+    .nav-links a:hover { opacity: 1; }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .btn-cta-nav { background: var(--green); color: white; padding: 10px 22px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; transition: background 0.2s; }
+    .btn-cta-nav:hover { background: var(--green-light); }
+
+    /* ── PAGE ── */
+    .page-header {
+      background: var(--navy);
+      padding: 120px 2rem 60px;
+      text-align: center;
+    }
+    .page-header h1 { color: white; font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .page-header p { color: rgba(255,255,255,0.6); font-size: 1rem; }
+
+    .container { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+
+    .legal-content {
+      padding: 4rem 0 6rem;
+    }
+    .legal-section {
+      margin-bottom: 2.5rem;
+    }
+    .legal-section h2 {
+      font-size: 1.1rem; font-weight: 700; color: var(--navy);
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--green-pale);
+    }
+    .legal-section p { color: var(--gray); font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .legal-section a { color: var(--green); }
+    .legal-section a:hover { text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy); color: rgba(255,255,255,0.5);
+      padding: 2rem; text-align: center; font-size: 0.8rem;
+    }
+    footer a { color: rgba(255,255,255,0.6); margin: 0 0.75rem; }
+    footer a:hover { color: white; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="images/diamix-logo.png" alt="Diamix Europe GmbH" />
+  </a>
+  <div class="nav-links">
+    <a href="index.html#applications">Anwendungen</a>
+    <a href="index.html#products">Produkte</a>
+    <a href="index.html#logistics">Logistik</a>
+    <a href="index.html#quality">Qualität</a>
+    <a href="index.html#about">Über uns</a>
+  </div>
+  <div class="nav-right">
+    <a href="index.html#contact" class="btn-cta-nav">Angebot anfragen</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <h1>Impressum</h1>
+  <p>Angaben gemäß § 5 TMG</p>
+</div>
+
+<div class="container">
+  <div class="legal-content">
+
+    <div class="legal-section">
+      <h2>Unternehmensangaben</h2>
+      <p><strong>Diamix Europe GmbH</strong></p>
+      <p>Hubenkamp 1</p>
+      <p>29614 Soltau</p>
+      <p>Deutschland</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>Kontakt</h2>
+      <p>E-Mail: <a href="mailto:office@diamix.eu">office@diamix.eu</a></p>
+      <p>Web: <a href="https://www.diamix.eu">www.diamix.eu</a></p>
+    </div>
+
+    <div class="legal-section">
+      <h2>Vertreten durch</h2>
+      <p>Geschäftsführer: <strong>Dmitriy Nurseitov</strong></p>
+    </div>
+
+    <div class="legal-section">
+      <h2>Handelsregister</h2>
+      <p>Registergericht: Amtsgericht Lüneburg</p>
+      <p>Registernummer: HRB 204856</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>Umsatzsteuer-Identifikationsnummer</h2>
+      <p>gemäß § 27 a Umsatzsteuergesetz:</p>
+      <p>DE 815481592</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>Verantwortlich für den Inhalt</h2>
+      <p>Diamix Europe GmbH</p>
+      <p>Hubenkamp 1, 29614 Soltau</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>Haftungsausschluss</h2>
+      <p>Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir keine Gewähr übernehmen.</p>
+      <p style="margin-top:0.5rem;">Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>Urheberrecht</h2>
+      <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Diamix Europe GmbH · Hubenkamp 1 · 29614 Soltau</p>
+  <div style="margin-top:0.75rem;">
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <a href="index.html">Startseite</a>
+  </div>
+</footer>
+
+</body>
+</html>
