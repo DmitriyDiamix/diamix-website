@@ -1888,12 +1888,14 @@
   async function setTaskStatus(taskId, customerId, done) {
     await sb.from('tasks').update({ status: done ? 'done' : 'new' }).eq('id', taskId);
     loadCustomerDetail(customerId);
+    loadCustomers();
   }
 
   async function deleteTask(taskId, customerId) {
     if (!confirm('Delete this task?')) return;
     await sb.from('tasks').delete().eq('id', taskId);
     loadCustomerDetail(customerId);
+    loadCustomers();
   }
 
   async function deleteDeal(dealId, customerId) {
