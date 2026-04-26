@@ -561,6 +561,7 @@
         <button class="admin-tab" data-tab="crm" onclick="switchAdminTab('crm')">CRM</button>
         <button class="admin-tab" data-tab="pipeline" onclick="switchAdminTab('pipeline')">Pipeline</button>
         <button class="admin-tab" data-tab="products" onclick="switchAdminTab('products')">Products</button>
+        <button class="admin-tab" data-tab="logistics" onclick="switchAdminTab('logistics')">Logistics</button>
       </div>
 
       <!-- Tab: Access Requests -->
@@ -611,6 +612,93 @@
         <div id="admin-products-slot"></div>
       </div>
 
+      <!-- Tab: Logistics -->
+      <div id="tab-logistics" style="display:none;">
+
+        <!-- Carriers -->
+        <div class="section-card" style="margin-bottom:2rem;">
+          <div class="section-card-header">
+            <h3>Carriers</h3>
+            <button class="btn-sm" onclick="toggleAddCarrier()">+ Add Carrier</button>
+          </div>
+
+          <!-- Add Carrier Form -->
+          <div id="add-carrier-form" style="display:none;padding:1.5rem;border-bottom:1px solid var(--gray-mid);">
+            <div class="inline-form" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr));">
+              <div><label>Company Name *</label><input id="new-carrier-name" placeholder="Girteka Logistics" /></div>
+              <div><label>Contact Person</label><input id="new-carrier-contact" placeholder="John Smith" /></div>
+              <div><label>Email</label><input type="email" id="new-carrier-email" placeholder="info@carrier.com" /></div>
+              <div><label>Phone</label><input id="new-carrier-phone" placeholder="+49..." /></div>
+              <div><label>Country</label><input id="new-carrier-country" placeholder="DE" /></div>
+              <div><label>Type</label>
+                <select id="new-carrier-type" style="width:100%;padding:10px;border:1.5px solid var(--gray-mid);border-radius:8px;font-family:Inter,sans-serif;">
+                  <option value="road">Road</option>
+                  <option value="sea">Sea</option>
+                  <option value="air">Air</option>
+                  <option value="rail">Rail</option>
+                </select>
+              </div>
+              <div style="grid-column:1/-1"><label>Notes</label><input id="new-carrier-notes" placeholder="Any notes..." /></div>
+            </div>
+            <div style="margin-top:1rem;display:flex;gap:0.75rem;">
+              <button class="btn-sm" onclick="saveCarrier()">Save Carrier</button>
+              <button class="btn-sm btn-sm-gray" onclick="toggleAddCarrier()">Cancel</button>
+            </div>
+          </div>
+
+          <table>
+            <thead>
+              <tr><th>Company</th><th>Contact</th><th>Email</th><th>Phone</th><th>Country</th><th>Type</th></tr>
+            </thead>
+            <tbody id="carriers-tbody">
+              <tr><td colspan="6" style="text-align:center;color:var(--gray);padding:2rem;">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Shipments -->
+        <div class="section-card">
+          <div class="section-card-header">
+            <h3>Shipments</h3>
+            <button class="btn-sm" onclick="toggleAddShipment()">+ Add Shipment</button>
+          </div>
+
+          <!-- Add Shipment Form -->
+          <div id="add-shipment-form" style="display:none;padding:1.5rem;border-bottom:1px solid var(--gray-mid);">
+            <div class="inline-form" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr));">
+              <div><label>Carrier</label>
+                <select id="new-ship-carrier" style="width:100%;padding:10px;border:1.5px solid var(--gray-mid);border-radius:8px;font-family:Inter,sans-serif;">
+                  <option value="">Select carrier...</option>
+                </select>
+              </div>
+              <div><label>Customer</label>
+                <select id="new-ship-customer" style="width:100%;padding:10px;border:1.5px solid var(--gray-mid);border-radius:8px;font-family:Inter,sans-serif;">
+                  <option value="">Select customer...</option>
+                </select>
+              </div>
+              <div><label>Product</label><input id="new-ship-product" placeholder="CORETRON E551c" /></div>
+              <div><label>Quantity (tons)</label><input type="number" id="new-ship-qty" placeholder="25" /></div>
+              <div><label>Origin</label><input id="new-ship-origin" placeholder="Mumbai, India" /></div>
+              <div><label>Destination</label><input id="new-ship-dest" placeholder="Hamburg, DE" /></div>
+              <div><label>Freight cost (€)</label><input type="number" id="new-ship-cost" placeholder="2500" /></div>
+              <div><label>Container/Vehicle №</label><input id="new-ship-container" placeholder="MSCU1234567" /></div>
+              <div><label>ETD (departure)</label><input type="date" id="new-ship-etd" /></div>
+              <div><label>ETA (arrival)</label><input type="date" id="new-ship-eta" /></div>
+              <div style="grid-column:1/-1"><label>Notes</label><input id="new-ship-notes" placeholder="Any notes..." /></div>
+            </div>
+            <div style="margin-top:1rem;display:flex;gap:0.75rem;">
+              <button class="btn-sm" onclick="saveShipment()">Save Shipment</button>
+              <button class="btn-sm btn-sm-gray" onclick="toggleAddShipment()">Cancel</button>
+            </div>
+          </div>
+
+          <!-- Pipeline view -->
+          <div style="display:flex;gap:1rem;overflow-x:auto;padding:1.5rem;" id="shipments-pipeline">
+            <div style="padding:2rem;color:var(--gray);">Loading shipments...</div>
+          </div>
+        </div>
+      </div>
+
       <!-- Tab: Pipeline -->
       <div id="tab-pipeline" style="display:none;">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
@@ -626,7 +714,7 @@
       <div id="tab-crm" style="display:none;">
 
         <!-- Add Customer form (hidden by default) -->
-        <div id="add-customer-form" style="display:none;" class="section-card" style="margin-bottom:1.5rem;">
+        <div id="add-customer-form" style="display:none; margin-bottom:1.5rem;" class="section-card">
           <div class="section-card-header"><h3>Add Customer</h3></div>
           <div style="padding:1.5rem;">
             <div class="inline-form" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr));">
@@ -1399,15 +1487,150 @@
 
   // ── ADMIN TABS ────────────────────────────────
   function switchAdminTab(tab) {
-    ['requests', 'orders', 'pipeline', 'crm', 'products'].forEach(t => {
+    ['requests', 'orders', 'pipeline', 'crm', 'products', 'logistics'].forEach(t => {
       const el  = document.getElementById(`tab-${t}`);
       const btn = document.querySelector(`[data-tab="${t}"]`);
       if (el)  el.style.display = t === tab ? 'block' : 'none';
       if (btn) btn.classList.toggle('active', t === tab);
     });
-    if (tab === 'crm')      loadCustomers();
-    if (tab === 'pipeline') loadPipeline();
-    if (tab === 'products') loadProducts();
+    if (tab === 'crm')       loadCustomers();
+    if (tab === 'pipeline')  loadPipeline();
+    if (tab === 'products')  loadProducts();
+    if (tab === 'logistics') loadLogistics();
+  }
+
+  // ── LOGISTICS ─────────────────────────────────
+
+  const SHIP_STATUSES = ['ordered','loading','in_transit','customs','delivered'];
+  const SHIP_LABELS   = { ordered:'Ordered', loading:'Loading', in_transit:'In Transit', customs:'Customs', delivered:'Delivered' };
+  const SHIP_COLORS   = { ordered:'#6b7280', loading:'#c8963e', in_transit:'#2563eb', customs:'#7c3aed', delivered:'#2d6a4f' };
+
+  let carriersCache = [];
+  let customersCache = [];
+
+  async function loadLogistics() {
+    await Promise.all([loadCarriers(), loadShipments()]);
+  }
+
+  async function loadCarriers() {
+    const tbody = document.getElementById('carriers-tbody');
+    const { data, error } = await sb.from('carriers').select('*').order('company_name');
+    if (error) { tbody.innerHTML = `<tr><td colspan="6" style="color:var(--red);padding:1rem;">Error: ${error.message}</td></tr>`; return; }
+    carriersCache = data || [];
+    if (!carriersCache.length) {
+      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--gray);padding:2rem;">No carriers yet. Add your first carrier.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = carriersCache.map(c => `
+      <tr>
+        <td><strong>${c.company_name}</strong></td>
+        <td>${c.contact_person || '—'}</td>
+        <td>${c.email || '—'}</td>
+        <td>${c.phone || '—'}</td>
+        <td>${c.country || '—'}</td>
+        <td><span style="background:var(--gray-mid);padding:2px 8px;border-radius:4px;font-size:0.78rem;">${c.type || '—'}</span></td>
+      </tr>`).join('');
+    populateCarrierSelect();
+  }
+
+  function populateCarrierSelect() {
+    const sel = document.getElementById('new-ship-carrier');
+    if (!sel) return;
+    sel.innerHTML = '<option value="">Select carrier...</option>' +
+      carriersCache.map(c => `<option value="${c.id}">${c.company_name}</option>`).join('');
+  }
+
+  async function loadShipments() {
+    const board = document.getElementById('shipments-pipeline');
+    const { data, error } = await sb.from('shipments').select('*, carriers(company_name), customers(company_name)').order('created_at', { ascending: false });
+    if (error) { board.innerHTML = `<p style="color:var(--red);">Error: ${error.message}</p>`; return; }
+    const shipments = data || [];
+
+    board.innerHTML = SHIP_STATUSES.map(status => {
+      const cards = shipments.filter(s => s.status === status);
+      return `
+        <div style="min-width:220px;flex:1;">
+          <div style="background:${SHIP_COLORS[status]};color:white;padding:8px 12px;border-radius:8px 8px 0 0;font-size:0.82rem;font-weight:600;">
+            ${SHIP_LABELS[status]} (${cards.length})
+          </div>
+          <div style="background:white;border:1px solid var(--gray-mid);border-top:none;border-radius:0 0 8px 8px;min-height:100px;padding:8px;">
+            ${cards.length ? cards.map(s => `
+              <div style="background:var(--gray-light);border-radius:6px;padding:10px;margin-bottom:8px;font-size:0.82rem;">
+                <div style="font-weight:600;margin-bottom:4px;">${s.customers?.company_name || '—'}</div>
+                <div style="color:var(--gray);">${s.product_name || '—'} ${s.quantity_tons ? '· '+s.quantity_tons+'t' : ''}</div>
+                <div style="color:var(--gray);margin-top:2px;">${s.origin || ''} → ${s.destination || ''}</div>
+                ${s.container_number ? `<div style="color:var(--gray);margin-top:2px;">📦 ${s.container_number}</div>` : ''}
+                ${s.eta ? `<div style="color:var(--gray);margin-top:2px;">ETA: ${s.eta}</div>` : ''}
+                <div style="margin-top:6px;display:flex;gap:4px;flex-wrap:wrap;">
+                  ${SHIP_STATUSES.filter(st => st !== status).map(st =>
+                    `<button onclick="updateShipmentStatus('${s.id}','${st}')" style="font-size:0.72rem;padding:2px 6px;border:1px solid var(--gray-mid);border-radius:4px;background:white;cursor:pointer;">→ ${SHIP_LABELS[st]}</button>`
+                  ).join('')}
+                </div>
+              </div>`).join('') : '<div style="color:var(--gray);font-size:0.82rem;padding:8px;">Empty</div>'}
+          </div>
+        </div>`;
+    }).join('');
+
+    // Populate customer select
+    const { data: custs } = await sb.from('customers').select('id, company_name').order('company_name');
+    customersCache = custs || [];
+    const sel = document.getElementById('new-ship-customer');
+    if (sel) sel.innerHTML = '<option value="">Select customer...</option>' +
+      customersCache.map(c => `<option value="${c.id}">${c.company_name}</option>`).join('');
+  }
+
+  async function updateShipmentStatus(id, status) {
+    await sb.from('shipments').update({ status }).eq('id', id);
+    loadShipments();
+  }
+
+  function toggleAddCarrier() {
+    const f = document.getElementById('add-carrier-form');
+    f.style.display = f.style.display === 'none' ? 'block' : 'none';
+  }
+
+  function toggleAddShipment() {
+    const f = document.getElementById('add-shipment-form');
+    f.style.display = f.style.display === 'none' ? 'block' : 'none';
+    if (f.style.display === 'block') populateCarrierSelect();
+  }
+
+  async function saveCarrier() {
+    const obj = {
+      company_name:   document.getElementById('new-carrier-name').value.trim(),
+      contact_person: document.getElementById('new-carrier-contact').value.trim(),
+      email:          document.getElementById('new-carrier-email').value.trim(),
+      phone:          document.getElementById('new-carrier-phone').value.trim(),
+      country:        document.getElementById('new-carrier-country').value.trim(),
+      type:           document.getElementById('new-carrier-type').value,
+      notes:          document.getElementById('new-carrier-notes').value.trim(),
+    };
+    if (!obj.company_name) { alert('Company name is required'); return; }
+    const { error } = await sb.from('carriers').insert(obj);
+    if (error) { alert('Error: ' + error.message); return; }
+    toggleAddCarrier();
+    loadCarriers();
+  }
+
+  async function saveShipment() {
+    const obj = {
+      carrier_id:       document.getElementById('new-ship-carrier').value || null,
+      customer_id:      document.getElementById('new-ship-customer').value || null,
+      product_name:     document.getElementById('new-ship-product').value.trim(),
+      quantity_tons:    parseFloat(document.getElementById('new-ship-qty').value) || null,
+      origin:           document.getElementById('new-ship-origin').value.trim(),
+      destination:      document.getElementById('new-ship-dest').value.trim(),
+      freight_cost_eur: parseFloat(document.getElementById('new-ship-cost').value) || null,
+      container_number: document.getElementById('new-ship-container').value.trim(),
+      etd:              document.getElementById('new-ship-etd').value || null,
+      eta:              document.getElementById('new-ship-eta').value || null,
+      notes:            document.getElementById('new-ship-notes').value.trim(),
+      status:           'ordered',
+    };
+    const { error } = await sb.from('shipments').insert(obj);
+    if (error) { alert('Error: ' + error.message); return; }
+    toggleAddShipment();
+    loadShipments();
   }
 
   // ── CRM ───────────────────────────────────────
@@ -1417,7 +1640,7 @@
     const tbody = document.getElementById('crm-customers-tbody');
     const { data, error } = await sb
       .from('customers')
-      .select('*')
+      .select('*, deals(id), tasks(id,status)')
       .order('created_at', { ascending: false });
 
     if (error) {
@@ -1435,15 +1658,46 @@
       return;
     }
     tbody.innerHTML = crmCustomers.map(c => `
-      <tr class="crm-customer-row" onclick="toggleCustomerDetail('${c.id}')">
-        <td><strong>${escHtml(c.company_name)}</strong></td>
+      <tr class="crm-customer-row" onclick="toggleCustomerDetail('${c.id}')" style="${c.status === 'lead' && !c.deals?.length ? 'border-left:3px solid #dc2626;' : ''}">
+        <td><strong>${escHtml(c.company_name)}</strong>${c.status === 'lead' && !c.deals?.length ? '<span style="margin-left:6px;background:#fee2e2;color:#dc2626;font-size:0.68rem;font-weight:700;border-radius:3px;padding:1px 5px;vertical-align:middle;">NEW</span>' : ''}${(() => { const open = (c.tasks||[]).filter(t=>t.status!=='done').length; return open > 0 ? `<span style="margin-left:6px;background:#fef3c7;color:#92400e;font-size:0.68rem;font-weight:700;border-radius:3px;padding:1px 6px;vertical-align:middle;">📋 ${open}</span>` : ''; })()}</td>
         <td style="font-size:0.83rem;">${escHtml(c.country || '—')}</td>
         <td style="font-size:0.83rem;">${escHtml(c.email || '—')}</td>
         <td><span class="status-badge cust-status-${c.status}">${c.status}</span></td>
         <td style="font-size:0.83rem;color:var(--gray);">${escHtml(c.source)}</td>
         <td>
-          <button class="btn-status" style="background:#fee2e2;color:#dc2626;border:1px solid #fca5a5;"
+          <button class="btn-status" style="background:#e0e7ff;color:#3730a3;border:1px solid #c7d2fe;"
+            onclick="event.stopPropagation();toggleEditCustomer('${c.id}')">Edit</button>
+          <button class="btn-status" style="background:#fee2e2;color:#dc2626;border:1px solid #fca5a5;margin-left:4px;"
             onclick="event.stopPropagation();deleteCustomer('${c.id}')">Delete</button>
+        </td>
+      </tr>
+      <tr id="edit-row-${c.id}" style="display:none;">
+        <td colspan="6" style="padding:0;">
+          <div style="padding:1rem 1.5rem;background:#f8fafc;border-top:1px solid var(--gray-mid);">
+            <div class="inline-form" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr));">
+              <div><label>Company Name *</label><input id="ec-company-${c.id}" value="${escHtml(c.company_name)}" /></div>
+              <div><label>Country</label><input id="ec-country-${c.id}" value="${escHtml(c.country || '')}" placeholder="DE" /></div>
+              <div><label>E-Mail</label><input type="email" id="ec-email-${c.id}" value="${escHtml(c.email || '')}" /></div>
+              <div><label>Phone</label><input id="ec-phone-${c.id}" value="${escHtml(c.phone || '')}" /></div>
+              <div><label>VAT Nr.</label><input id="ec-vat-${c.id}" value="${escHtml(c.vat_number || '')}" /></div>
+              <div><label>Address</label><input id="ec-address-${c.id}" value="${escHtml(c.address || '')}" /></div>
+              <div><label>Status</label>
+                <select id="ec-status-${c.id}">
+                  ${['lead','contacted','active','inactive','lost'].map(s => `<option value="${s}" ${s===c.status?'selected':''}>${s}</option>`).join('')}
+                </select>
+              </div>
+              <div><label>Source</label>
+                <select id="ec-source-${c.id}">
+                  ${['manual','website','portal','email','referral','exhibition'].map(s => `<option value="${s}" ${s===c.source?'selected':''}>${s}</option>`).join('')}
+                </select>
+              </div>
+              <div><label>Notes</label><input id="ec-notes-${c.id}" value="${escHtml(c.notes || '')}" placeholder="Optional" /></div>
+              <div style="display:flex;gap:0.5rem;align-items:flex-end;">
+                <button class="btn-sm btn-sm-green" onclick="saveEditCustomer('${c.id}')">Save</button>
+                <button class="btn-sm btn-sm-gray" onclick="toggleEditCustomer('${c.id}')">Cancel</button>
+              </div>
+            </div>
+          </div>
         </td>
       </tr>
       <tr id="cust-detail-${c.id}" style="display:none;">
@@ -1479,12 +1733,12 @@
   }
 
   function renderCustomerDetail(customerId, deals, tasks) {
-    const stageOptions = ['new','contacted','sample_sent','quoted','negotiating','won','lost'];
+    const stageOptions = ['new','contacted','sample_sent','testing','quoted','negotiating','won','lost'];
 
     const dealsHtml = deals.length
       ? `<table style="width:100%;border-collapse:collapse;">
           <thead><tr>
-            ${['Title','Product','Volume','Value','Stage','Notes'].map(h =>
+            ${['Title','Product','Volume','Value','Stage','Notes',''].map(h =>
               `<th style="text-align:left;padding:6px 8px;font-size:0.73rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.05em;">${h}</th>`
             ).join('')}
           </tr></thead>
@@ -1501,6 +1755,10 @@
                 </select>
               </td>
               <td style="padding:8px;font-size:0.83rem;color:var(--gray);">${escHtml(d.notes || '—')}</td>
+              <td style="padding:8px;">
+                <button onclick="deleteDeal('${d.id}','${customerId}')"
+                  style="background:none;border:none;cursor:pointer;color:var(--gray);font-size:1.1rem;padding:0 4px;">×</button>
+              </td>
             </tr>`).join('')}
           </tbody>
         </table>`
@@ -1638,9 +1896,42 @@
     loadCustomerDetail(customerId);
   }
 
+  async function deleteDeal(dealId, customerId) {
+    if (!confirm('Delete this deal?')) return;
+    const { error } = await sb.from('deals').delete().eq('id', dealId);
+    if (error) { alert('Error deleting deal: ' + error.message); return; }
+    loadCustomerDetail(customerId);
+  }
+
+  function toggleEditCustomer(id) {
+    const row = document.getElementById(`edit-row-${id}`);
+    if (!row) return;
+    row.style.display = row.style.display === 'none' ? '' : 'none';
+  }
+
+  async function saveEditCustomer(id) {
+    const company = document.getElementById(`ec-company-${id}`)?.value.trim();
+    if (!company) { alert('Company name is required.'); return; }
+    const { error } = await sb.from('customers').update({
+      company_name: company,
+      country:      document.getElementById(`ec-country-${id}`)?.value.trim()  || null,
+      email:        document.getElementById(`ec-email-${id}`)?.value.trim()    || null,
+      phone:        document.getElementById(`ec-phone-${id}`)?.value.trim()    || null,
+      vat_number:   document.getElementById(`ec-vat-${id}`)?.value.trim()      || null,
+      address:      document.getElementById(`ec-address-${id}`)?.value.trim()  || null,
+      status:       document.getElementById(`ec-status-${id}`)?.value          || 'lead',
+      source:       document.getElementById(`ec-source-${id}`)?.value          || 'manual',
+      notes:        document.getElementById(`ec-notes-${id}`)?.value.trim()    || null,
+      updated_at:   new Date().toISOString(),
+    }).eq('id', id);
+    if (error) { alert('Error: ' + error.message); return; }
+    loadCustomers();
+  }
+
   async function deleteCustomer(id) {
     if (!confirm('Delete this customer and all their deals and tasks?')) return;
-    await sb.from('customers').delete().eq('id', id);
+    const { error } = await sb.from('customers').delete().eq('id', id);
+    if (error) { alert('Error deleting: ' + error.message); return; }
     loadCustomers();
   }
 
@@ -1737,6 +2028,7 @@
     { key: 'new',         label: 'New',         color: '#dbeafe', text: '#1e40af' },
     { key: 'contacted',   label: 'Contacted',   color: '#e0e7ff', text: '#3730a3' },
     { key: 'sample_sent', label: 'Sample Sent', color: '#fef3c7', text: '#92400e' },
+    { key: 'testing',     label: 'Testing',     color: '#fef9c3', text: '#713f12' },
     { key: 'quoted',      label: 'Quoted',      color: '#d1fae5', text: '#065f46' },
     { key: 'negotiating', label: 'Negotiating', color: '#fce7f3', text: '#9d174d' },
     { key: 'won',         label: 'Won ✓',       color: '#bbf7d0', text: '#14532d' },
