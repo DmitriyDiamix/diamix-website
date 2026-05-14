@@ -4,8 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Impressum – Diamix Europe GmbH</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/fonts/inter.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -74,6 +73,25 @@
     footer a { color: rgba(255,255,255,0.6); margin: 0 0.75rem; }
     footer a:hover { color: white; }
   </style>
+<script>
+(function() {
+  var SUPA_URL = "https://tucmaxyzgfsocwkaxpsu.supabase.co";
+  var SUPA_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR1Y21heHl6Z2Zzb2N3a2F4cHN1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxMDcxOTYsImV4cCI6MjA5MDY4MzE5Nn0.aY87_aJcc2A63tqp8enE5sHSSQiw8wVj4lceQXp5Y-8";
+  var startTime = Date.now();
+  var sessionId = sessionStorage.getItem("dmx_sid") || (Math.random().toString(36).slice(2));
+  sessionStorage.setItem("dmx_sid", sessionId);
+  function send(t) {
+    fetch(SUPA_URL + "/rest/v1/page_views", {
+      method: "POST",
+      headers: {"Content-Type":"application/json","apikey":SUPA_KEY,"Authorization":"Bearer "+SUPA_KEY,"Prefer":"return=minimal"},
+      body: JSON.stringify({page:window.location.pathname,referrer:document.referrer||null,user_agent:navigator.userAgent.slice(0,200),language:navigator.language||null,session_id:sessionId,time_on_page:t||null}),
+      keepalive: true
+    });
+  }
+  window.addEventListener("load", function(){ send(null); });
+  window.addEventListener("beforeunload", function(){ send(Math.round((Date.now()-startTime)/1000)); });
+})();
+</script>
 </head>
 <body>
 
@@ -111,6 +129,7 @@
 
     <div class="legal-section">
       <h2>Kontakt</h2>
+      <p>Telefon: +49 5191 6060281</p>
       <p>E-Mail: <a href="mailto:office@diamix.eu">office@diamix.eu</a></p>
       <p>Web: <a href="https://www.diamix.eu">www.diamix.eu</a></p>
     </div>
@@ -136,6 +155,12 @@
       <h2>Verantwortlich für den Inhalt</h2>
       <p>Diamix Europe GmbH</p>
       <p>Hubenkamp 1, 29614 Soltau</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>EU-Streitschlichtung</h2>
+      <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/</a></p>
+      <p style="margin-top:0.5rem;">Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
     </div>
 
     <div class="legal-section">

@@ -1,0 +1,1017 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head><script>(function(){
+  function makeStore(){
+    var data = {};
+    var api = {
+      getItem: function(k){ return Object.prototype.hasOwnProperty.call(data, k) ? data[k] : null; },
+      setItem: function(k, v){ data[k] = String(v); },
+      removeItem: function(k){ delete data[k]; },
+      clear: function(){ data = {}; },
+      key: function(i){ return Object.keys(data)[i] || null; }
+    };
+    Object.defineProperty(api, 'length', { get: function(){ return Object.keys(data).length; } });
+    return api;
+  }
+  function tryShim(name){
+    var works = false;
+    try { works = !!window[name] && typeof window[name].getItem === 'function'; void window[name].length; }
+    catch (_) { works = false; }
+    if (works) return;
+    try { Object.defineProperty(window, name, { configurable: true, value: makeStore() }); }
+    catch (_) { try { window[name] = makeStore(); } catch (__) {} }
+  }
+  tryShim('localStorage');
+  tryShim('sessionStorage');
+})();</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DIAMIX Einstreu – Mineralische Stallstreu aus Diatomit | Diamix Europe GmbH</title>
+  <meta name="description" content="DIAMIX Einstreu – natürliche Mineralstreu auf Basis von Diatomit-Granulat. Hohe Feuchtigkeitsabsorption, verbesserte Stallhygiene, ideal für Rinder, Pferde, Geflügel. B2B-Lieferung europaweit." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Diamix Europe GmbH" />
+  <link rel="canonical" href="https://www.diamix.eu/diamix-einstreu.html" />
+  <meta property="og:type" content="product" />
+  <meta property="og:title" content="DIAMIX Einstreu – Mineralische Stallstreu | Diamix Europe" />
+  <meta property="og:description" content="Natürliche Mineralstreu auf Basis von Diatomit-Granulat. Hohe Feuchtigkeitsabsorption, verbesserte Stallhygiene, ohne Chemikalien." />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "DIAMIX Einstreu",
+    "description": "Natürliche mineralische Stallstreu auf Basis von Diatomit-Granulat. Hohe Feuchtigkeitsabsorption, verbesserte Stallhygiene, geeignet für Rinder, Pferde, Geflügel, Schweine und Kleintiere.",
+    "brand": { "@type": "Brand", "name": "Diamix Europe GmbH" },
+    "category": "Stallbedarf / Einstreu",
+    "url": "https://www.diamix.eu/diamix-einstreu.html",
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "seller": { "@type": "Organization", "name": "Diamix Europe GmbH" }
+    }
+  }
+  </script>
+  <link rel="stylesheet" href="/fonts/fonts.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; color: #1a2332; background: #fff; line-height: 1.6; }
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: inherit; }
+    h1, h2 { font-family: 'Playfair Display', serif; }
+    :root {
+      --green: #2d6a4f;
+      --green-light: #40916c;
+      --green-pale: #d8f3dc;
+      --green-mid: #52b788;
+      --navy: #1a2332;
+      --gray: #6b7280;
+      --gray-light: #f8f9fa;
+      --gold: #c8963e;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+    /* ââ NAV ââ */
+    nav {
+      background: var(--navy);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+    .nav-logo img {
+      height: 36px;
+      width: auto;
+      background: white;
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: white; }
+    .nav-links .nav-cta {
+      background: var(--green);
+      color: white;
+      padding: 8px 18px;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      transition: background 0.2s;
+    }
+    .nav-links .nav-cta:hover { background: var(--green-light); color: white; }
+
+    /* ââ HERO ââ */
+    .product-hero {
+      background: linear-gradient(135deg, #1a2332 0%, #2d6a4f 100%);
+      padding: 80px 0 60px;
+      color: white;
+    }
+    .product-hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .product-tag {
+      display: inline-block;
+      background: var(--green-mid);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 1.2rem;
+    }
+    .product-hero h1 {
+      font-size: 2.8rem;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .product-hero h1 span { color: var(--green-mid); }
+    .product-hero .hero-tagline {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+    .product-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+    }
+    .product-badge {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.9);
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--green);
+      color: white;
+      font-weight: 700;
+      padding: 16px 36px;
+      border-radius: 100px;
+      font-size: 1rem;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-primary:hover {
+      background: var(--green-light);
+      transform: translateY(-2px);
+    }
+
+    .hero-visual {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.3);
+      height: 380px;
+      position: relative;
+      background: linear-gradient(145deg, #1d4d35 0%, #2d6a4f 60%, #40916c 100%);
+    }
+    .hero-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-visual-fallback {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 2rem;
+    }
+    .granule-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+      width: 100%;
+      max-width: 280px;
+      opacity: 0.45;
+    }
+    .granule {
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.9);
+    }
+    .granule:nth-child(odd) {
+      border-radius: 40% 60% 55% 45% / 45% 50% 55% 40%;
+      transform: rotate(var(--r, 0deg));
+    }
+    .granule:nth-child(3n) { background: rgba(255,255,255,0.6); }
+    .granule:nth-child(5n) { background: rgba(255,255,255,0.75); }
+    .hero-visual-label {
+      text-align: center;
+      color: rgba(255,255,255,0.9);
+    }
+    .hero-visual-label strong {
+      display: block;
+      font-size: 1.3rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+    .hero-visual-label span {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    /* ââ BENEFITS ââ */
+    .benefits-section { padding: 80px 0; }
+    .section-header { margin-bottom: 2rem; }
+    .section-header h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      color: var(--navy);
+    }
+    .section-intro {
+      color: var(--gray);
+      font-size: 1rem;
+      max-width: 640px;
+      line-height: 1.7;
+    }
+    .benefits-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .benefit-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1.4rem;
+      background: var(--green-pale);
+      border-radius: 12px;
+    }
+    .benefit-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .benefit-item h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: var(--navy);
+    }
+    .benefit-item p {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* ââ SPECS ââ */
+    .specs-section { padding: 80px 0; background: var(--gray-light); }
+    .specs-section h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      color: var(--navy);
+    }
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .spec-card {
+      background: white;
+      border-radius: 16px;
+      padding: 1.8rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .spec-card h4 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.5rem;
+    }
+    .spec-card p {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+    .spec-card span {
+      font-size: 0.85rem;
+      color: var(--gray);
+      font-weight: 400;
+    }
+
+    /* ââ GRANULE SIZES ââ */
+    .granule-section { padding: 80px 0; }
+    .granule-section .section-header h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--navy);
+    }
+    .granule-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 2rem;
+      counter-reset: granule-counter;
+      border-top: 1px solid #e5e7eb;
+    }
+    .granule-card {
+      counter-increment: granule-counter;
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      column-gap: 2.5rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .granule-card::before {
+      content: "0" counter(granule-counter);
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--green-pale);
+      line-height: 1;
+      grid-column: 1;
+      grid-row: 1 / span 3;
+      align-self: start;
+    }
+    .granule-card .g-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.4rem;
+      grid-column: 2;
+    }
+    .granule-card h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+      grid-column: 2;
+    }
+    .granule-card p {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.65;
+      grid-column: 2;
+    }
+    .g-size-badge {
+      display: inline-block;
+      background: var(--green-pale);
+      color: var(--green);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin-top: 0.5rem;
+    }
+
+    /* ââ APPLICATIONS ââ */
+    .apps-section { padding: 80px 0; background: var(--gray-light); }
+    .apps-section .section-header h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--navy);
+    }
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .app-card {
+      background: white;
+      border-radius: 14px;
+      padding: 1.6rem 1.2rem 1.4rem;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border-top: 3px solid var(--green);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .app-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(45,106,79,0.12);
+    }
+    .app-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--green-pale);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .app-icon svg {
+      width: 26px;
+      height: 26px;
+      fill: none;
+      stroke: var(--green);
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .app-card h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.35rem;
+    }
+    .app-card p {
+      font-size: 0.78rem;
+      color: var(--gray);
+      line-height: 1.45;
+    }
+
+        /* ─── FORM ─── */
+    .form-section {
+      padding: 96px 0;
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+    .form-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+    .form-inner {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 520px;
+      gap: 6rem;
+      align-items: start;
+    }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.85rem;
+    }
+    .form-intro .section-label { color: var(--green-mid); }
+    .form-intro h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+      font-weight: 900;
+      color: white;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .form-intro p {
+      font-size: 0.97rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .form-promise-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .form-promise-list li {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.65);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .form-promise-list li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green-mid);
+      flex-shrink: 0;
+    }
+    .form-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem;
+    }
+    .form-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.25rem;
+    }
+    .form-card .form-subtitle {
+      font-size: 0.82rem;
+      color: var(--gray);
+      margin-bottom: 1.8rem;
+    }
+    .form-group { margin-bottom: 1.1rem; }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.01em;
+    }
+    .form-group label .req { color: var(--green); margin-left: 2px; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--navy);
+      background: white;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 36px;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(45,106,79,0.1);
+    }
+    .form-group textarea { resize: vertical; min-height: 96px; }
+    .form-submit {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+    .btn-submit {
+      width: 100%;
+      background: var(--green);
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 14px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .btn-submit:hover { background: var(--green-light); transform: translateY(-1px); }
+    .btn-submit:disabled { background: var(--gray); cursor: not-allowed; transform: none; }
+    .form-privacy {
+      font-size: 0.75rem;
+      color: var(--gray);
+      text-align: center;
+      line-height: 1.5;
+    }
+    .form-success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 2rem 1rem;
+      gap: 1rem;
+    }
+    .form-success h4 { font-size: 1.05rem; font-weight: 700; color: var(--navy); }
+    .form-success p { font-size: 0.88rem; color: var(--gray); line-height: 1.6; }
+
+    @media (max-width: 1024px) {
+      .apps-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .product-hero-inner { grid-template-columns: 1fr; }
+      .product-hero h1 { font-size: 2.1rem; }
+      .hero-visual { height: 260px; }
+      .specs-grid { grid-template-columns: 1fr 1fr; }
+      .benefits-list { grid-template-columns: 1fr; }
+      .granule-card { grid-template-columns: 48px 1fr; column-gap: 1.5rem; }
+      .granule-card::before { font-size: 2rem; }
+      .apps-grid { grid-template-columns: repeat(2, 1fr); }
+      .form-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .nav-links .nav-label { display: none; }
+    }
+    @media (max-width: 480px) {
+      .specs-grid { grid-template-columns: 1fr; }
+      .apps-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="images/diamix-logo.png" alt="Diamix Europe GmbH" />
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-label">Startseite</a>
+        <a href="index.html#products" class="nav-label">Produkte</a>
+        <a href="index.html#contact" class="nav-label">Kontakt</a>
+        <a href="#muster-anfragen" class="nav-cta">Muster anfragen</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="product-hero">
+  <div class="container">
+    <div class="product-hero-inner">
+      <div>
+        <div class="product-tag">Natürliche Mineralstreu</div>
+        <h1>DIAMIX <span>Einstreu</span></h1>
+        <p class="hero-tagline">Mineralische Stallstreu auf Basis von natürlichem Diatomit-Granulat — hohe Feuchtigkeitsabsorption, verbesserte Stallhygiene, ohne Chemikalien.</p>
+        <div class="product-badges">
+          <span class="product-badge">100% natürlicher Diatomit</span>
+          <span class="product-badge">Ohne Chemie</span>
+          <span class="product-badge">pH-neutral</span>
+          <span class="product-badge">Lieferung ab Deutschland</span>
+        </div>
+        <a href="#muster-anfragen" class="btn-primary">Muster anfragen →</a>
+      </div>
+      <div class="hero-visual">
+        <img
+          src="images/product-bedding.png"
+          alt="DIAMIX Einstreu – mineralische Stallstreu aus Diatomit-Granulat"
+          onerror="this.style.display='none'; document.querySelector('.hero-visual-fallback').style.display='flex';"
+        />
+        <div class="hero-visual-fallback" style="display:none;">
+          <div class="granule-grid" aria-hidden="true">
+            <div class="granule" style="--r:12deg"></div>
+            <div class="granule" style="--r:35deg"></div>
+            <div class="granule" style="--r:8deg"></div>
+            <div class="granule" style="--r:50deg"></div>
+            <div class="granule" style="--r:22deg"></div>
+            <div class="granule" style="--r:40deg"></div>
+            <div class="granule" style="--r:60deg"></div>
+            <div class="granule" style="--r:15deg"></div>
+            <div class="granule" style="--r:45deg"></div>
+            <div class="granule" style="--r:30deg"></div>
+            <div class="granule" style="--r:5deg"></div>
+            <div class="granule" style="--r:70deg"></div>
+            <div class="granule" style="--r:25deg"></div>
+            <div class="granule" style="--r:55deg"></div>
+            <div class="granule" style="--r:18deg"></div>
+            <div class="granule" style="--r:42deg"></div>
+            <div class="granule" style="--r:65deg"></div>
+            <div class="granule" style="--r:10deg"></div>
+          </div>
+          <div class="hero-visual-label">
+            <strong>DIAMIX Einstreu</strong>
+            <span>Diatomit-Granulat · natürlich & mineralisch</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Vorteile auf einen Blick</h2>
+      <p class="section-intro">DIAMIX Einstreu wird von Landwirten und Stallbetreibern eingesetzt, die eine hygienische, trockene und naturbasierte Alternative zu konventionellen Einstreumaterialien suchen.</p>
+    </div>
+    <div class="benefits-list">
+      <div class="benefit-item">
+        <div class="benefit-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2d7a4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6 8 4 12 4 15a8 8 0 0 0 16 0c0-3-2-7-8-13z"/></svg></div>
+        <div>
+          <h4>Hohe Feuchtigkeitsabsorption</h4>
+          <p>Der natürliche Diatomit nimmt Feuchtigkeit effizient auf und gibt sie kontrolliert ab. Nassstellen im Stall werden reduziert – der Untergrund bleibt trockener, länger.</p>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2d7a4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+        <div>
+          <h4>Verbesserte Stallhygiene</h4>
+          <p>Trockene Liegeflächen hemmen Ammoniakbildung und Bakterienwachstum. Weniger Feuchtigkeit bedeutet weniger KeimÂ­belastung – ohne den Einsatz von Desinfektionsmitteln.</p>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2d7a4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3"/><path d="M12 11v6m-4 4h8"/><path d="M6 20c0-3.31 2.69-6 6-6s6 2.69 6 6"/></svg></div>
+        <div>
+          <h4>Natürliches Mineralprodukt</h4>
+          <p>DIAMIX Einstreu besteht ausschließlich aus natürlichem Diatomit-Granulat – kein Zusatz von Chemikalien, Duftstoffen oder synthetischen Bindemitteln. pH-neutral und unbedenklich.</p>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2d7a4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div>
+          <h4>Reduzierte Nassstellen</h4>
+          <p>Die gleichmäßige Verteilung der Granulate sorgt für eine flächige Feuchtigkeitsaufnahme – keine lokalen Pfützenbildungen, weniger Arbeit beim Nachstreuen.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNICAL SPECS -->
+<section class="specs-section">
+  <div class="container">
+    <h2>Technische Spezifikationen</h2>
+    <div class="specs-grid">
+      <div class="spec-card">
+        <h4>SiOâ-Gehalt</h4>
+        <p>ca. 85 % <span>amorphes Siliziumdioxid</span></p>
+      </div>
+      <div class="spec-card">
+        <h4>Schüttdichte</h4>
+        <p>ca. 0,6 g/ml <span>Richtwert, körnungsabhängig</span></p>
+      </div>
+      <div class="spec-card">
+        <h4>Feuchtegehalt</h4>
+        <p>&lt; 3 % <span>bei Lieferung</span></p>
+      </div>
+      <div class="spec-card">
+        <h4>pH-Wert</h4>
+        <p>7,0 – 8,5 <span>pH-neutral bis schwach basisch</span></p>
+      </div>
+      <div class="spec-card">
+        <h4>Ursprung</h4>
+        <p>Natürlicher Diatomit <span>unbehandelt, kein Calcinierprozess</span></p>
+      </div>
+      <div class="spec-card">
+        <h4>Verpackung</h4>
+        <p>Big Bag 500–1.000 kg <span>/ 25-kg-Sack auf Anfrage</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GRANULE SIZES -->
+<section class="granule-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Lieferbare Körnung</h2>
+      <p class="section-intro">Drei Korngrößen — abgestimmt auf unterschiedliche TierÂ­arten und Einsatzbedingungen. Wir helfen bei der Auswahl der passenden Fraktion für Ihren Betrieb.</p>
+    </div>
+    <div class="granule-list">
+      <div class="granule-card">
+        <div class="g-label">Universal</div>
+        <h4>0,8 – 2,0 mm <span class="g-size-badge">Standardkörnung</span></h4>
+        <p>Universell einsetzbar für alle Tierarten. Gute Balance aus Feuchtigkeitsabsorption und Handhabbarkeit. Geeignet für BoxenÂ­einstreuung sowie als Deckschicht über Langstroh oder Sägemehl.</p>
+      </div>
+      <div class="granule-card">
+        <div class="g-label">Premium — Rinder &amp; Pferde</div>
+        <h4>1 – 3 mm <span class="g-size-badge">Empfohlen für Großtiere</span></h4>
+        <p>Etwas gröbere Körnung für Rinder- und Pferdeboxen. Höhere Schichtdicke ermöglicht bessere Drainageleistung bei starker Beanspruchung. Weniger Staubentwicklung beim Einstreuen.</p>
+      </div>
+      <div class="granule-card">
+        <div class="g-label">Drainage</div>
+        <h4>3 – 6 mm <span class="g-size-badge">Unterlagschicht</span></h4>
+        <p>Grobe Fraktion als Drainageschicht unter konventioneller Einstreu. Leitet Flüssigkeit ab und reduziert Staunässe im Bodenaufbau. Typisch eingesetzt als 3–5 cm Basisschicht.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATIONS -->
+<section class="apps-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Einsatzbereiche</h2>
+      <p class="section-intro">DIAMIX Einstreu eignet sich für alle gängigen Stalltypen — vom Milchviehbetrieb bis zur Kleintierhaltung.</p>
+    </div>
+    <div class="apps-grid">
+      <div class="app-card">
+        <div class="app-icon">
+          <svg viewBox="0 0 26 26" aria-hidden="true"><ellipse cx="13" cy="15" rx="7" ry="5"/><circle cx="13" cy="8.5" r="3.5"/><line x1="8" y1="20" x2="7" y2="24"/><line x1="11" y1="20" x2="10.5" y2="24"/><line x1="15" y1="20" x2="15.5" y2="24"/><line x1="18" y1="20" x2="19" y2="24"/><path d="M9.5 6.5 Q8 4 6 4.5" stroke-width="1.5"/><path d="M16.5 6.5 Q18 4 20 4.5" stroke-width="1.5"/></svg>
+        </div>
+        <h4>Rinder</h4>
+        <p>Liegeboxen, Laufstall, Milchkühe &amp; Mastrinder</p>
+      </div>
+      <div class="app-card">
+        <div class="app-icon">
+          <svg viewBox="0 0 26 26" aria-hidden="true"><path d="M8 22 L8 14 Q8 8 13 7 Q17 6 18 9 L19 12 Q20 14 18 15 L16 15 Q14 15 13 17 L12 22 Z"/><line x1="19" y1="9" x2="22" y2="6"/><line x1="19" y1="10" x2="23" y2="9"/><circle cx="16.5" cy="10" r="0.8" fill="var(--green)" stroke="none"/></svg>
+        </div>
+        <h4>Pferde</h4>
+        <p>Einzelboxen, Offenställe, Pensionspferde</p>
+      </div>
+      <div class="app-card">
+        <div class="app-icon">
+          <svg viewBox="0 0 26 26" aria-hidden="true"><ellipse cx="13" cy="16" rx="6" ry="5"/><circle cx="13" cy="9" r="3.5"/><path d="M10.5 7.5 Q9 4 7 5 Q9 6 9.5 8"/><path d="M10 11.5 L7 13" stroke-width="1.5"/><line x1="11" y1="21" x2="10" y2="24.5"/><line x1="13" y1="21" x2="13" y2="24.5"/><line x1="15" y1="21" x2="16" y2="24.5"/><path d="M14.5 8.5 L16.5 8" stroke-width="1.5"/></svg>
+        </div>
+        <h4>Geflügel</h4>
+        <p>Bodenplatteneinstreue, Mastgeflügel, Legehennen</p>
+      </div>
+      <div class="app-card">
+        <div class="app-icon">
+          <svg viewBox="0 0 26 26" aria-hidden="true"><ellipse cx="13" cy="15" rx="7" ry="5.5"/><circle cx="13" cy="8.5" r="3.5"/><ellipse cx="13" cy="10" rx="2" ry="1.3"/><circle cx="12.3" cy="10" r="0.5" fill="var(--green)" stroke="none"/><circle cx="13.7" cy="10" r="0.5" fill="var(--green)" stroke="none"/><path d="M20 12 Q23 10 22 8 Q21 7 20 9" stroke-width="1.4"/><line x1="9" y1="20.5" x2="8" y2="24"/><line x1="12" y1="20.5" x2="11.5" y2="24"/><line x1="14" y1="20.5" x2="14.5" y2="24"/><line x1="17" y1="20.5" x2="18" y2="24"/></svg>
+        </div>
+        <h4>Schweine</h4>
+        <p>Abferkelbuchten, Sauenstall, Ferkelaufzucht</p>
+      </div>
+      <div class="app-card">
+        <div class="app-icon">
+          <svg viewBox="0 0 26 26" aria-hidden="true"><ellipse cx="13" cy="17" rx="5.5" ry="4.5"/><circle cx="13" cy="11" r="3"/><path d="M11 8.5 Q10.5 4 9 3"/><path d="M15 8.5 Q15.5 4 17 3"/><circle cx="12" cy="11" r="0.6" fill="var(--green)" stroke="none"/><line x1="16" y1="15" x2="19" y2="14" stroke-width="1.2"/><line x1="16" y1="16" x2="19" y2="16" stroke-width="1.2"/></svg>
+        </div>
+        <h4>Kleintiere</h4>
+        <p>Kaninchen, Schafe, Ziegen, Kleintiergehege</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAMPLE REQUEST FORM -->
+<section class="form-section" id="muster-anfragen">
+  <div class="container">
+    <div class="form-inner">
+      <div class="form-intro">
+        <div class="section-label">Musteranfrage</div>
+        <h2>Testen Sie DIAMIX Einstreu in Ihrem Betrieb.</h2>
+        <p>Wir liefern Produktmuster mit vollständigem Datenblatt — ohne Mindestmenge, ohne Verpflichtung. Anfragen beantworten wir innerhalb von 24 Stunden.</p>
+        <ul class="form-promise-list">
+          <li>Rückmeldung innerhalb von 24 Stunden (Werktage)</li>
+          <li>Kostenlose Musterlieferung auf Anfrage</li>
+          <li>Lieferung aus Deutschland — EU-weit</li>
+          <li>Technisches Datenblatt wird mitgeliefert</li>
+        </ul>
+      </div>
+      <div class="form-card">
+        <h3>Musteranfrage senden</h3>
+        <p class="form-subtitle">DIAMIX Einstreu · Diatomit-Granulat, natur</p>
+        <form id="sample-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="f-name">Vorname &amp; Nachname <span class="req">*</span></label>
+              <input type="text" id="f-name" name="name" placeholder="Max Mustermann" required />
+            </div>
+            <div class="form-group">
+              <label for="f-company">Betrieb / Firma <span class="req">*</span></label>
+              <input type="text" id="f-company" name="company" placeholder="Landwirtschaft Müller GbR" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="f-email">E-Mail-Adresse <span class="req">*</span></label>
+            <input type="email" id="f-email" name="email" placeholder="ihre@email.de" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="f-animal">Tierart</label>
+              <input type="text" id="f-animal" name="animal" placeholder="z.B. Rinder, Pferde, Geflügel" />
+            </div>
+            <div class="form-group">
+              <label for="f-volume">Jahresbedarf (ca.)</label>
+              <select id="f-volume" name="volume">
+                <option value="">Bitte wählen …</option>
+                <option value="unter 5t">Unter 5 t/Jahr</option>
+                <option value="5-25t">5 – 25 t/Jahr</option>
+                <option value="25-100t">25 – 100 t/Jahr</option>
+                <option value="ueber 100t">Über 100 t/Jahr</option>
+                <option value="unbekannt">Noch unklar</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="f-message">Stallgröße &amp; gewünschte Körnung</label>
+            <textarea id="f-message" name="message" placeholder="Kurze Beschreibung Ihres Betriebs, Stallgröße, bevorzugte Körnung (0,8–2 mm / 1–3 mm / 3–6 mm) …"></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn-submit" id="submit-btn">Musteranfrage absenden</button>
+            <p class="form-privacy">Mit dem Absenden stimmen Sie zu, dass Diamix Europe GmbH Ihre Daten zur Bearbeitung Ihrer Anfrage verwendet. Keine Weitergabe an Dritte.</p>
+          </div>
+        </form>
+        <div class="form-success" id="form-success" style="display:none;">
+          <h4>✓ Anfrage eingegangen</h4>
+          <p>Vielen Dank! Wir melden uns innerhalb von 24 Stunden mit weiteren Details zu Ihrem Muster.</p>
+        </div>
+        <div id="form-error" style="display:none; background:#fff3f3; border:1.5px solid #f5a0a0; border-radius:10px; padding:1rem 1.2rem; font-size:0.88rem; color:#c0392b; margin-top:1rem;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<section style="background:#f8f8f6;padding:2rem 0;border-top:1px solid #e8e4dc;">
+  <div class="container">
+    <p style="font-size:0.82rem;color:#777;line-height:1.6;max-width:860px;"><strong>Hinweis:</strong> Dieses Produkt ist ein mineralisches Einstreumaterial auf Basis von natürlichem Diatomit. Das Produkt ist kein Tierarzneimittel und entfaltet keine medizinische oder pharmakologische Wirkung. Die konkrete Anwendung hängt von den jeweiligen Einsatzbedingungen ab. Die Verantwortung für den sachgerechten Einsatz liegt beim Anwender. Technische Datenblätter auf Anfrage.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#1a2332;color:rgba(255,255,255,0.6);padding:2rem 0;font-size:0.85rem;">
+  <div class="container">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+      <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
+        <img src="images/diamix-logo.png" alt="Diamix Europe GmbH" style="height:32px;width:auto;background:white;padding:4px 8px;border-radius:4px;" />
+        <p style="margin:0;">© 2026 Diamix Europe GmbH · Hubenkamp 1 · 29614 Soltau · <a href="mailto:office@diamix.eu" style="color:rgba(255,255,255,0.6);">office@diamix.eu</a></p>
+      </div>
+      <div style="display:flex;gap:1.5rem;">
+        <a href="index.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">Startseite</a>
+        <a href="impressum.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">Impressum</a>
+        <a href="datenschutz.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">Datenschutz</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var form = document.getElementById('sample-form');
+  var successEl = document.getElementById('form-success');
+  var errorEl = document.getElementById('form-error');
+  var submitBtn = document.getElementById('submit-btn');
+
+  if (!form) return;
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    errorEl.style.display = 'none';
+
+    var name = document.getElementById('f-name').value.trim();
+    var company = document.getElementById('f-company').value.trim();
+    var email = document.getElementById('f-email').value.trim();
+    var animal = document.getElementById('f-animal').value.trim();
+    var volume = document.getElementById('f-volume').value;
+    var message = document.getElementById('f-message').value.trim();
+
+    if (!name || !company || !email) {
+      errorEl.innerHTML = 'Bitte füllen Sie alle Pflichtfelder aus (Name, Betrieb und E-Mail).';
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    var msgBody = 'Musteranfrage – DIAMIX Einstreu
+
+Name: ' + name + '
+Firma: ' + company;
+    if (animal) { msgBody += '
+Tierart: ' + animal; }
+    if (volume) { msgBody += '
+Jahresbedarf: ' + volume; }
+    if (message) { msgBody += '
+
+Nachricht:
+' + message; }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Wird gesendet…';
+
+    try {
+      var resp = await fetch('https://n8n.diamix.eu/webhook/contact-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, email: email, message: msgBody, lang: 'de' })
+      });
+      if (!resp.ok) { throw new Error('HTTP ' + resp.status); }
+      form.style.display = 'none';
+      successEl.style.display = 'flex';
+    } catch (err) {
+      errorEl.innerHTML = 'Beim Senden ist ein Fehler aufgetreten. Bitte schreiben Sie uns direkt an <a href="mailto:office@diamix.eu">office@diamix.eu</a>.';
+      errorEl.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Musteranfrage absenden';
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

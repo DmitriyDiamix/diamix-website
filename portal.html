@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Client Portal – Diamix Europe GmbH</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/fonts/inter.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -403,8 +402,8 @@
 
     /* ── PIPELINE KANBAN ── */
     #tab-pipeline { overflow-x: auto; padding-bottom: 1rem; margin: 0 -2rem; padding: 0 2rem 1rem; }
-    .pipeline-board { display: flex; gap: 0.75rem; align-items: flex-start; width: 100%; }
-    .pipeline-col { flex: 1 1 0; min-width: 150px; }
+    .pipeline-board { display: flex; gap: 0.75rem; align-items: flex-start; overflow-x: auto; padding-bottom: 8px; }
+    .pipeline-col { flex: 0 0 195px; min-width: 195px; }
     .pipeline-col-header {
       padding: 0.55rem 0.75rem;
       border-radius: 8px 8px 0 0;
@@ -648,7 +647,7 @@
 
           <table>
             <thead>
-              <tr><th>Company</th><th>Contact</th><th>Email</th><th>Phone</th><th>Country</th><th>Type</th></tr>
+              <tr><th>Company</th><th>Contact</th><th>Email</th><th>Phone</th><th>Country</th><th>Type</th><th></th></tr>
             </thead>
             <tbody id="carriers-tbody">
               <tr><td colspan="6" style="text-align:center;color:var(--gray);padding:2rem;">Loading...</td></tr>
@@ -743,6 +742,7 @@
                   <option value="exhibition">Exhibition</option>
                 </select>
               </div>
+              <div><label>Products</label><input id="new-cust-products" placeholder="CORETRON, ABSORBENT..." /></div>
               <div><label>Notes</label><input id="new-cust-notes" placeholder="Optional" /></div>
               <div style="display:flex;gap:0.5rem;align-items:flex-end;">
                 <button class="btn-sm btn-sm-green" onclick="saveNewCustomer()">Save Customer</button>
@@ -761,11 +761,11 @@
           <table>
             <thead>
               <tr>
-                <th>Company</th><th>Country</th><th>E-Mail</th><th>Status</th><th>Source</th><th></th>
+                <th>Company</th><th>Country</th><th>E-Mail</th><th>Products</th><th>Status</th><th>Source</th><th></th>
               </tr>
             </thead>
             <tbody id="crm-customers-tbody">
-              <tr><td colspan="6" style="text-align:center;color:var(--gray);padding:2rem;">Loading...</td></tr>
+              <tr><td colspan="7" style="text-align:center;color:var(--gray);padding:2rem;">Loading...</td></tr>
             </tbody>
           </table>
         </div>
@@ -1522,13 +1522,17 @@
       return;
     }
     tbody.innerHTML = carriersCache.map(c => `
-      <tr>
-        <td><strong>${c.company_name}</strong></td>
+      <tr id="carrier-row-${c.id}">
+        <td><strong>${c.company_name}</strong>${c.notes ? `<div style="font-size:0.75rem;color:var(--gray);margin-top:2px;">${c.notes}</div>` : ''}</td>
         <td>${c.contact_person || '—'}</td>
-        <td>${c.email || '—'}</td>
+        <td>${c.email ? `<a href="mailto:${c.email}" style="color:var(--navy);">${c.email}</a>` : '—'}</td>
         <td>${c.phone || '—'}</td>
         <td>${c.country || '—'}</td>
         <td><span style="background:var(--gray-mid);padding:2px 8px;border-radius:4px;font-size:0.78rem;">${c.type || '—'}</span></td>
+        <td style="white-space:nowrap;">
+          <button onclick="editCarrier('${c.id}')" style="font-size:0.75rem;padding:3px 10px;border:1px solid var(--gray-mid);border-radius:4px;background:white;cursor:pointer;margin-right:4px;">✏️ Edit</button>
+          <button onclick="deleteCarrier('${c.id}','${c.company_name.replace(/'/g,"\\'")}')" style="font-size:0.75rem;padding:3px 10px;border:1px solid #fca5a5;border-radius:4px;background:white;color:var(--red);cursor:pointer;">🗑 Delete</button>
+        </td>
       </tr>`).join('');
     populateCarrierSelect();
   }
@@ -1586,7 +1590,21 @@
 
   function toggleAddCarrier() {
     const f = document.getElementById('add-carrier-form');
-    f.style.display = f.style.display === 'none' ? 'block' : 'none';
+    const isHidden = f.style.display === 'none';
+    f.style.display = isHidden ? 'block' : 'none';
+    if (isHidden) {
+      // Clear all fields and reset to Add mode
+      document.getElementById('new-carrier-name').value = '';
+      document.getElementById('new-carrier-contact').value = '';
+      document.getElementById('new-carrier-email').value = '';
+      document.getElementById('new-carrier-phone').value = '';
+      document.getElementById('new-carrier-country').value = '';
+      document.getElementById('new-carrier-type').value = 'road';
+      document.getElementById('new-carrier-notes').value = '';
+      delete f.dataset.editId;
+      const saveBtn = f.querySelector('button[onclick*="updateCarrier"], button[onclick="saveCarrier()"]');
+      if (saveBtn) { saveBtn.textContent = 'Save Carrier'; saveBtn.setAttribute('onclick', 'saveCarrier()'); }
+    }
   }
 
   function toggleAddShipment() {
@@ -1609,6 +1627,55 @@
     const { error } = await sb.from('carriers').insert(obj);
     if (error) { alert('Error: ' + error.message); return; }
     toggleAddCarrier();
+    loadCarriers();
+  }
+
+  function editCarrier(id) {
+    const c = carriersCache.find(x => x.id === id);
+    if (!c) return;
+    const form = document.getElementById('add-carrier-form');
+    // Fill existing fields
+    document.getElementById('new-carrier-name').value = c.company_name || '';
+    document.getElementById('new-carrier-contact').value = c.contact_person || '';
+    document.getElementById('new-carrier-email').value = c.email || '';
+    document.getElementById('new-carrier-phone').value = c.phone || '';
+    document.getElementById('new-carrier-country').value = c.country || '';
+    document.getElementById('new-carrier-type').value = c.type || 'road';
+    document.getElementById('new-carrier-notes').value = c.notes || '';
+    // Show form in edit mode
+    form.style.display = 'block';
+    form.dataset.editId = id;
+    // Change Save button to Update
+    const saveBtn = form.querySelector('button[onclick="saveCarrier()"]');
+    if (saveBtn) { saveBtn.textContent = 'Update Carrier'; saveBtn.setAttribute('onclick', `updateCarrier('${id}')`); }
+    form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  async function updateCarrier(id) {
+    const obj = {
+      company_name:   document.getElementById('new-carrier-name').value.trim(),
+      contact_person: document.getElementById('new-carrier-contact').value.trim(),
+      email:          document.getElementById('new-carrier-email').value.trim(),
+      phone:          document.getElementById('new-carrier-phone').value.trim(),
+      country:        document.getElementById('new-carrier-country').value.trim(),
+      type:           document.getElementById('new-carrier-type').value,
+      notes:          document.getElementById('new-carrier-notes').value.trim(),
+    };
+    if (!obj.company_name) { alert('Company name is required'); return; }
+    const { error } = await sb.from('carriers').update(obj).eq('id', id);
+    if (error) { alert('Error: ' + error.message); return; }
+    // Reset form back to Add mode
+    const form = document.getElementById('add-carrier-form');
+    const saveBtn = form.querySelector('button[onclick*="updateCarrier"]');
+    if (saveBtn) { saveBtn.textContent = 'Save Carrier'; saveBtn.setAttribute('onclick', 'saveCarrier()'); }
+    toggleAddCarrier();
+    loadCarriers();
+  }
+
+  async function deleteCarrier(id, name) {
+    if (!confirm(`Delete carrier "${name}"? This cannot be undone.`)) return;
+    const { error } = await sb.from('carriers').delete().eq('id', id);
+    if (error) { alert('Error: ' + error.message); return; }
     loadCarriers();
   }
 
@@ -1644,7 +1711,7 @@
       .order('created_at', { ascending: false });
 
     if (error) {
-      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--red);">Error loading customers.</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--red);">Error loading customers.</td></tr>';
       return;
     }
     crmCustomers = data || [];
@@ -1654,7 +1721,7 @@
   function renderCustomers() {
     const tbody = document.getElementById('crm-customers-tbody');
     if (!crmCustomers.length) {
-      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--gray);padding:2rem;">No customers yet. Use "→ CRM" from Access Requests or "+ Add Customer".</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--gray);padding:2rem;">No customers yet. Use "→ CRM" from Access Requests or "+ Add Customer".</td></tr>';
       return;
     }
     tbody.innerHTML = crmCustomers.map(c => `
@@ -1662,6 +1729,7 @@
         <td><strong>${escHtml(c.company_name)}</strong>${c.status === 'lead' && !c.deals?.length ? '<span style="margin-left:6px;background:#fee2e2;color:#dc2626;font-size:0.68rem;font-weight:700;border-radius:3px;padding:1px 5px;vertical-align:middle;">NEW</span>' : ''}${(() => { const open = (c.tasks||[]).filter(t=>t.status!=='done').length; return open > 0 ? `<span style="margin-left:6px;background:#fef3c7;color:#92400e;font-size:0.68rem;font-weight:700;border-radius:3px;padding:1px 6px;vertical-align:middle;">📋 ${open}</span>` : ''; })()}</td>
         <td style="font-size:0.83rem;">${escHtml(c.country || '—')}</td>
         <td style="font-size:0.83rem;">${escHtml(c.email || '—')}</td>
+        <td style="font-size:0.83rem;">${c.products ? `<span style="background:#d1fae5;color:#065f46;font-size:0.7rem;font-weight:700;padding:2px 7px;border-radius:10px;">${escHtml(c.products)}</span>` : '<span style="color:var(--gray);">—</span>'}</td>
         <td><span class="status-badge cust-status-${c.status}">${c.status}</span></td>
         <td style="font-size:0.83rem;color:var(--gray);">${escHtml(c.source)}</td>
         <td>
@@ -1672,7 +1740,7 @@
         </td>
       </tr>
       <tr id="edit-row-${c.id}" style="display:none;">
-        <td colspan="6" style="padding:0;">
+        <td colspan="7" style="padding:0;">
           <div style="padding:1rem 1.5rem;background:#f8fafc;border-top:1px solid var(--gray-mid);">
             <div class="inline-form" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr));">
               <div><label>Company Name *</label><input id="ec-company-${c.id}" value="${escHtml(c.company_name)}" /></div>
@@ -1691,6 +1759,7 @@
                   ${['manual','website','portal','email','referral','exhibition'].map(s => `<option value="${s}" ${s===c.source?'selected':''}>${s}</option>`).join('')}
                 </select>
               </div>
+              <div><label>Products</label><input id="ec-products-${c.id}" value="${escHtml(c.products || '')}" placeholder="CORETRON, ABSORBENT..." /></div>
               <div><label>Notes</label><input id="ec-notes-${c.id}" value="${escHtml(c.notes || '')}" placeholder="Optional" /></div>
               <div style="display:flex;gap:0.5rem;align-items:flex-end;">
                 <button class="btn-sm btn-sm-green" onclick="saveEditCustomer('${c.id}')">Save</button>
@@ -1701,7 +1770,7 @@
         </td>
       </tr>
       <tr id="cust-detail-${c.id}" style="display:none;">
-        <td colspan="6" style="padding:0;">
+        <td colspan="7" style="padding:0;">
           <div class="customer-detail-panel" id="cust-panel-${c.id}">Loading...</div>
         </td>
       </tr>`).join('');
@@ -1923,6 +1992,7 @@
       address:      document.getElementById(`ec-address-${id}`)?.value.trim()  || null,
       status:       document.getElementById(`ec-status-${id}`)?.value          || 'lead',
       source:       document.getElementById(`ec-source-${id}`)?.value          || 'manual',
+      products:     document.getElementById(`ec-products-${id}`)?.value.trim() || null,
       notes:        document.getElementById(`ec-notes-${id}`)?.value.trim()    || null,
       updated_at:   new Date().toISOString(),
     }).eq('id', id);
@@ -1955,6 +2025,7 @@
       address:     document.getElementById('new-cust-address')?.value.trim() || null,
       status:      document.getElementById('new-cust-status')?.value || 'lead',
       source:      document.getElementById('new-cust-source')?.value || 'manual',
+      products:    document.getElementById('new-cust-products')?.value.trim() || null,
       notes:       document.getElementById('new-cust-notes')?.value.trim()   || null,
     });
     if (error) { alert('Error: ' + error.message); return; }

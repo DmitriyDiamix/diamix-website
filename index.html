@@ -45,14 +45,12 @@
     "sameAs": []
   }
   </script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/fonts/fonts.css" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; color: #1a2332; background: #fff; line-height: 1.6; width: 100%; overflow-x: hidden; }
+    body { font-family: 'DM Sans', sans-serif; color: #1a2332; background: #fff; line-height: 1.6; width: 100%; overflow-x: hidden; }
     img { max-width: 100%; height: auto; display: block; }
     a { text-decoration: none; color: inherit; }
 
@@ -87,9 +85,9 @@
       display: flex; align-items: center; justify-content: space-between;
     }
     .nav-logo img { height: 68px; width: auto; mix-blend-mode: multiply; }
-    .nav-links { display: flex; gap: 2rem; align-items: center; }
-    .nav-links a { font-size: 0.88rem; font-weight: 500; color: var(--navy); opacity: 0.75; transition: opacity 0.2s; }
-    .nav-links a:hover { opacity: 1; }
+    .nav-links { display: flex; gap: 0.5rem; align-items: center; }
+    .nav-links a { font-size: 0.88rem; font-weight: 500; color: var(--navy); opacity: 0.75; transition: opacity 0.2s; padding: 10px 12px; border-radius: 8px; min-height: 44px; display: flex; align-items: center; }
+    .nav-links a:hover { opacity: 1; background: var(--gray-light); }
     .nav-right { display: flex; align-items: center; gap: 1rem; }
     .lang-switcher { display: flex; background: var(--gray-light); border-radius: 8px; padding: 3px; gap: 2px; }
     .lang-btn { background: transparent; border: none; cursor: pointer; padding: 5px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; color: var(--gray); transition: all 0.2s; }
@@ -140,8 +138,9 @@
     }
     .hero-eyebrow span { color: var(--green-mid); }
     .hero h1 {
-      font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 900;
-      color: white; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -0.02em;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 800;
+      color: white; line-height: 1.15; margin-bottom: 1rem; letter-spacing: -0.01em;
     }
     .hero h1 em { color: var(--green-mid); font-style: normal; }
     .hero-sub {
@@ -189,8 +188,9 @@
       margin-bottom: 1.2rem;
     }
     .section-title {
+      font-family: 'Playfair Display', serif;
       font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800;
-      color: var(--navy); line-height: 1.15; letter-spacing: -0.02em;
+      color: var(--navy); line-height: 1.2; letter-spacing: -0.01em;
       margin-bottom: 1rem;
     }
     .section-sub {
@@ -201,14 +201,16 @@
     /* ── APPLICATIONS ── */
     #applications { background: var(--gray-light); }
     .app-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
     }
     .app-card {
       background: white; border-radius: 20px; overflow: hidden;
       box-shadow: 0 4px 24px rgba(0,0,0,0.06);
       transition: transform 0.3s, box-shadow 0.3s;
     }
-    .app-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(0,0,0,0.12); }
+    .app-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.12); }
     .app-card-img {
       position: relative; height: 240px; overflow: hidden;
     }
@@ -217,7 +219,7 @@
       display: block; margin: 0; padding: 0;
       transition: transform 0.5s;
     }
-    .app-card:hover .app-card-img img { transform: scale(1.05); }
+    .app-card:hover .app-card-img img { transform: scale(1.04); }
     .app-card-img .app-tag {
       position: absolute; bottom: 1rem; left: 1rem;
       background: white; padding: 6px 14px; border-radius: 100px;
@@ -226,14 +228,16 @@
       box-shadow: 0 2px 12px rgba(0,0,0,0.12);
     }
     .app-card-body { padding: 1.8rem; }
-    .app-card-body h3 { font-size: 1.2rem; font-weight: 700; color: var(--navy); margin-bottom: 0.6rem; }
+    .app-card-body h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: var(--navy); margin-bottom: 0.6rem; }
     .app-card-body p { font-size: 0.9rem; color: var(--gray); line-height: 1.65; }
     .app-card-body .learn-more {
       display: inline-flex; align-items: center; gap: 0.4rem;
-      margin-top: 1.2rem; font-size: 0.85rem; font-weight: 600; color: var(--green);
-      transition: gap 0.2s;
+      margin-top: 1.4rem; font-size: 0.85rem; font-weight: 600; color: var(--green);
+      padding: 9px 18px; border-radius: 100px;
+      background: var(--green-pale);
+      transition: all 0.2s; min-height: 44px;
     }
-    .app-card-body .learn-more:hover { gap: 0.7rem; }
+    .app-card-body .learn-more:hover { background: #b7e4c7; gap: 0.7rem; }
 
     /* ── PRODUCTS ── */
     #products { background: white; }
@@ -317,15 +321,18 @@
 
     /* ── QUALITY ── */
     #quality { background: var(--gray-light); }
-    .quality-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 4rem; }
+    .quality-grid { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 4rem; }
     .quality-card {
       background: white; border-radius: 20px; overflow: hidden;
       box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      display: grid; grid-template-columns: 280px 1fr;
+      transition: box-shadow 0.3s;
     }
-    .quality-card img { width: 100%; height: 220px; object-fit: cover; object-position: center 50%; display: block; margin: 0; }
-    .quality-card-body { padding: 1.8rem; }
-    .quality-card-body h3 { font-size: 1.1rem; font-weight: 700; color: var(--navy); margin-bottom: 0.6rem; }
-    .quality-card-body p { font-size: 0.88rem; color: var(--gray); line-height: 1.65; }
+    .quality-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+    .quality-card img { width: 100%; height: 100%; min-height: 180px; object-fit: cover; object-position: center 50%; display: block; margin: 0; }
+    .quality-card-body { padding: 2rem 2.2rem; display: flex; flex-direction: column; justify-content: center; }
+    .quality-card-body h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--navy); margin-bottom: 0.6rem; }
+    .quality-card-body p { font-size: 0.9rem; color: var(--gray); line-height: 1.65; }
     .cert-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
     .cert-chip {
       background: var(--green-pale); color: var(--green);
@@ -382,7 +389,7 @@
       background: #0f1723; padding: 60px 0 32px;
     }
     .footer-inner {
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 2rem;
       margin-bottom: 3rem;
     }
     .footer-brand .footer-logo {
@@ -408,15 +415,47 @@
       .products-layout, .logistics-layout, .about-layout { grid-template-columns: 1fr; gap: 3rem; }
       .products-badge { right: 1rem; bottom: 1rem; }
     }
+    @media (max-width: 900px) {
+      .quality-card { grid-template-columns: 200px 1fr; }
+    }
     @media (max-width: 768px) {
-      .app-grid, .quality-grid { grid-template-columns: 1fr; }
+      .app-grid { grid-template-columns: 1fr; }
+      .quality-card { grid-template-columns: 1fr; }
+      .quality-card img { height: 200px; }
       .hero-inner { padding: 4rem 1.5rem; flex-direction: column; }
       .hero-right { display: none; }
       .hero-stats { left: 1.5rem; gap: 2rem; }
       .footer-inner { grid-template-columns: 1fr 1fr; }
       .about-values { grid-template-columns: 1fr; }
+      nav { padding: 0 1rem; height: 60px; }
+      .nav-logo img { height: 42px; }
+      .lang-switcher { padding: 2px; }
+      .lang-btn { padding: 4px 8px; font-size: 0.75rem; }
+      .btn-cta-nav { padding: 8px 14px; font-size: 0.78rem; }
+    }
+    @media (max-width: 400px) {
+      .btn-cta-nav[href="portal.html"], .btn-cta-nav[href*="portal"] { display: none; }
     }
   </style>
+<script>
+(function() {
+  var SUPA_URL = "https://tucmaxyzgfsocwkaxpsu.supabase.co";
+  var SUPA_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR1Y21heHl6Z2Zzb2N3a2F4cHN1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxMDcxOTYsImV4cCI6MjA5MDY4MzE5Nn0.aY87_aJcc2A63tqp8enE5sHSSQiw8wVj4lceQXp5Y-8";
+  var startTime = Date.now();
+  var sessionId = sessionStorage.getItem("dmx_sid") || (Math.random().toString(36).slice(2));
+  sessionStorage.setItem("dmx_sid", sessionId);
+  function send(t) {
+    fetch(SUPA_URL + "/rest/v1/page_views", {
+      method: "POST",
+      headers: {"Content-Type":"application/json","apikey":SUPA_KEY,"Authorization":"Bearer "+SUPA_KEY,"Prefer":"return=minimal"},
+      body: JSON.stringify({page:window.location.pathname,referrer:document.referrer||null,user_agent:navigator.userAgent.slice(0,200),language:navigator.language||null,session_id:sessionId,time_on_page:t||null}),
+      keepalive: true
+    });
+  }
+  window.addEventListener("load", function(){ send(null); });
+  window.addEventListener("beforeunload", function(){ send(Math.round((Date.now()-startTime)/1000)); });
+})();
+</script>
 </head>
 <body class="lang-de">
 
@@ -434,6 +473,8 @@
     <a href="#quality" data-lang="en">Quality</a>
     <a href="#about" data-lang="de">Über uns</a>
     <a href="#about" data-lang="en">About</a>
+    <a href="#downloads" data-lang="de">Downloads</a>
+    <a href="#downloads" data-lang="en">Downloads</a>
   </div>
   <div class="nav-right">
     <div class="lang-switcher">
@@ -501,8 +542,8 @@
     <div class="section-header">
       <div class="section-label" data-lang="de">Anwendungsbereiche</div>
       <div class="section-label" data-lang="en">Applications</div>
-      <h2 class="section-title" data-lang="de">Vielseitig einsetzbar –<br/>ein Mineral, drei Märkte</h2>
-      <h2 class="section-title" data-lang="en">Versatile by nature –<br/>one mineral, three markets</h2>
+      <h2 class="section-title" data-lang="de">Vielseitig einsetzbar –<br/>ein Mineral, vier Märkte</h2>
+      <h2 class="section-title" data-lang="en">Versatile by nature –<br/>one mineral, four markets</h2>
       <p class="section-sub" data-lang="de">Diatomit von Diamix findet Anwendung in der Tierfütterung, als industrieller Absorber sowie als hochwertige Tiereinstreu.</p>
       <p class="section-sub" data-lang="en">Diamix diatomite is used in animal feed, as an industrial absorbent and as animal bedding.</p>
     </div>
@@ -519,8 +560,8 @@
           <h3 data-lang="en">Animal Nutrition</h3>
           <p data-lang="de">Natürliches Mineraladditiv (E551c) zur Verbesserung der Fließeigenschaften von Futtermitteln und als funktionaler Trägerstoff.</p>
           <p data-lang="en">Natural mineral additive E551c for healthy animal nutrition. Improves feed flow properties and supports digestion.</p>
-          <a href="produkt-coretron.html" class="learn-more" data-lang="de">Mehr erfahren →</a>
-          <a href="produkt-coretron.html" class="learn-more" data-lang="en">Learn more →</a>
+          <a href="coretron-e551c.html" class="learn-more" data-lang="de">Mehr erfahren →</a>
+          <a href="coretron-e551c.html" class="learn-more" data-lang="en">Learn more →</a>
         </div>
       </div>
       <!-- Absorbent -->
@@ -551,8 +592,24 @@
           <h3 data-lang="en">Animal Bedding</h3>
           <p data-lang="de">Sorgt für eine saubere, trockene und komfortable Umgebung für Nutztiere. Hohe Feuchtigkeitsaufnahme, geruchsbindend und hygienisch.</p>
           <p data-lang="en">Clean, dry and comfortable environment for livestock. High moisture absorption, odour-binding, hygienic.</p>
-          <a href="produkt-bedding.html" class="learn-more" data-lang="de">Mehr erfahren →</a>
-          <a href="produkt-bedding.html" class="learn-more" data-lang="en">Learn more →</a>
+          <a href="diamix-einstreu.html" class="learn-more" data-lang="de">Mehr erfahren →</a>
+          <a href="diamix-einstreu.html" class="learn-more" data-lang="en">Learn more →</a>
+        </div>
+      </div>
+      <!-- Agriculture -->
+      <div class="app-card">
+        <div class="app-card-img">
+          <img src="images/app-agro-final.jpg" alt="Diatomit in der Landwirtschaft – Agro" />
+          <div class="app-tag" data-lang="de">Landwirtschaft</div>
+          <div class="app-tag" data-lang="en">Agriculture</div>
+        </div>
+        <div class="app-card-body">
+          <h3 data-lang="de">Landwirtschaft & Agrar</h3>
+          <h3 data-lang="en">Agriculture & Crop Protection</h3>
+          <p data-lang="de">Natürlicher Kieselgur für Getreideschutz, Bodenverbesserung und biologischen Pflanzenschutz. Mineralischen Ursprungs – mit deutlich geringerem Regulierungsaufwand als synthetische Alternativen.</p>
+          <p data-lang="en">Natural diatomite for grain protection, soil amendment and biological crop protection. Mineral-based – with significantly lower regulatory requirements than synthetic alternatives.</p>
+          <a href="produkt-agritron.html" class="learn-more" data-lang="de">Mehr erfahren →</a>
+          <a href="produkt-agritron.html" class="learn-more" data-lang="en">Learn more →</a>
         </div>
       </div>
     </div>
@@ -565,17 +622,17 @@
   <div class="container">
     <div class="products-layout">
       <div class="products-image">
-        <img src="images/packaging-mockup.png" alt="Diamix Super 25kg" />
+        <img src="images/packaging-mockup.png" alt="Diamix Plus 10kg / 20kg" />
         <div class="products-badge">
-          <div class="badge-num">25 kg</div>
+          <div class="badge-num">10 / 20 kg</div>
           <div class="badge-txt">Nicht kennzeichnungspflichtig nach CLP</div>
         </div>
       </div>
       <div class="products-content">
         <div class="section-label" data-lang="de">Unser Produkt</div>
         <div class="section-label" data-lang="en">Our Product</div>
-        <h2 class="section-title" data-lang="de">Diamix Super –<br/>Diatomit-Absorber</h2>
-        <h2 class="section-title" data-lang="en">Diamix Super<br/>Diatomite Absorbent</h2>
+        <h2 class="section-title" data-lang="de">Diamix Plus –<br/>Diatomit-Absorber</h2>
+        <h2 class="section-title" data-lang="en">Diamix Plus<br/>Diatomite Absorbent</h2>
         <p class="section-sub" data-lang="de">Mineralischer Hochleistungsabsorber auf Basis von kalziniertem Diatomit – entwickelt für industrielle Anwendungen.</p>
         <p class="section-sub" data-lang="en">High-performance mineral absorbent based on thermally treated diatomite – developed for industrial applications.</p>
         <ul class="spec-list">
@@ -716,15 +773,15 @@
         </div>
       </div>
       <div class="quality-card">
-        <img src="images/app-absorbent-final.jpg" alt="Kieselgur Lieferung ab Lager Soltau – schnelle europäische Lieferzeiten, Diamix Europe GmbH" />
+        <img src="images/app-absorbent-final.jpg" alt="Kieselgur Lieferung ab Lager Süddeutschland – schnelle europäische Lieferzeiten, Diamix Europe GmbH" />
         <div class="quality-card-body">
           <h3 data-lang="de">Schnell & Zuverlässig</h3>
           <h3 data-lang="en">Fast & Reliable</h3>
-          <p data-lang="de">Konstante Verfügbarkeit ab Lager Soltau. TDS auf Anfrage – schnelle Zusendung per E-Mail.</p>
-          <p data-lang="en">Consistent availability from our warehouse in Soltau. TDS on request – fast delivery by email.</p>
+          <p data-lang="de">Konstante Verfügbarkeit ab Lager im Süden Deutschlands. TDS auf Anfrage – schnelle Zusendung per E-Mail.</p>
+          <p data-lang="en">Consistent availability from our warehouse in southern Germany. TDS on request – fast delivery by email.</p>
           <div class="cert-chips">
-            <span class="cert-chip" data-lang="de">Lager Soltau</span>
-            <span class="cert-chip" data-lang="en">Warehouse Soltau</span>
+            <span class="cert-chip" data-lang="de">Lager im Süden Deutschlands</span>
+            <span class="cert-chip" data-lang="en">Warehouse Southern Germany</span>
             <span class="cert-chip">EU-weite Lieferung</span>
           </div>
         </div>
@@ -780,6 +837,159 @@
 </section>
 
 
+<!-- FAQ -->
+<section id="faq" style="padding:80px 0;background:#f8f8f6;">
+  <div class="container">
+    <div class="section-label" data-lang="de">Häufige Fragen</div>
+    <div class="section-label" data-lang="en">FAQ</div>
+    <h2 class="section-title" data-lang="de">Was ist Diatomit – und warum ist er so besonders?</h2>
+    <h2 class="section-title" data-lang="en">What is diatomite – and why is it special?</h2>
+    <div style="max-width:800px;margin:3rem auto 0;display:flex;flex-direction:column;gap:1rem;">
+
+      <details style="background:white;border-radius:12px;padding:1.25rem 1.5rem;cursor:pointer;border:1px solid #e8e4dc;">
+        <summary style="font-weight:700;font-size:1rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;" data-lang="de">Was ist Diatomit (Kieselgur)?<span style="font-size:1.4rem;font-weight:300;color:var(--green);">+</span></summary>
+        <summary style="font-weight:700;font-size:1rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;" data-lang="en">What is diatomite (kieselgur)?<span style="font-size:1.4rem;font-weight:300;color:var(--green);">+</span></summary>
+        <p style="margin-top:1rem;font-size:0.92rem;color:#555;line-height:1.7;" data-lang="de">Diatomit ist ein natürliches Sedimentgestein, das aus den fossilen Überresten mikroskopisch kleiner Kieselalgen (Diatomeen) besteht. Diese Algen lebten vor Millionen von Jahren in Seen und Meeren und haben dabei Schalen aus Siliciumdioxid (SiO₂) gebildet. Nach dem Absterben sanken sie auf den Meeresgrund und wurden über Jahrtausende zu einem leichten, porösen Gestein. Diatomit enthält über 80 % SiO₂ und ist vollständig mineralischen Ursprungs – ohne chemische Zusätze.</p>
+        <p style="margin-top:1rem;font-size:0.92rem;color:#555;line-height:1.7;" data-lang="en">Diatomite is a naturally occurring sedimentary rock made from the fossilised remains of microscopic algae called diatoms. These algae lived millions of years ago in lakes and oceans, forming shells of silica (SiO₂). After dying, they sank to the seabed and were compressed over millennia into a light, porous rock. Diatomite contains over 80% SiO₂ and is entirely mineral in origin — no chemical additives.</p>
+        <a href="#contact" style="display:inline-block;margin-top:1rem;font-size:0.85rem;font-weight:700;color:var(--green);text-decoration:none;" data-lang="de">Haben Sie weitere Fragen? Schreiben Sie uns →</a>
+        <a href="#contact" style="display:inline-block;margin-top:1rem;font-size:0.85rem;font-weight:700;color:var(--green);text-decoration:none;" data-lang="en">Have more questions? Get in touch →</a>
+      </details>
+
+      <details style="background:white;border-radius:12px;padding:1.25rem 1.5rem;cursor:pointer;border:1px solid #e8e4dc;">
+        <summary style="font-weight:700;font-size:1rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;" data-lang="de">Ist Diatomit sicher für Menschen und Tiere?<span style="font-size:1.4rem;font-weight:300;color:var(--green);">+</span></summary>
+        <summary style="font-weight:700;font-size:1rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;" data-lang="en">Is diatomite safe for humans and animals?<span style="font-size:1.4rem;font-weight:300;color:var(--green);">+</span></summary>
+        <p style="margin-top:1rem;font-size:0.92rem;color:#555;line-height:1.7;" data-lang="de">Ja. Natürlicher (nicht kalzinierter) Diatomit mit amorphem SiO₂-Anteil gilt als unbedenklich. Unser CORETRON E551c ist als Futtermittelzusatzstoff E551c gemäß EU-Verordnung (EG) Nr. 1831/2003 zugelassen und GMP+/FAMI-QS zertifiziert. Die Einstreu-Granulate sind rein mineralisch, ohne Chemikalien oder Bindemittel. Bei der Handhabung empfehlen wir das Tragen einer Staubschutzmaske, da Feinstaub bei jeglichem mineralischen Pulver zu vermeiden ist.</p>
+        <p style="margin-top:1rem;font-size:0.92rem;color:#555;line-height:1.7;" data-lang="en">Yes. Natural (non-calcined) diatomite with amorphous SiO₂ is considered safe. Our CORETRON E551c is approved as feed additive E551c under EU Regulation (EC) No. 1831/2003 and GMP+/FAMI-QS certified. The bedding granules are purely mineral, with no chemicals or binders. When handling, we recommend a dust mask, as fine dust from any mineral powder should be avoided.</p>
+        <a href="#contact" style="display:inline-block;margin-top:1rem;font-size:0.85rem;font-weight:700;color:var(--green);text-decoration:none;" data-lang="de">Technische Datenblätter anfordern →</a>
+        <a href="#contact" style="display:inline-block;margin-top:1rem;font-size:0.85rem;font-weight:700;color:var(--green);text-decoration:none;" data-lang="en">Request technical data sheets →</a>
+      </details>
+
+      <details style="background:white;border-radius:12px;padding:1.25rem 1.5rem;cursor:pointer;border:1px solid #e8e4dc;">
+        <summary style="font-weight:700;font-size:1rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;" data-lang="de">Woher stammt der Diatomit von Diamix?<span style="font-size:1.4rem;font-weight:300;color:var(--green);">+</span></summary>
+        <summary style="font-weight:700;font-size:1rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;" data-lang="en">Where does Diamix diatomite come from?<span style="font-size:1.4rem;font-weight:300;color:var(--green);">+</span></summary>
+        <p style="margin-top:1rem;font-size:0.92rem;color:#555;line-height:1.7;" data-lang="de">Diamix bezieht Diatomit von zertifizierten Produzenten aus verschiedenen Ländern. Für futtermittelrelevante Produkte wie CORETRON E551c arbeiten wir ausschließlich mit Lieferanten zusammen, die die Anforderungen der GMP+ und FAMI-QS Zertifizierung erfüllen. Alle Chargen werden analysiert und mit Analysezertifikat (CoA) geliefert.</p>
+        <p style="margin-top:1rem;font-size:0.92rem;color:#555;line-height:1.7;" data-lang="en">Diamix sources diatomite from certified producers in various countries. For feed-grade products such as CORETRON E551c, we work exclusively with suppliers that meet GMP+ and FAMI-QS certification requirements. All batches are analysed and supplied with a certificate of analysis (CoA).</p>
+        <a href="#contact" style="display:inline-block;margin-top:1rem;font-size:0.85rem;font-weight:700;color:var(--green);text-decoration:none;" data-lang="de">CoA anfordern →</a>
+        <a href="#contact" style="display:inline-block;margin-top:1rem;font-size:0.85rem;font-weight:700;color:var(--green);text-decoration:none;" data-lang="en">Request CoA →</a>
+      </details>
+
+      <details style="background:white;border-radius:12px;padding:1.25rem 1.5rem;cursor:pointer;border:1px solid #e8e4dc;">
+        <summary style="font-weight:700;font-size:1rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;" data-lang="de">Was unterscheidet Diatomit von synthetischen Alternativen?<span style="font-size:1.4rem;font-weight:300;color:var(--green);">+</span></summary>
+        <summary style="font-weight:700;font-size:1rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;" data-lang="en">How does diatomite differ from synthetic alternatives?<span style="font-size:1.4rem;font-weight:300;color:var(--green);">+</span></summary>
+        <p style="margin-top:1rem;font-size:0.92rem;color:#555;line-height:1.7;" data-lang="de">Diatomit ist ein reines Naturprodukt ohne Chemikalien, biologisch abbaubar und ökologisch unbedenklich. Im Vergleich zu synthetischen Absorptionsmitteln oder chemisch behandelten Einstreumaterialien entstehen keine problematischen Abbauprodukte. Zudem ist die Porenstruktur des Diatomits einzigartig: Sie ermöglicht eine hohe Absorption bei gleichzeitig geringem Gewicht – effizienter als viele konventionelle Alternativen.</p>
+        <p style="margin-top:1rem;font-size:0.92rem;color:#555;line-height:1.7;" data-lang="en">Diatomite is a pure natural product with no chemicals, biodegradable and ecologically safe. Compared to synthetic absorbents or chemically treated bedding, it produces no problematic breakdown products. Its unique pore structure enables high absorption at low weight — more efficient than many conventional alternatives.</p>
+        <a href="#contact" style="display:inline-block;margin-top:1rem;font-size:0.85rem;font-weight:700;color:var(--green);text-decoration:none;" data-lang="de">Produkte vergleichen – Anfrage stellen →</a>
+        <a href="#contact" style="display:inline-block;margin-top:1rem;font-size:0.85rem;font-weight:700;color:var(--green);text-decoration:none;" data-lang="en">Compare products – get in touch →</a>
+      </details>
+
+      <details style="background:white;border-radius:12px;padding:1.25rem 1.5rem;cursor:pointer;border:1px solid #e8e4dc;">
+        <summary style="font-weight:700;font-size:1rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;" data-lang="de">Liefert Diamix auch kleinere Mengen oder nur Big Bags?<span style="font-size:1.4rem;font-weight:300;color:var(--green);">+</span></summary>
+        <summary style="font-weight:700;font-size:1rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;" data-lang="en">Does Diamix deliver smaller quantities or only big bags?<span style="font-size:1.4rem;font-weight:300;color:var(--green);">+</span></summary>
+        <p style="margin-top:1rem;font-size:0.92rem;color:#555;line-height:1.7;" data-lang="de">Die Verpackung richtet sich nach den Wünschen des Kunden. Auf Anfrage liefern wir sowohl in Big Bags als auch in verschiedenen Sackgrößen. Wir gehen gerne auf individuelle Anforderungen ein – Verpackungsform, Menge und Lieferbedingungen werden gemeinsam besprochen. Sprechen Sie uns einfach an.</p>
+        <p style="margin-top:1rem;font-size:0.92rem;color:#555;line-height:1.7;" data-lang="en">Packaging is tailored to the customer's requirements. On request we can deliver in big bags as well as various bag sizes. We are happy to accommodate individual needs — packaging format, quantity and delivery terms are always open for discussion. Just get in touch.</p>
+        <a href="#contact" style="display:inline-block;margin-top:1rem;font-size:0.85rem;font-weight:700;color:var(--green);text-decoration:none;" data-lang="de">Lieferbedingungen besprechen →</a>
+        <a href="#contact" style="display:inline-block;margin-top:1rem;font-size:0.85rem;font-weight:700;color:var(--green);text-decoration:none;" data-lang="en">Discuss delivery terms →</a>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOADS -->
+<section id="downloads" style="padding:80px 0;background:#fff;">
+  <div class="container">
+    <div class="section-label" data-lang="de">Dokumente</div>
+    <div class="section-label" data-lang="en">Documents</div>
+    <h2 class="section-title" data-lang="de">Technische Dokumente &amp; Downloads</h2>
+    <h2 class="section-title" data-lang="en">Technical Documents &amp; Downloads</h2>
+    <p class="section-sub" data-lang="de">Produktdatenblätter, Anwendungsinfos und Forschungsübersichten — kostenlos zum Download.</p>
+    <p class="section-sub" data-lang="en">Product data sheets, application guides and research summaries — free to download.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2.5rem;">
+
+      <!-- CORETRON TDS EN -->
+      <div style="border:1.5px solid #e5e7eb;border-radius:12px;padding:1.5rem;display:flex;flex-direction:column;gap:0.75rem;transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 4px 20px rgba(0,0,0,0.09)'" onmouseout="this.style.boxShadow='none'">
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <div style="width:42px;height:42px;background:#d8f3dc;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2d6a4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <div>
+            <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#2d6a4f;" data-lang="de">CORETRON E551c</div>
+            <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#2d6a4f;" data-lang="en">CORETRON E551c</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:0.95rem;font-weight:700;color:#1a2332;margin-bottom:0.25rem;" data-lang="de">Technical Data Sheet (EN)</div>
+          <div style="font-size:0.95rem;font-weight:700;color:#1a2332;margin-bottom:0.25rem;" data-lang="en">Technical Data Sheet (EN)</div>
+          <div style="font-size:0.82rem;color:#6b7280;line-height:1.5;" data-lang="de">Technisches Datenblatt auf Englisch — Spezifikationen, Zertifizierungen, Anwendung. GMP+/FAMI-QS zertifiziert.</div>
+          <div style="font-size:0.82rem;color:#6b7280;line-height:1.5;" data-lang="en">English technical data sheet — specifications, certifications, application. GMP+/FAMI-QS certified.</div>
+        </div>
+        <div style="display:flex;gap:0.5rem;margin-top:auto;padding-top:0.5rem;flex-wrap:wrap;">
+          <span style="background:#f3f4f6;border-radius:4px;padding:2px 8px;font-size:0.72rem;font-weight:600;color:#6b7280;">PDF · 271 KB</span>
+          <span style="background:#d8f3dc;border-radius:4px;padding:2px 8px;font-size:0.72rem;font-weight:600;color:#2d6a4f;">GMP+ · FAMI-QS</span>
+        </div>
+        <a href="docs/CORETRON_TDS_EN_2026.pdf" download style="display:flex;align-items:center;justify-content:center;gap:0.5rem;background:#2d6a4f;color:white;border-radius:8px;padding:10px 16px;font-size:0.85rem;font-weight:600;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#40916c'" onmouseout="this.style.background='#2d6a4f'">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span data-lang="de">Download TDS</span><span data-lang="en">Download TDS</span>
+        </a>
+      </div>
+
+      <!-- AGRITRON Farmer Brief -->
+      <div style="border:1.5px solid #e5e7eb;border-radius:12px;padding:1.5rem;display:flex;flex-direction:column;gap:0.75rem;transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 4px 20px rgba(0,0,0,0.09)'" onmouseout="this.style.boxShadow='none'">
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <div style="width:42px;height:42px;background:#fdf3e3;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c8963e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 0 20A10 10 0 0 1 12 2z"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <div>
+            <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#c8963e;">AGRITRON</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:0.95rem;font-weight:700;color:#1a2332;margin-bottom:0.25rem;" data-lang="de">Wie wirkt Kieselgur im Boden?</div>
+          <div style="font-size:0.95rem;font-weight:700;color:#1a2332;margin-bottom:0.25rem;" data-lang="en">How does diatomite work in soil?</div>
+          <div style="font-size:0.82rem;color:#6b7280;line-height:1.5;" data-lang="de">Kurze Übersicht für Landwirte — Wirkmechanismen, Studienergebnisse, Dosierung. 1 Seite.</div>
+          <div style="font-size:0.82rem;color:#6b7280;line-height:1.5;" data-lang="en">Short overview for farmers — mechanisms, study results, dosage. 1 page.</div>
+        </div>
+        <div style="display:flex;gap:0.5rem;margin-top:auto;padding-top:0.5rem;flex-wrap:wrap;">
+          <span style="background:#f3f4f6;border-radius:4px;padding:2px 8px;font-size:0.72rem;font-weight:600;color:#6b7280;">PDF · 227 KB</span>
+          <span style="background:#fdf3e3;border-radius:4px;padding:2px 8px;font-size:0.72rem;font-weight:600;color:#c8963e;">EU 2019/1009 · Öko-Landbau</span>
+        </div>
+        <a href="docs/AGRITRON_Farmer_Brief_Mai2026.pdf" download style="display:flex;align-items:center;justify-content:center;gap:0.5rem;background:#c8963e;color:white;border-radius:8px;padding:10px 16px;font-size:0.85rem;font-weight:600;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#d4a84e'" onmouseout="this.style.background='#c8963e'">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span data-lang="de">Download Info-Brief</span><span data-lang="en">Download Info Brief</span>
+        </a>
+      </div>
+
+      <!-- AGRITRON Flyer -->
+      <div style="border:1.5px solid #e5e7eb;border-radius:12px;padding:1.5rem;display:flex;flex-direction:column;gap:0.75rem;transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 4px 20px rgba(0,0,0,0.09)'" onmouseout="this.style.boxShadow='none'">
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <div style="width:42px;height:42px;background:#d8f3dc;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2d6a4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <div>
+            <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#2d6a4f;">AGRITRON</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:0.95rem;font-weight:700;color:#1a2332;margin-bottom:0.25rem;" data-lang="de">Produkt-Flyer AGRITRON</div>
+          <div style="font-size:0.95rem;font-weight:700;color:#1a2332;margin-bottom:0.25rem;" data-lang="en">AGRITRON Product Flyer</div>
+          <div style="font-size:0.82rem;color:#6b7280;line-height:1.5;" data-lang="de">Produktübersicht, Anwendungsgebiete und Kontaktdaten — ideal für die Weitergabe.</div>
+          <div style="font-size:0.82rem;color:#6b7280;line-height:1.5;" data-lang="en">Product overview, applications and contact details — ideal for sharing.</div>
+        </div>
+        <div style="display:flex;gap:0.5rem;margin-top:auto;padding-top:0.5rem;flex-wrap:wrap;">
+          <span style="background:#f3f4f6;border-radius:4px;padding:2px 8px;font-size:0.72rem;font-weight:600;color:#6b7280;">PDF · 515 KB</span>
+          <span style="background:#d8f3dc;border-radius:4px;padding:2px 8px;font-size:0.72rem;font-weight:600;color:#2d6a4f;">Öko-Landbau</span>
+        </div>
+        <a href="docs/AGRITRON_Flyer_Mai2026.pdf" download style="display:flex;align-items:center;justify-content:center;gap:0.5rem;background:#2d6a4f;color:white;border-radius:8px;padding:10px 16px;font-size:0.85rem;font-weight:600;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#40916c'" onmouseout="this.style.background='#2d6a4f'">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span data-lang="de">Download Flyer</span><span data-lang="en">Download Flyer</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- CTA / CONTACT -->
 <section id="contact">
   <div class="container">
@@ -796,6 +1006,8 @@
       <textarea id="cf-message" placeholder="Ihre Anfrage / Your inquiry..."></textarea>
       <button type="submit" data-lang="de">Anfrage senden →</button>
       <button type="submit" data-lang="en">Send Inquiry →</button>
+      <p class="form-privacy" data-lang="de" style="font-size:0.75rem;color:rgba(255,255,255,0.6);margin-top:0.5rem;">Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Daten gemäß unserer <a href="/datenschutz.html" style="color:rgba(255,255,255,0.8);text-decoration:underline;">Datenschutzerklärung</a> zu.</p>
+      <p class="form-privacy" data-lang="en" style="font-size:0.75rem;color:rgba(255,255,255,0.6);margin-top:0.5rem;">By submitting you agree to the processing of your data as described in our <a href="/datenschutz.html" style="color:rgba(255,255,255,0.8);text-decoration:underline;">Privacy Policy</a>.</p>
     </form>
     <div class="cta-contact-info">
       <div class="cta-contact-item">
@@ -827,9 +1039,9 @@
         <h4 data-lang="de">Produkte</h4>
         <h4 data-lang="en">Products</h4>
         <ul>
-          <li><a href="#contact">Diamix Super</a></li>
-          <li><a href="#applications" data-lang="de">Tierfutter</a><a href="#applications" data-lang="en">Animal Feed</a></li>
-          <li><a href="#applications" data-lang="de">Tiereinstreu</a><a href="#applications" data-lang="en">Animal Bedding</a></li>
+          <li><a href="coretron-e551c.html">CORETRON E551c</a></li>
+          <li><a href="diamix-einstreu.html" data-lang="de">Natural Bedding Granules</a><a href="diamix-einstreu.html" data-lang="en">Natural Bedding Granules</a></li>
+          <li><a href="produkt-absorbent.html" data-lang="de">Calcined Absorbent Granules</a><a href="produkt-absorbent.html" data-lang="en">Calcined Absorbent Granules</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -839,6 +1051,16 @@
           <li><a href="#about" data-lang="de">Über uns</a><a href="#about" data-lang="en">About us</a></li>
           <li><a href="#quality" data-lang="de">Qualität</a><a href="#quality" data-lang="en">Quality</a></li>
           <li><a href="#logistics" data-lang="de">Logistik</a><a href="#logistics" data-lang="en">Logistics</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-lang="de">FAQ</h4>
+        <h4 data-lang="en">FAQ</h4>
+        <ul>
+          <li><a href="#faq" data-lang="de">Was ist Diatomit?</a><a href="#faq" data-lang="en">What is diatomite?</a></li>
+          <li><a href="#faq" data-lang="de">Ist es sicher?</a><a href="#faq" data-lang="en">Is it safe?</a></li>
+          <li><a href="#faq" data-lang="de">Woher stammt der Rohstoff?</a><a href="#faq" data-lang="en">Where does it come from?</a></li>
+          <li><a href="#faq" data-lang="de">Verpackung & Lieferung</a><a href="#faq" data-lang="en">Packaging & delivery</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -906,94 +1128,94 @@
 
 <!-- Chat Widget -->
 <style>
-  #chat-btn {
-    position: fixed;
-    bottom: 28px;
-    right: 28px;
-    width: 60px;
-    height: 60px;
-    background: var(--green);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 4px 16px rgba(45,106,79,0.4);
-    z-index: 9999;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  #chat-btn:hover { transform: scale(1.08); box-shadow: 0 6px 24px rgba(45,106,79,0.5); }
-  #chat-btn svg { width: 28px; height: 28px; fill: #fff; }
-  #chat-bubble {
-    position: fixed;
-    bottom: 100px;
-    right: 28px;
-    background: var(--navy);
-    color: #fff;
-    padding: 8px 14px;
-    border-radius: 12px 12px 0 12px;
-    font-size: 13px;
-    font-family: 'Inter', sans-serif;
-    white-space: nowrap;
-    z-index: 9998;
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 0.3s, transform 0.3s;
-    pointer-events: none;
-  }
-  #chat-bubble.show { opacity: 1; transform: translateY(0); }
-  #chat-modal {
-    display: none;
-    position: fixed;
-    bottom: 100px;
-    right: 28px;
-    width: 380px;
-    height: 560px;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.18);
-    z-index: 9999;
-  }
-  #chat-modal iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-  @media (max-width: 480px) {
-    #chat-modal { width: calc(100vw - 16px); height: 70vh; bottom: 90px; right: 8px; }
-    #chat-btn { bottom: 16px; right: 16px; }
-  }
+  #chat-bubble { position:fixed; bottom:24px; right:24px; width:56px; height:56px; border-radius:50%; background:var(--green); color:#fff; border:none; cursor:pointer; font-size:24px; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 16px rgba(0,0,0,.2); z-index:9999; transition:transform .2s; }
+  #chat-bubble:hover { transform:scale(1.08); }
+  #chat-window { position:fixed; bottom:92px; right:24px; width:340px; max-width:calc(100vw - 32px); background:#fff; border-radius:16px; box-shadow:0 8px 40px rgba(0,0,0,.18); z-index:9999; display:none; flex-direction:column; overflow:hidden; font-family:-apple-system,sans-serif; }
+  #chat-window.open { display:flex; }
+  #chat-header { background:var(--green); color:#fff; padding:14px 16px; font-weight:700; font-size:15px; display:flex; justify-content:space-between; align-items:center; }
+  #chat-header button { background:none; border:none; color:#fff; font-size:20px; cursor:pointer; line-height:1; }
+  #chat-messages { flex:1; overflow-y:auto; padding:16px; min-height:180px; max-height:320px; display:flex; flex-direction:column; gap:10px; }
+  .chat-msg { max-width:82%; padding:10px 14px; border-radius:14px; font-size:14px; line-height:1.45; }
+  .chat-msg.bot { background:#f0f4f0; color:#1a2a1a; align-self:flex-start; border-bottom-left-radius:4px; }
+  .chat-msg.user { background:var(--green); color:#fff; align-self:flex-end; border-bottom-right-radius:4px; }
+  #chat-input-row { display:flex; gap:8px; padding:12px; border-top:1px solid #eee; }
+  #chat-input-row input { flex:1; border:1px solid #ddd; border-radius:20px; padding:9px 14px; font-size:14px; outline:none; }
+  #chat-input-row input:focus { border-color:var(--green); }
+  #chat-send { background:var(--green); color:#fff; border:none; border-radius:50%; width:38px; height:38px; cursor:pointer; font-size:16px; flex-shrink:0; }
+  .chat-typing { display:flex; gap:4px; padding:10px 14px; }
+  .chat-typing span { width:7px; height:7px; background:#aaa; border-radius:50%; animation:typing .9s infinite; }
+  .chat-typing span:nth-child(2) { animation-delay:.2s; }
+  .chat-typing span:nth-child(3) { animation-delay:.4s; }
+  @keyframes typing { 0%,80%,100%{transform:scale(1)} 40%{transform:scale(1.4)} }
 </style>
 
-<div id="chat-bubble">Chat with us 💬</div>
-<div id="chat-btn" onclick="toggleChat()" title="Chat with Diamix">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
-  </svg>
-</div>
-<div id="chat-modal">
-  <iframe src="https://n8n.diamix.eu/webhook/5a77cc09-b3a5-4bb1-9762-7379381a612a/chat" allow="microphone"></iframe>
+<button id="chat-bubble" onclick="toggleChat()" title="Chat mit uns">💬</button>
+<div id="chat-window">
+  <div id="chat-header">
+    <span>Diamix Support</span>
+    <button onclick="toggleChat()">✕</button>
+  </div>
+  <div id="chat-messages">
+    <div class="chat-msg bot">Hallo! Wie können wir Ihnen helfen? / Hello! How can we help you?</div>
+  </div>
+  <div id="chat-input-row">
+    <input id="chat-input" type="text" placeholder="Ihre Nachricht..." autocomplete="off" onkeydown="if(event.key==='Enter')sendChat()">
+    <button id="chat-send" onclick="sendChat()">➤</button>
+  </div>
 </div>
 
 <script>
-  var chatOpen = false;
-  var bubbleShown = false;
+  const CHAT_WEBHOOK = 'https://n8n.diamix.eu/webhook/chat-website';
+  let chatOpen = false;
+  let chatSessionId = 'sess_' + Math.random().toString(36).slice(2);
 
   function toggleChat() {
     chatOpen = !chatOpen;
-    document.getElementById('chat-modal').style.display = chatOpen ? 'block' : 'none';
-    document.getElementById('chat-bubble').classList.remove('show');
+    document.getElementById('chat-window').classList.toggle('open', chatOpen);
+    if (chatOpen) document.getElementById('chat-input').focus();
   }
 
-  setTimeout(function() {
-    if (!chatOpen && !bubbleShown) {
-      bubbleShown = true;
-      document.getElementById('chat-bubble').classList.add('show');
-      setTimeout(function() {
-        document.getElementById('chat-bubble').classList.remove('show');
-      }, 4000);
+  async function sendChat() {
+    const inp = document.getElementById('chat-input');
+    const msg = inp.value.trim();
+    if (!msg) return;
+    inp.value = '';
+    addMsg(msg, 'user');
+    const typing = addTyping();
+    try {
+      const res = await fetch(CHAT_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chatInput: msg, sessionId: chatSessionId })
+      });
+      const data = await res.json();
+      typing.remove();
+      addMsg(data.output || 'Vielen Dank für Ihre Nachricht!', 'bot');
+    } catch (e) {
+      typing.remove();
+      addMsg('Vielen Dank! Wir melden uns bald. / Thank you! We\'ll be in touch soon.', 'bot');
     }
-  }, 5000);
+  }
+
+  function addMsg(text, role) {
+    const box = document.getElementById('chat-messages');
+    const d = document.createElement('div');
+    d.className = 'chat-msg ' + role;
+    d.textContent = text;
+    box.appendChild(d);
+    box.scrollTop = box.scrollHeight;
+    return d;
+  }
+
+  function addTyping() {
+    const box = document.getElementById('chat-messages');
+    const d = document.createElement('div');
+    d.className = 'chat-typing';
+    d.innerHTML = '<span></span><span></span><span></span>';
+    box.appendChild(d);
+    box.scrollTop = box.scrollHeight;
+    return d;
+  }
 </script>
 
 </body>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>CORETRON E551c — Etikette A6 Quer</title>
+<style>
+  @page {
+    size: 148mm 105mm;
+    margin: 0;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    width: 148mm;
+    height: 105mm;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: white;
+    overflow: hidden;
+  }
+
+  .label {
+    width: 148mm;
+    height: 105mm;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+  }
+
+  .bar {
+    height: 6mm;
+    background: #2d6a4f;
+    flex-shrink: 0;
+  }
+
+  .content {
+    flex: 1;
+    display: flex;
+    padding: 5mm 5mm 3mm;
+    gap: 0;
+    min-height: 0;
+  }
+
+  /* LEFT: Logo + product name */
+  .col-left {
+    width: 50mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 5mm;
+    border-right: 1px solid #ddd;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .logo {
+    width: 40mm;
+    height: auto;
+  }
+
+  .product-name {
+    font-size: 17pt;
+    font-weight: 900;
+    color: #1a2332;
+    line-height: 1;
+    letter-spacing: -0.3pt;
+    white-space: nowrap;
+  }
+
+  .product-badge {
+    display: inline-block;
+    background: #2d6a4f;
+    color: white;
+    font-size: 13pt;
+    font-weight: 700;
+    padding: 2mm 5mm;
+    border-radius: 5mm;
+    width: fit-content;
+  }
+
+  /* MIDDLE: Produktinfo */
+  .col-middle {
+    width: 50mm;
+    padding: 0 5mm;
+    border-right: 1px solid #ddd;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* RIGHT: Kontakt */
+  .col-right {
+    flex: 1;
+    padding-left: 5mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .section-title {
+    font-size: 7pt;
+    font-weight: 700;
+    color: #2d6a4f;
+    text-transform: uppercase;
+    letter-spacing: 0.8pt;
+    padding-bottom: 1.5mm;
+    border-bottom: 1.5px solid #2d6a4f;
+  }
+
+  .fields {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    padding-top: 2mm;
+  }
+
+  .field-group {}
+
+  .field-label {
+    font-size: 9pt;
+    font-weight: 700;
+    color: #1a2332;
+    margin-bottom: 0.8mm;
+  }
+
+  .field-value {
+    font-size: 8.5pt;
+    color: #333;
+    line-height: 1.35;
+  }
+
+  .contact-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    padding-top: 2mm;
+  }
+
+  .contact-name {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #1a2332;
+  }
+
+  .contact-address {
+    font-size: 9pt;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  .cert-badges {
+    display: flex;
+    gap: 2.5mm;
+  }
+
+  .cert-badge {
+    border: 2px solid #2d6a4f;
+    color: #2d6a4f;
+    font-size: 7.5pt;
+    font-weight: 700;
+    padding: 1.5mm 3mm;
+    border-radius: 3mm;
+    white-space: nowrap;
+  }
+
+  /* BOTTOM: Batch + Weight */
+  .bottom-row {
+    display: flex;
+    align-items: center;
+    padding: 2.5mm 5mm;
+    border-top: 1px solid #ccc;
+    gap: 5mm;
+    flex-shrink: 0;
+  }
+
+  .bottom-field {
+    display: flex;
+    align-items: center;
+    gap: 2mm;
+    flex: 1;
+  }
+
+  .bottom-field-label {
+    font-size: 9pt;
+    font-weight: 700;
+    color: #1a2332;
+    white-space: nowrap;
+  }
+
+  .bottom-field-line {
+    flex: 1;
+    border-bottom: 1px solid #555;
+    height: 5mm;
+  }
+</style>
+</head>
+<body>
+<div class="label">
+  <div class="bar"></div>
+
+  <div class="content">
+
+    <!-- LEFT: Logo + Product -->
+    <div class="col-left">
+      <img src="images/diamix-logo.png" class="logo" alt="Diamix Europe">
+      <div class="product-name">CORETRON™</div>
+      <div class="product-badge">E 551c</div>
+    </div>
+
+    <!-- MIDDLE: Produktinfo -->
+    <div class="col-middle">
+      <div class="section-title">Produktinfo</div>
+      <div class="fields">
+        <div class="field-group">
+          <div class="field-label">Bezeichnung</div>
+          <div class="field-value">Technologischer Futtermittelzusatzstoff (E 551c)</div>
+        </div>
+        <div class="field-group">
+          <div class="field-label">SiO₂-Gehalt</div>
+          <div class="field-value">&gt; 80 %</div>
+        </div>
+        <div class="field-group">
+          <div class="field-label">Anwendung</div>
+          <div class="field-value">Gemäß VO (EG) Nr. 1831/2003</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Kontakt -->
+    <div class="col-right">
+      <div class="section-title">Kontakt</div>
+      <div class="contact-block">
+        <div class="contact-name">Diamix Europe GmbH</div>
+        <div class="contact-address">Hubenkamp 1<br>29614 Soltau, DE</div>
+        <div class="cert-badges">
+          <span class="cert-badge">GMP+</span>
+          <span class="cert-badge">FAMI-QS</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM: Batch + Weight -->
+  <div class="bottom-row">
+    <div class="bottom-field">
+      <span class="bottom-field-label">Batch No.:</span>
+      <div class="bottom-field-line"></div>
+    </div>
+    <div class="bottom-field">
+      <span class="bottom-field-label">Net weight:</span>
+      <div class="bottom-field-line"></div>
+    </div>
+  </div>
+
+  <div class="bar"></div>
+</div>
+</body>
+</html>

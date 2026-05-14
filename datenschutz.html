@@ -4,8 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Datenschutzerklärung – Diamix Europe GmbH</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/fonts/inter.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -76,6 +75,25 @@
     footer a { color: rgba(255,255,255,0.6); margin: 0 0.75rem; }
     footer a:hover { color: white; }
   </style>
+<script>
+(function() {
+  var SUPA_URL = "https://tucmaxyzgfsocwkaxpsu.supabase.co";
+  var SUPA_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR1Y21heHl6Z2Zzb2N3a2F4cHN1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxMDcxOTYsImV4cCI6MjA5MDY4MzE5Nn0.aY87_aJcc2A63tqp8enE5sHSSQiw8wVj4lceQXp5Y-8";
+  var startTime = Date.now();
+  var sessionId = sessionStorage.getItem("dmx_sid") || (Math.random().toString(36).slice(2));
+  sessionStorage.setItem("dmx_sid", sessionId);
+  function send(t) {
+    fetch(SUPA_URL + "/rest/v1/page_views", {
+      method: "POST",
+      headers: {"Content-Type":"application/json","apikey":SUPA_KEY,"Authorization":"Bearer "+SUPA_KEY,"Prefer":"return=minimal"},
+      body: JSON.stringify({page:window.location.pathname,referrer:document.referrer||null,user_agent:navigator.userAgent.slice(0,200),language:navigator.language||null,session_id:sessionId,time_on_page:t||null}),
+      keepalive: true
+    });
+  }
+  window.addEventListener("load", function(){ send(null); });
+  window.addEventListener("beforeunload", function(){ send(Math.round((Date.now()-startTime)/1000)); });
+})();
+</script>
 </head>
 <body>
 
@@ -154,13 +172,26 @@
     </div>
 
     <div class="legal-section">
-      <h2>6. Google Fonts</h2>
-      <p>Diese Website lädt Schriftarten von Google Fonts (fonts.googleapis.com). Dabei wird Ihre IP-Adresse an Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA übermittelt. Google ist unter dem EU-US Data Privacy Framework zertifiziert.</p>
-      <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der einheitlichen Darstellung der Website).</p>
+      <h2>6. Websitestatistik (eigenes System)</h2>
+      <p>Wir erfassen anonymisierte Nutzungsstatistiken auf unserer eigenen Infrastruktur (Supabase, EU-Server). Dabei werden folgende Daten gespeichert:</p>
+      <ul>
+        <li>Aufgerufene Seite</li>
+        <li>Herkunftsseite (Referrer)</li>
+        <li>Browsersprache</li>
+        <li>Anonyme Session-ID (kein Personenbezug)</li>
+        <li>Verweildauer auf der Seite</li>
+      </ul>
+      <p>Es wird keine IP-Adresse gespeichert. Es werden keine Cookies gesetzt. Die Daten werden nicht an Dritte weitergegeben.</p>
+      <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Optimierung unserer Website).</p>
     </div>
 
     <div class="legal-section">
-      <h2>7. Ihre Rechte</h2>
+      <h2>7. Schriftarten (lokal gehostet)</h2>
+      <p>Diese Website verwendet Schriftarten (DM Sans, Playfair Display, Inter), die auf unserem eigenen Server gespeichert sind. Es findet keine Übertragung von Daten an Dritte statt.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>8. Ihre Rechte</h2>
       <p>Sie haben gegenüber uns folgende Rechte hinsichtlich Ihrer personenbezogenen Daten:</p>
       <ul>
         <li><strong>Auskunft</strong> (Art. 15 DSGVO)</li>
@@ -174,7 +205,7 @@
     </div>
 
     <div class="legal-section">
-      <h2>8. Beschwerderecht</h2>
+      <h2>9. Beschwerderecht</h2>
       <p>Sie haben das Recht, sich bei der zuständigen Datenschutzaufsichtsbehörde zu beschweren. Die für Niedersachsen zuständige Behörde ist:</p>
       <p><strong>Die Landesbeauftragte für den Datenschutz Niedersachsen</strong><br/>
       Prinzenstraße 5, 30159 Hannover<br/>
@@ -182,8 +213,8 @@
     </div>
 
     <div class="legal-section">
-      <h2>9. Aktualität dieser Datenschutzerklärung</h2>
-      <p>Diese Datenschutzerklärung ist aktuell gültig und hat den Stand April 2025. Durch die Weiterentwicklung unserer Website oder aufgrund geänderter gesetzlicher Vorgaben kann es notwendig sein, diese Datenschutzerklärung zu ändern.</p>
+      <h2>10. Aktualität dieser Datenschutzerklärung</h2>
+      <p>Diese Datenschutzerklärung ist aktuell gültig und hat den Stand Mai 2026. Durch die Weiterentwicklung unserer Website oder aufgrund geänderter gesetzlicher Vorgaben kann es notwendig sein, diese Datenschutzerklärung zu ändern.</p>
     </div>
 
   </div>

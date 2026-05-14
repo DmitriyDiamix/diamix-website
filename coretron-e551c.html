@@ -1,0 +1,1256 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head><script>(function(){
+  function makeStore(){
+    var data = {};
+    var api = {
+      getItem: function(k){ return Object.prototype.hasOwnProperty.call(data, k) ? data[k] : null; },
+      setItem: function(k, v){ data[k] = String(v); },
+      removeItem: function(k){ delete data[k]; },
+      clear: function(){ data = {}; },
+      key: function(i){ return Object.keys(data)[i] || null; }
+    };
+    Object.defineProperty(api, 'length', { get: function(){ return Object.keys(data).length; } });
+    return api;
+  }
+  function tryShim(name){
+    var works = false;
+    try { works = !!window[name] && typeof window[name].getItem === 'function'; void window[name].length; }
+    catch (_) { works = false; }
+    if (works) return;
+    try { Object.defineProperty(window, name, { configurable: true, value: makeStore() }); }
+    catch (_) { try { window[name] = makeStore(); } catch (__) {} }
+  }
+  tryShim('localStorage');
+  tryShim('sessionStorage');
+})();</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CORETRON E551c — Kieselgur-Fließhilfsmittel | Diamix Europe GmbH</title>
+  <meta name="description" content="CORETRON E551c: lebensmittelzugelassenes Kieselgur-Pulver, GMP+ und FAMI-QS zertifiziert. Fließhilfsmittel und Trägerstoff für Premix- und Futtermittelhersteller. B2B-Lieferung europaweit." />
+  <link rel="canonical" href="https://www.diamix.eu/coretron-e551c.html" />
+  <meta property="og:url" content="https://www.diamix.eu/coretron-e551c.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      color: #1a2332;
+      background: #ffffff;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --green:       #2d6a4f;
+      --green-light: #40916c;
+      --green-mid:   #52b788;
+      --green-pale:  #d8f3dc;
+      --navy:        #1a2332;
+      --gray:        #6b7280;
+      --gray-light:  #f8f9fa;
+      --gray-mid:    #e5e7eb;
+      --white:       #ffffff;
+      --gold:        #c8963e;
+    }
+
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 2.5rem; }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.85rem;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-mid);
+      height: 68px;
+      display: flex;
+      align-items: center;
+    }
+    .nav-inner {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-wordmark {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .wordmark-logo {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--green);
+      letter-spacing: -0.01em;
+    }
+    .wordmark-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--gray-mid);
+    }
+    .wordmark-product {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gray);
+      letter-spacing: 0.04em;
+    }
+    .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--gray);
+      transition: color 0.15s;
+    }
+    .nav-link:hover { color: var(--navy); }
+    .btn-nav {
+      background: var(--green);
+      color: var(--white);
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: 8px;
+      transition: background 0.15s;
+    }
+    .btn-nav:hover { background: var(--green-light); }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: linear-gradient(140deg, var(--navy) 0%, #1d4a37 55%, var(--green) 100%);
+      padding: 100px 0 90px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 5rem;
+      align-items: center;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.85);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 7px 14px;
+      border-radius: 100px;
+      margin-bottom: 1.4rem;
+    }
+    .hero-tag::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green-mid);
+      flex-shrink: 0;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      font-weight: 900;
+      line-height: 1.08;
+      color: var(--white);
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--green-mid);
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 2rem;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.9);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 100px;
+    }
+    .badge.gold {
+      background: rgba(200,150,62,0.18);
+      border-color: rgba(200,150,62,0.35);
+      color: #f5c97a;
+    }
+    .hero-ctas { display: flex; gap: 1rem; align-items: center; }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green-mid);
+      color: var(--white);
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 8px;
+      transition: all 0.15s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary:hover {
+      background: #45a87b;
+      transform: translateY(-1px);
+    }
+    .btn-ghost {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      padding-bottom: 1px;
+      transition: color 0.15s;
+    }
+    .btn-ghost:hover { color: var(--white); }
+
+    .hero-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 2.5rem;
+      width: 100%;
+      backdrop-filter: blur(4px);
+    }
+    .hero-card-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 1.2rem;
+    }
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .spec-row:last-child { border-bottom: none; }
+    .spec-row-name {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      font-weight: 500;
+    }
+    .spec-row-val {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+      font-variant-numeric: tabular-nums;
+    }
+    .spec-row-unit {
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.5);
+      margin-left: 4px;
+    }
+    .hero-card-footer {
+      margin-top: 1.5rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.5;
+    }
+
+    /* ─── TRUST BAR ─── */
+    .trust-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-mid);
+    }
+    .trust-bar-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-left: 1px solid var(--gray-mid);
+    }
+    .trust-item {
+      padding: 2rem;
+      border-right: 1px solid var(--gray-mid);
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .trust-icon {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .trust-icon svg { width: 24px; height: 24px; }
+    .trust-text-num {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--green);
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+    .trust-text-desc {
+      font-size: 0.82rem;
+      color: var(--gray);
+      line-height: 1.45;
+    }
+
+    /* ─── SECTION SHARED ─── */
+    section.light-section { padding: 96px 0; background: var(--white); }
+    section.gray-section { padding: 96px 0; background: var(--gray-light); }
+    .section-head { margin-bottom: 3rem; }
+    .section-head h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    .section-head p {
+      font-size: 1rem;
+      color: var(--gray);
+      margin-top: 0.7rem;
+      max-width: 580px;
+      line-height: 1.7;
+    }
+
+    /* ─── BENEFITS ─── */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--gray-mid);
+      border: 1.5px solid var(--gray-mid);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .benefit-card {
+      background: var(--white);
+      padding: 2.4rem 2rem;
+    }
+    .benefit-icon-wrap {
+      width: 48px;
+      height: 48px;
+      background: var(--green-pale);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.3rem;
+    }
+    .benefit-icon-wrap svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--green);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .benefit-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+    .benefit-card p {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.65;
+    }
+
+    /* ─── SPECS ─── */
+    .specs-table-wrap {
+      border: 1px solid var(--gray-mid);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .specs-table thead tr {
+      background: var(--navy);
+    }
+    .specs-table thead th {
+      padding: 1rem 1.5rem;
+      text-align: left;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+    .specs-table tbody tr {
+      border-bottom: 1px solid var(--gray-mid);
+      transition: background 0.1s;
+    }
+    .specs-table tbody tr:last-child { border-bottom: none; }
+    .specs-table tbody tr:hover { background: var(--gray-light); }
+    .specs-table tbody td {
+      padding: 1.1rem 1.5rem;
+      vertical-align: middle;
+    }
+    .td-param {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+    .td-value {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--green);
+      font-variant-numeric: tabular-nums;
+    }
+    .td-method {
+      font-size: 0.82rem;
+      color: var(--gray);
+    }
+    .td-note {
+      font-size: 0.78rem;
+      color: var(--gray);
+      font-style: italic;
+    }
+    .specs-footer {
+      background: var(--gray-light);
+      padding: 1rem 1.5rem;
+      font-size: 0.78rem;
+      color: var(--gray);
+      border-top: 1px solid var(--gray-mid);
+    }
+
+    /* ─── CERTS ─── */
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    .cert-card {
+      background: var(--white);
+      border: 1px solid var(--gray-mid);
+      border-radius: 16px;
+      padding: 2rem 1.6rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .cert-card:hover {
+      border-color: var(--green);
+      box-shadow: 0 4px 24px rgba(45,106,79,0.1);
+    }
+    .cert-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      background: var(--green);
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 6px;
+      margin-bottom: 1.1rem;
+    }
+    .cert-badge-pill.gold-pill {
+      background: var(--gold);
+    }
+    .cert-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .cert-card p {
+      font-size: 0.82rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* ─── EFSA BLOCK ─── */
+    .efsa-block {
+      margin-top: 2.5rem;
+      background: linear-gradient(135deg, #fdf6ec 0%, #fef9f0 100%);
+      border: 1.5px solid var(--gold);
+      border-left: 5px solid var(--gold);
+      border-radius: 12px;
+      padding: 1.8rem 2.2rem;
+      display: flex;
+      gap: 1.8rem;
+      align-items: flex-start;
+    }
+    .efsa-icon {
+      flex-shrink: 0;
+      width: 48px; height: 48px;
+      background: var(--gold);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .efsa-icon svg {
+      width: 24px; height: 24px;
+      stroke: white; fill: none;
+      stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .efsa-content { flex: 1; }
+    .efsa-label {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .efsa-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--navy);
+      line-height: 1.65;
+      margin-bottom: 0.9rem;
+    }
+    .efsa-quote strong { font-style: normal; color: var(--gold); }
+    .efsa-meta {
+      font-size: 0.78rem;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+    .efsa-meta a {
+      color: var(--gold);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ─── FORM SECTION ─── */
+    .form-section {
+      padding: 96px 0;
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+    .form-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+    .form-inner {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 520px;
+      gap: 6rem;
+      align-items: start;
+    }
+    .form-intro .section-label { color: var(--green-mid); }
+    .form-intro h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .form-intro p {
+      font-size: 0.97rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .form-promise-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .form-promise-list li {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.65);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .form-promise-list li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green-mid);
+      flex-shrink: 0;
+    }
+    .form-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2.5rem;
+    }
+    .form-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.25rem;
+    }
+    .form-card .form-subtitle {
+      font-size: 0.82rem;
+      color: var(--gray);
+      margin-bottom: 1.8rem;
+    }
+    .form-group { margin-bottom: 1.1rem; }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.01em;
+    }
+    .form-group label .req { color: var(--green); margin-left: 2px; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--gray-mid);
+      border-radius: 8px;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 0.9rem;
+      color: var(--navy);
+      background: var(--white);
+      transition: border-color 0.15s, box-shadow 0.15s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 36px;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(45,106,79,0.1);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 96px;
+    }
+    .form-submit {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+    .btn-submit {
+      width: 100%;
+      background: var(--green);
+      color: var(--white);
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 14px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .btn-submit:hover { background: var(--green-light); transform: translateY(-1px); }
+    .btn-submit:disabled {
+      background: var(--gray);
+      cursor: not-allowed;
+      transform: none;
+    }
+    .form-privacy {
+      font-size: 0.75rem;
+      color: var(--gray);
+      text-align: center;
+      line-height: 1.5;
+    }
+    .form-success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem 1rem;
+      gap: 1rem;
+    }
+    .form-success.visible { display: flex; }
+    .success-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--green-pale);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .success-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--green);
+      stroke-width: 2.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .form-success h4 { font-size: 1.05rem; font-weight: 700; color: var(--navy); }
+    .form-success p { font-size: 0.88rem; color: var(--gray); line-height: 1.6; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #111a24;
+      color: rgba(255,255,255,0.5);
+      padding: 3rem 0 2rem;
+      font-size: 0.82rem;
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+    .footer-brand .wordmark-logo { color: rgba(255,255,255,0.9); font-size: 1.15rem; }
+    .footer-brand p {
+      margin-top: 0.5rem;
+      font-size: 0.78rem;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.4);
+    }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.85); }
+    .footer-bottom {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    #scroll-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 44px;
+      height: 44px;
+      background: var(--green);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.2s;
+      z-index: 50;
+    }
+    #scroll-top.visible { opacity: 1; transform: translateY(0); }
+    #scroll-top svg { width: 20px; height: 20px; stroke: white; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#top" class="nav-wordmark">
+        <img src="images/diamix-logo.png" alt="Diamix" style="height:32px;width:auto;display:block;" />
+        <span class="wordmark-divider"></span>
+        <span class="wordmark-product">CORETRON E551c</span>
+      </a>
+      <div class="nav-right">
+        <a href="#spezifikationen" class="nav-link">Spezifikationen</a>
+        <a href="#zertifizierungen" class="nav-link">Zertifizierungen</a>
+        <a href="#muster-anfragen" class="btn-nav">Muster anfragen</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="hero" id="top">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tag">Futtermittelzusatzstoff E551c · Diatomeenerde</div>
+        <h1>
+          Kieselgur für die<br>
+          <em>industrielle</em><br>
+          Futtermittelproduktion
+        </h1>
+        <p class="hero-sub">
+          CORETRON E551c ist ein amorphes Siliziumdioxid-Pulver aus Diatomeenerde — als Fließhilfsmittel und mineralischer Trägerstoff konzipiert, im Rahmen GMP+-zertifizierter und FAMI-QS-qualifizierter Lieferketten verfügbar.
+        </p>
+        <div class="hero-badges">
+          <span class="badge gold">GMP+ zertifiziert</span>
+          <span class="badge gold">FAMI-QS-konform</span>
+          <span class="badge">E551c zugelassen</span>
+          <span class="badge">Non-GMO</span>
+          <span class="badge">Lieferung ab Deutschland</span>
+        </div>
+        <div class="hero-ctas">
+          <a href="#muster-anfragen" class="btn-primary">
+            Muster anfragen
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#spezifikationen" class="btn-ghost">Technische Daten ansehen</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-card-label">Technische Kurzübersicht</div>
+          <div class="spec-row">
+            <span class="spec-row-name">Reinheit SiO₂</span>
+            <span class="spec-row-val">&gt; 80 %<span class="spec-row-unit">TS</span></span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-row-name">Korngröße</span>
+            <span class="spec-row-val">auf Anfrage<span class="spec-row-unit">verschiedene Fraktionen</span></span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-row-name">Schüttdichte</span>
+            <span class="spec-row-val">auf Anfrage<span class="spec-row-unit">je nach Fraktion</span></span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-row-name">Feuchtegehalt</span>
+            <span class="spec-row-val">≤ 3 %<span class="spec-row-unit">bei Lieferung</span></span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-row-name">pH-Wert</span>
+            <span class="spec-row-val">7,0–8,5<span class="spec-row-unit">neutral</span></span>
+          </div>
+          <div class="hero-card-footer">
+            Vollständiges Datenblatt und Analysezertifikat (CoA) auf Anfrage.<br>
+            Lieferbar in 25-kg-Säcken und Big Bags (500–1.000 kg).
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-bar-inner">
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <div class="trust-text-num">GMP+</div>
+          <div class="trust-text-desc">Zertifizierte Lieferkette nach GMP+ B2 Standard</div>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <div>
+          <div class="trust-text-num">FAMI-QS</div>
+          <div class="trust-text-desc">Qualifizierte Bezugsquelle für Futtermittelzusatzstoffe</div>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+        </div>
+        <div>
+          <div class="trust-text-num">CoA</div>
+          <div class="trust-text-desc">Analysezertifikat für jede Charge — vollständige Rückverfolgbarkeit</div>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div>
+          <div class="trust-text-num">DE</div>
+          <div class="trust-text-desc">Lager und Versand ab Süddeutschland</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="light-section" id="vorteile">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">Anwendung & Funktion</div>
+      <h2>Drei Funktionen.<br>Ein Produkt.</h2>
+      <p>CORETRON E551c wird dort eingesetzt, wo Prozessstabilität und dokumentierte Qualität nicht verhandelbar sind — von der Premixherstellung bis zur Mischfutterproduktion.</p>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Fließhilfsmittel & Rieselfähigkeit</h3>
+        <p>CORETRON E551c reduziert das Verklumpen pulverförmiger Mischungen und stabilisiert die Rieselfähigkeit von Premixen und Mischfutter — auch bei wechselnden Lagerbedingungen und variierender Luftfeuchtigkeit.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon-wrap">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <h3>Mineralischer Trägerstoff</h3>
+        <p>Die poröse Partikelstruktur ermöglicht eine gleichmäßige Verteilung von Vitaminen, Aminosäuren und Spurenelementen in der Premixherstellung — mit definierbarer Adsorptionskapazität je nach Spezifikation.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <h3>EU-Zulassung & Qualitätsdokumentation</h3>
+        <p>Zugelassen als E551c nach EU-Futtermittelrecht. GMP+ und FAMI-QS verfügbar — mit vollständiger Chargenrückverfolgung und Analysezertifikat (CoA) pro Lieferung.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gray-section" id="spezifikationen">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">Technische Daten</div>
+      <h2>Spezifikationsblatt<br>CORETRON E551c</h2>
+      <p>Alle Angaben bezogen auf die Standardlieferspezifikation. Abweichende Spezifikationen auf Anfrage möglich.</p>
+    </div>
+    <div class="specs-table-wrap">
+      <table class="specs-table">
+        <thead>
+          <tr>
+            <th style="width:30%">Parameter</th>
+            <th style="width:22%">Wert</th>
+            <th style="width:25%">Methode / Norm</th>
+            <th>Bemerkung</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-param">Produkttyp</td>
+            <td class="td-value">Amorphes SiO₂</td>
+            <td class="td-method">—</td>
+            <td class="td-note">Diatomeenerde, natürliche Herkunft</td>
+          </tr>
+          <tr>
+            <td class="td-param">E-Nummer (EU)</td>
+            <td class="td-value">E551c</td>
+            <td class="td-method">VO (EG) Nr. 1831/2003</td>
+            <td class="td-note">Fließregulierungsmittel / Trägerstoff</td>
+          </tr>
+          <tr>
+            <td class="td-param">Reinheit SiO₂</td>
+            <td class="td-value">&gt; 80 %</td>
+            <td class="td-method">Trockensubstanz (TS)</td>
+            <td class="td-note">—</td>
+          </tr>
+          <tr>
+            <td class="td-param">Mediankorngröße D50</td>
+            <td class="td-value">~ 8 µm</td>
+            <td class="td-method">Laserbeugung</td>
+            <td class="td-note">Feine Pulverfraktion</td>
+          </tr>
+          <tr>
+            <td class="td-param">Schüttdichte</td>
+            <td class="td-value">0,25–0,35 g/cm³</td>
+            <td class="td-method">ISO 60</td>
+            <td class="td-note">Chargenabhängig</td>
+          </tr>
+          <tr>
+            <td class="td-param">Feuchtegehalt</td>
+            <td class="td-value">≤ 3 %</td>
+            <td class="td-method">Trocknung 105 °C</td>
+            <td class="td-note">Bei Auslieferung</td>
+          </tr>
+          <tr>
+            <td class="td-param">pH-Wert</td>
+            <td class="td-value">7,0–8,5</td>
+            <td class="td-method">5 %ig in H₂O, 20 °C</td>
+            <td class="td-note">Neutral bis leicht basisch</td>
+          </tr>
+          <tr>
+            <td class="td-param">Verpackung</td>
+            <td class="td-value">25 kg Sack / 500–1.000 kg Big Bag</td>
+            <td class="td-method">—</td>
+            <td class="td-note">PE-Sack oder Big Bag</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="specs-footer">
+        Vollständiges technisches Datenblatt (TDS) und Analysezertifikat (CoA) auf Anfrage. Abweichende Parameter nach Vereinbarung möglich.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="light-section" id="zertifizierungen">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">Qualitätssicherung</div>
+      <h2>Zertifizierungen &<br>Konformität</h2>
+      <p>Für Hersteller mit dokumentierten QS-Anforderungen: CORETRON E551c ist im Rahmen der folgenden Zertifizierungssysteme verfügbar.</p>
+    </div>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-badge-pill gold-pill">GMP+</div>
+        <h3>GMP+ B2 zertifiziert</h3>
+        <p>Lieferung im Rahmen GMP+-zertifizierter Futtermittel-Lieferketten. Standard B2: Handel, Lagerung und Transport von Futtermittelzusatzstoffen.</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-badge-pill gold-pill">FAMI-QS</div>
+        <h3>FAMI-QS qualifiziert</h3>
+        <p>Qualifizierte Bezugsquelle gemäß FAMI-QS-Sektor-spezifischem Leitfaden für amorphes Siliziumdioxid in Futtermittelanwendungen.</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-badge-pill">E551c</div>
+        <h3>EU-Futtermittelrecht</h3>
+        <p>Zugelassen als Futtermittelzusatzstoff E551c nach Verordnung (EG) Nr. 1831/2003 — Fließregulierungsmittel und mineralischer Trägerstoff.</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-badge-pill">Non-GMO</div>
+        <h3>Gentechnikfrei & rein mineralisch</h3>
+        <p>Natürlicher, mineralischer Rohstoff ohne gentechnisch veränderte Bestandteile. Keine tierischen Produkte. Kompatibel mit Non-GMO-Programmen.</p>
+      </div>
+    </div>
+
+    <!-- EFSA 2025 BLOCK -->
+    <div class="efsa-block">
+      <div class="efsa-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <polyline points="9 12 11 14 15 10"/>
+        </svg>
+      </div>
+      <div class="efsa-content">
+        <div class="efsa-label">Wissenschaftliche Grundlage · EFSA 2025</div>
+        <p class="efsa-quote">
+          „Die Europäische Behörde für Lebensmittelsicherheit (EFSA) kommt zu dem Schluss, dass
+          <strong>Kieselgur (E551c) bei bestimmungsgemäßer Verwendung als Fließhilfsmittel in Futtermitteln
+          sicher für Zieltiere, Verbraucher und die Umwelt ist.</strong>
+          Die Substanz gilt als nicht reizend und zeigt kein genotoxisches Potenzial."
+        </p>
+        <p class="efsa-meta">
+          Quelle: <a href="https://www.efsa.europa.eu/en/efsajournal/pub/9363" target="_blank" rel="noopener">
+            EFSA Journal 2025, Ref. 9363
+          </a>
+          &nbsp;·&nbsp; European Food Safety Authority &nbsp;·&nbsp;
+          Safety evaluation of diatomaceous earth (E551c) for use in animal nutrition
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="form-section" id="muster-anfragen">
+  <div class="container">
+    <div class="form-inner">
+      <div class="form-intro">
+        <div class="section-label">Musteranfrage</div>
+        <h2>Testen Sie CORETRON E551c in Ihrem Prozess.</h2>
+        <p>
+          Wir liefern Produktmuster mit vollständigem Datenblatt und Analysezertifikat — ohne Mindestmenge, ohne Verpflichtung. Anfragen beantworten wir innerhalb von 24 Stunden.
+        </p>
+        <ul class="form-promise-list">
+          <li>Rückmeldung innerhalb von 24 Stunden (Werktage)</li>
+          <li>Produktmuster mit CoA und technischem Datenblatt</li>
+          <li>Direkter Kontakt zum technischen Ansprechpartner</li>
+          <li>Angebot auf Basis Ihrer Jahresbedarfsangabe</li>
+        </ul>
+      </div>
+      <div class="form-card">
+        <h3>Musteranfrage senden</h3>
+        <p class="form-subtitle">CORETRON E551c · Diatomeenerde E-Nummer 551c</p>
+        <form id="sample-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="f-name">Vorname &amp; Nachname <span class="req">*</span></label>
+              <input type="text" id="f-name" name="name" placeholder="Max Mustermann" required />
+            </div>
+            <div class="form-group">
+              <label for="f-company">Unternehmen <span class="req">*</span></label>
+              <input type="text" id="f-company" name="company" placeholder="Muster GmbH" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="f-email">E-Mail-Adresse <span class="req">*</span></label>
+            <input type="email" id="f-email" name="email" placeholder="max@muster.de" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="f-role">Funktion / Abteilung</label>
+              <input type="text" id="f-role" name="role" placeholder="z.B. Einkauf, QS, Produktion" />
+            </div>
+            <div class="form-group">
+              <label for="f-volume">Jahresbedarf (ca.)</label>
+              <select id="f-volume" name="volume">
+                <option value="">Bitte wählen …</option>
+                <option value="unter 5t">Unter 5 t/Jahr</option>
+                <option value="5-25t">5 – 25 t/Jahr</option>
+                <option value="25-100t">25 – 100 t/Jahr</option>
+                <option value="ueber 100t">Über 100 t/Jahr</option>
+                <option value="unbekannt">Noch unklar</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="f-message">Anwendung & Anforderungen</label>
+            <textarea id="f-message" name="message" placeholder="Kurze Beschreibung Ihrer Anwendung, besondere Anforderungen an die Spezifikation …"></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn-submit" id="submit-btn">Musteranfrage absenden</button>
+            <p class="form-privacy">Mit dem Absenden stimmen Sie zu, dass Diamix Europe GmbH Ihre Daten zur Bearbeitung Ihrer Anfrage verwendet. Keine Weitergabe an Dritte.</p>
+          </div>
+        </form>
+        <div class="form-success" id="form-success">
+          <div class="success-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <h4>Anfrage eingegangen</h4>
+          <p>Vielen Dank. Wir melden uns innerhalb von 24 Stunden mit weiteren Details zu Ihrem Muster und dem Datenblatt.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<section style="background:#f8f8f6;padding:2rem 0;border-top:1px solid #e8e4dc;">
+  <div class="container">
+    <p style="font-size:0.82rem;color:#777;line-height:1.6;max-width:860px;"><strong>Hinweis:</strong> CORETRON E551c ist ein mineralisches Additiv auf Basis von natürlichem Kieselgur (Siliciumdioxid E551c) und wird als Trennmittel in der Futtermittelindustrie gemäß Verordnung (EG) Nr. 1831/2003 eingesetzt. Das Produkt ist kein Tierarzneimittel und entfaltet keine medizinische oder pharmakologische Wirkung. Der Einsatz hat gemäß den geltenden futtermittelrechtlichen Vorschriften zu erfolgen. Die Verantwortung für den sachgerechten Einsatz liegt beim Anwender. Technisches Datenblatt und Analysezertifikat (CoA) auf Anfrage erhältlich.</p>
+  </div>
+</section>
+
+<footer style="background:#1a2332;color:rgba(255,255,255,0.6);padding:2rem 0;font-size:0.85rem;">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+    <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
+      <img src="images/diamix-logo.png" alt="Diamix Europe GmbH" style="height:32px;width:auto;background:white;padding:4px 8px;border-radius:4px;" />
+      <p style="margin:0;">© 2026 Diamix Europe GmbH · Hubenkamp 1 · 29614 Soltau · <a href="mailto:office@diamix.eu" style="color:rgba(255,255,255,0.6);">office@diamix.eu</a></p>
+    </div>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="index.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">Startseite</a>
+      <a href="impressum.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">Impressum</a>
+      <a href="datenschutz.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">Datenschutz</a>
+    </div>
+  </div>
+</footer>
+
+<button id="scroll-top" aria-label="Nach oben" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script>
+  const scrollBtn = document.getElementById('scroll-top');
+  window.addEventListener('scroll', () => {
+    scrollBtn.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+
+  const form = document.getElementById('sample-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const successEl = document.getElementById('form-success');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('f-name').value.trim();
+    const company = document.getElementById('f-company').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+
+    if (!name || !company || !email) {
+      const missing = [];
+      if (!name) missing.push('Name');
+      if (!company) missing.push('Unternehmen');
+      if (!email) missing.push('E-Mail');
+      alert('Bitte füllen Sie die Pflichtfelder aus: ' + missing.join(', '));
+      return;
+    }
+
+    const role = document.getElementById('f-role').value.trim();
+    const volume = document.getElementById('f-volume').value;
+    const message = document.getElementById('f-message').value.trim();
+
+    const body = [
+      'Musteranfrage CORETRON E551c',
+      '',
+      'Name: ' + name,
+      'Unternehmen: ' + company,
+      'E-Mail: ' + email,
+      role ? 'Funktion: ' + role : '',
+      volume ? 'Jahresbedarf: ' + volume : '',
+      message ? 'Anwendung / Anforderungen:\n' + message : '',
+    ].filter(Boolean).join('\n');
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Wird gesendet …';
+
+    try {
+      await fetch('https://n8n.diamix.eu/webhook/contact-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message: body, lang: 'de' }),
+      });
+    } catch (_) {}
+
+    form.style.display = 'none';
+    successEl.classList.add('visible');
+  });
+</script>
+</body>
+</html>
