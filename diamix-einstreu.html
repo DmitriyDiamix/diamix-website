@@ -58,7 +58,9 @@
     body { font-family: 'DM Sans', sans-serif; color: #1a2332; background: #fff; line-height: 1.6; }
     img { max-width: 100%; height: auto; display: block; }
     a { text-decoration: none; color: inherit; }
+    button { min-height: 44px; }
     h1, h2 { font-family: 'Playfair Display', serif; }
+    h1, h2, h3 { text-wrap: balance; }
     :root {
       --green: #2d6a4f;
       --green-light: #40916c;
@@ -103,6 +105,9 @@
       font-size: 0.88rem;
       font-weight: 600;
       transition: color 0.2s;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
     }
     .nav-links a:hover { color: white; }
     .nav-links .nav-cta {
@@ -113,6 +118,7 @@
       font-size: 0.85rem;
       font-weight: 700;
       transition: background 0.2s;
+      min-height: 44px;
     }
     .nav-links .nav-cta:hover { background: var(--green-light); color: white; }
 
@@ -557,6 +563,7 @@
     .form-group textarea {
       width: 100%;
       padding: 10px 14px;
+      min-height: 44px;
       border: 1.5px solid #e5e7eb;
       border-radius: 8px;
       font-family: 'DM Sans', sans-serif;
@@ -940,12 +947,12 @@
     <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
       <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
         <img src="images/diamix-logo.png" alt="Diamix Europe GmbH" style="height:32px;width:auto;background:white;padding:4px 8px;border-radius:4px;" />
-        <p style="margin:0;">© 2026 Diamix Europe GmbH · Hubenkamp 1 · 29614 Soltau · <a href="mailto:office@diamix.eu" style="color:rgba(255,255,255,0.6);">office@diamix.eu</a></p>
+        <p style="margin:0;">© 2026 Diamix Europe GmbH · Hubenkamp 1 · 29614 Soltau · <a href="mailto:office@diamix.eu" style="color:rgba(255,255,255,0.6);min-height:44px;display:inline-flex;align-items:center;">office@diamix.eu</a></p>
       </div>
       <div style="display:flex;gap:1.5rem;">
-        <a href="index.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">Startseite</a>
-        <a href="impressum.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">Impressum</a>
-        <a href="datenschutz.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">Datenschutz</a>
+        <a href="index.html" style="color:rgba(255,255,255,0.6);text-decoration:none;min-height:44px;display:inline-flex;align-items:center;padding:0 4px;">Startseite</a>
+        <a href="impressum.html" style="color:rgba(255,255,255,0.6);text-decoration:none;min-height:44px;display:inline-flex;align-items:center;padding:0 4px;">Impressum</a>
+        <a href="datenschutz.html" style="color:rgba(255,255,255,0.6);text-decoration:none;min-height:44px;display:inline-flex;align-items:center;padding:0 4px;">Datenschutz</a>
       </div>
     </div>
   </div>
