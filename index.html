@@ -7,6 +7,7 @@
   <meta name="description" content="Diamix Europe GmbH – Lieferant für Kieselgur E551c (GMP+/FAMI-QS zertifiziert), natürliche Tiereinstreu-Granulate und Absorptionsgranulate. Soltau, Deutschland. Jetzt Anfrage stellen." />
   <meta name="keywords" content="Kieselgur E551c, Diatomeenerde kaufen, Kieselgur GMP+ FAMI-QS, diatomite supplier Europe, Kieselgur Futtermittel, Tiereinstreu Granulat, Absorptionsgranulat, Kieselguhr, Diatomeenerde Deutschland" />
   <meta name="robots" content="index, follow" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="canonical" href="https://www.diamix.eu/" />
 
   <!-- Hreflang -->
@@ -156,6 +157,7 @@
       content: '✓'; color: var(--green-mid); font-weight: 700; font-size: 1rem;
     }
     .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-response { font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 0.75rem; }
     .btn-primary {
       background: var(--green); color: white; padding: 14px 32px;
       border-radius: 10px; font-size: 0.95rem; font-weight: 700;
@@ -241,6 +243,19 @@
 
     /* ── PRODUCTS ── */
     #products { background: white; }
+    .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .product-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,0.07); border: 1px solid #f0f0f0; transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.12); }
+    .product-card-img { height: 180px; overflow: hidden; position: relative; }
+    .product-card-img img { width: 100%; height: 100%; object-fit: cover; }
+    .product-card-tag { position: absolute; top: 12px; left: 12px; background: var(--green); color: white; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; }
+    .product-card-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; }
+    .product-card-body h3 { font-size: 1rem; font-weight: 800; color: var(--navy); margin-bottom: 0.4rem; }
+    .product-card-body p { font-size: 0.82rem; color: var(--gray); line-height: 1.55; flex: 1; margin-bottom: 1rem; }
+    .product-card-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; font-weight: 700; color: var(--green); text-decoration: none; transition: gap 0.2s; }
+    .product-card-link:hover { gap: 0.7rem; }
+    @media (max-width: 900px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .products-grid { grid-template-columns: 1fr; } }
     .products-layout {
       display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
     }
@@ -495,27 +510,28 @@
   </div>
   <div class="hero-inner">
     <div class="hero-left">
-      <div class="hero-eyebrow">
-        <span>★</span> Premium Diatomite Solutions
-      </div>
-      <h1 data-lang="de">Ihr Partner für Industriemineralien in Europa</h1>
-      <h1 data-lang="en">Your Partner for Industrial Minerals in Europe</h1>
-      <p class="hero-sub" data-lang="de">Futtermittelzusatzstoffe (E551c), leistungsstarke Absorptionsmittel und industrielle Lösungen – GMP+ zertifiziert und FAMI-QS-konforme Rohstoffe, geliefert aus Deutschland.</p>
-      <p class="hero-sub" data-lang="en">Feed additive (E551c), absorbents and industrial grades – GMP+ and FAMI-QS compliant, delivered from Germany.</p>
+      <h1 data-lang="de">Diatomit-Lösungen für Futtermittel (E551c), Landwirtschaft &amp; Industrie</h1>
+      <h1 data-lang="en">Diatomite Solutions for Feed (E551c), Agriculture &amp; Industrial Applications</h1>
+      <p class="hero-sub" data-lang="de">Zuverlässiger Lieferant von hochwertigem Diatomit für Futtermittelzusatzstoffe (E551c), natürliche Einstreu, Absorptionslösungen und landwirtschaftliche Anwendungen – schnelle Lieferung in ganz Europa und stabile Qualität für industrielle Anwendungen.</p>
+      <p class="hero-sub" data-lang="en">Reliable supplier of high-quality diatomite for feed additives (E551c), natural bedding, absorbents and agricultural applications – fast delivery across Europe and consistent quality for industrial applications.</p>
       <div class="hero-checks">
-        <span data-lang="de">GMP+ zertifiziert</span>
-        <span data-lang="en">GMP+ certified</span>
-        <span data-lang="de">FAMI-QS-konform</span>
-        <span data-lang="en">FAMI-QS compliant</span>
-        <span data-lang="de">Direkt aus Deutschland geliefert</span>
-        <span data-lang="en">Delivered directly from Germany</span>
+        <span data-lang="de">Verfügbar ab Lager Deutschland</span>
+        <span data-lang="en">Available from EU warehouse</span>
+        <span data-lang="de">Stabile Lieferketten &amp; gleichbleibende Qualität</span>
+        <span data-lang="en">Stable supply &amp; consistent quality</span>
+        <span data-lang="de">GMP+ zertifiziert · FAMI-QS konform</span>
+        <span data-lang="en">GMP+ certified · FAMI-QS compliant</span>
+        <span data-lang="de">TDS, SDS und CoA auf Anfrage verfügbar</span>
+        <span data-lang="en">TDS, SDS and CoA available on request</span>
       </div>
       <div class="hero-btns">
-        <a href="#products" class="btn-primary" data-lang="de">Produkte entdecken →</a>
-        <a href="#products" class="btn-primary" data-lang="en">Explore Products →</a>
-        <a href="#contact" class="btn-secondary" data-lang="de">Angebot anfragen</a>
-        <a href="#contact" class="btn-secondary" data-lang="en">Request Quote</a>
+        <a href="#contact" class="btn-primary" data-lang="de">Muster anfragen →</a>
+        <a href="#contact" class="btn-primary" data-lang="en">Request Sample →</a>
+        <a href="#downloads" class="btn-secondary" data-lang="de">Technische Daten erhalten</a>
+        <a href="#downloads" class="btn-secondary" data-lang="en">Get Technical Data</a>
       </div>
+      <p class="hero-response" data-lang="de">Schnelle Rückmeldung innerhalb von 24 Stunden</p>
+      <p class="hero-response" data-lang="en">Response within 24 hours · EU-based support</p>
     </div>
     <div class="hero-right">
       <div class="hero-tagline-deco">Natural.<br/><em>Pure.</em><br/>Efficient.</div>
@@ -531,6 +547,11 @@
       <div class="stat-num" style="font-size:1.5rem;">EU</div>
       <div class="stat-label" data-lang="de">Ganz Europa</div>
       <div class="stat-label" data-lang="en">All of Europe</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" style="font-size:1.5rem;">GMP<span>+</span></div>
+      <div class="stat-label" data-lang="de">Zertifiziert</div>
+      <div class="stat-label" data-lang="en">Certified</div>
     </div>
   </div>
 </section>
@@ -618,55 +639,80 @@
 
 
 <!-- PRODUCTS -->
-<section id="products">
+<section id="products" style="background:#f8f9fa;padding:5rem 0;">
   <div class="container">
-    <div class="products-layout">
-      <div class="products-image">
-        <img src="images/packaging-mockup.png" alt="Diamix Plus 10kg / 20kg" />
-        <div class="products-badge">
-          <div class="badge-num">10 / 20 kg</div>
-          <div class="badge-txt">Nicht kennzeichnungspflichtig nach CLP</div>
+    <div class="section-header">
+      <div class="section-label" data-lang="de">Produktportfolio</div>
+      <div class="section-label" data-lang="en">Product Portfolio</div>
+      <h2 class="section-title" data-lang="de">Unsere Produkte</h2>
+      <h2 class="section-title" data-lang="en">Our Products</h2>
+      <p class="section-sub" data-lang="de">Vier Produktlinien auf Basis von natürlichem Diatomit – für Futtermittel, Landwirtschaft, Industrie und Tierhaltung.</p>
+      <p class="section-sub" data-lang="en">Four product lines based on natural diatomite – for feed, agriculture, industry and animal husbandry.</p>
+    </div>
+    <div class="products-grid">
+
+      <!-- CORETRON E551c -->
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="images/product-coretron.png" alt="CORETRON E551c" />
+          <div class="product-card-tag">GMP+ · FAMI-QS</div>
+        </div>
+        <div class="product-card-body">
+          <h3>CORETRON E551c</h3>
+          <p data-lang="de">Kieselgur-Fließhilfsmittel und Trägerstoff für die Premix- und Futtermittelproduktion. Zugelassen als E551c.</p>
+          <p data-lang="en">Diatomite flow aid and carrier for premix and feed production. Approved as E551c.</p>
+          <a href="coretron-e551c.html" class="product-card-link" data-lang="de">Mehr erfahren →</a>
+          <a href="coretron-e551c.html" class="product-card-link" data-lang="en">Learn more →</a>
         </div>
       </div>
-      <div class="products-content">
-        <div class="section-label" data-lang="de">Unser Produkt</div>
-        <div class="section-label" data-lang="en">Our Product</div>
-        <h2 class="section-title" data-lang="de">Diamix Plus –<br/>Diatomit-Absorber</h2>
-        <h2 class="section-title" data-lang="en">Diamix Plus<br/>Diatomite Absorbent</h2>
-        <p class="section-sub" data-lang="de">Mineralischer Hochleistungsabsorber auf Basis von kalziniertem Diatomit – entwickelt für industrielle Anwendungen.</p>
-        <p class="section-sub" data-lang="en">High-performance mineral absorbent based on thermally treated diatomite – developed for industrial applications.</p>
-        <ul class="spec-list">
-          <li class="spec-item">
-            <span class="spec-icon">🔬</span>
-            <div>
-              <strong data-lang="de">Körnung: 0,5 – 2,0 mm</strong>
-              <strong data-lang="en">Granule size: 0.5 – 2.0 mm</strong>
-              <span data-lang="de">Optimale Partikelgröße für hohe Absorptionsleistung</span>
-              <span data-lang="en">Optimal particle size for maximum absorption</span>
-            </div>
-          </li>
-          <li class="spec-item">
-            <span class="spec-icon">💧</span>
-            <div>
-              <strong data-lang="de">Ölaufnahme: bis zu 120 %</strong>
-              <strong data-lang="en">Oil absorption: 70 – 120 %</strong>
-              <span data-lang="de">Wasseraufnahme: bis zu 150 %</span>
-              <span data-lang="en">Water absorption: 70 – 110 %</span>
-            </div>
-          </li>
-          <li class="spec-item">
-            <span class="spec-icon">⚡</span>
-            <div>
-              <strong data-lang="de">Nicht brennbar</strong>
-              <strong data-lang="en">Non-flammable</strong>
-              <span data-lang="de">Schüttdichte: 450 – 600 kg/m³</span>
-              <span data-lang="en">Bulk density: 450 – 600 kg/m³</span>
-            </div>
-          </li>
-        </ul>
-        <a href="#contact" class="products-link" data-lang="de">Anfrage stellen →</a>
-        <a href="#contact" class="products-link" data-lang="en">Request info →</a>
+
+      <!-- AGRITRON -->
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="images/app-animal-feed-final.jpg" alt="AGRITRON" style="object-position: center;" />
+          <div class="product-card-tag" style="background:#52b788;">Öko-Landbau</div>
+        </div>
+        <div class="product-card-body">
+          <h3>AGRITRON</h3>
+          <p data-lang="de">Natürlicher Kieselgur-Bodenverbesserer auf Basis von amorphem Siliziumdioxid. Geeignet für ökologischen Landbau.</p>
+          <p data-lang="en">Natural diatomite soil improver based on amorphous silicon dioxide. Suitable for organic farming.</p>
+          <a href="produkt-agritron.html" class="product-card-link" data-lang="de">Mehr erfahren →</a>
+          <a href="produkt-agritron.html" class="product-card-link" data-lang="en">Learn more →</a>
+        </div>
       </div>
+
+      <!-- ABSORBENT -->
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="images/product-absorbent.png" alt="Diamix Absorbent" />
+          <div class="product-card-tag" style="background:#374151;">Brandklasse A1</div>
+        </div>
+        <div class="product-card-body">
+          <h3 data-lang="de">Diamix Absorbent</h3>
+          <h3 data-lang="en">Diamix Absorbent</h3>
+          <p data-lang="de">Kalziniertes Diatomit-Granulat für die industrielle Aufnahme von Ölen, Kraftstoffen und Chemikalien.</p>
+          <p data-lang="en">Calcined diatomite granulate for industrial absorption of oils, fuels and chemicals.</p>
+          <a href="produkt-absorbent.html" class="product-card-link" data-lang="de">Mehr erfahren →</a>
+          <a href="produkt-absorbent.html" class="product-card-link" data-lang="en">Learn more →</a>
+        </div>
+      </div>
+
+      <!-- BEDDING / EINSTREU -->
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="images/product-bedding.png" alt="Diamix Einstreu" />
+          <div class="product-card-tag" style="background:#c8963e;">Tierhaltung</div>
+        </div>
+        <div class="product-card-body">
+          <h3 data-lang="de">Diamix Einstreu</h3>
+          <h3 data-lang="en">Diamix Bedding</h3>
+          <p data-lang="de">Natürliche Tiereinstreu auf Diatomit-Basis. Hohe Absorptionskapazität, geruchsbindend und hygienisch.</p>
+          <p data-lang="en">Natural diatomite-based animal bedding. High absorption capacity, odour-binding and hygienic.</p>
+          <a href="produkt-bedding.html" class="product-card-link" data-lang="de">Mehr erfahren →</a>
+          <a href="produkt-bedding.html" class="product-card-link" data-lang="en">Learn more →</a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -681,8 +727,8 @@
         <div class="section-label" data-lang="en">Logistics & Delivery</div>
         <h2 class="section-title" data-lang="de">Zuverlässige Lieferung<br/>in ganz Europa</h2>
         <h2 class="section-title" data-lang="en">Reliable delivery<br/>across Europe</h2>
-        <p class="section-sub" data-lang="de">Von unserem Standort in Soltau (Deutschland) beliefern wir Kunden europaweit – schnell, flexibel und zuverlässig.</p>
-        <p class="section-sub" data-lang="en">From our location in Soltau, Germany we supply customers across Europe – fast, flexible and reliable.</p>
+        <p class="section-sub" data-lang="de">Aus Lagerstandorten in Süddeutschland beliefern wir Kunden europaweit – schnell, flexibel und zuverlässig.</p>
+        <p class="section-sub" data-lang="en">From our warehouse locations in southern Germany we supply customers across Europe – fast, flexible and reliable.</p>
         <ul class="logistics-features">
           <li>
             <div class="lf-icon">📦</div>
@@ -804,7 +850,7 @@
         <h2 class="section-title" data-lang="de">Diamix Europe GmbH –<br/>Ihr Partner für Diatomit</h2>
         <h2 class="section-title" data-lang="en">Diamix Europe GmbH –<br/>Your diatomite partner</h2>
         <p class="section-sub" data-lang="de">Wir sind ein spezialisierter Importeur und Distributor von hochwertigem Diatomit für den europäischen Markt. Unser Hauptsitz befindet sich in Soltau (Deutschland). Die Lagerhaltung erfolgt über unseren Logistikpartner in Süddeutschland, wodurch wir schnelle und flexible Lieferungen europaweit gewährleisten. Wir verbinden zuverlässige Lieferketten mit gleichbleibender Produktqualität.</p>
-        <p class="section-sub" data-lang="en">We are a specialised importer and distributor of high-quality diatomite for the European market. Our location in Soltau, Germany enables us to deliver quickly and flexibly throughout Europe.</p>
+        <p class="section-sub" data-lang="en">We are a specialised importer and distributor of high-quality diatomite for the European market. Our registered office is in Soltau, Germany; warehousing is handled by our logistics partner in southern Germany, enabling fast and flexible deliveries across Europe.</p>
         <div class="about-values">
           <div class="about-val">
             <h4 data-lang="de">🌿 Natürlich</h4>
@@ -847,8 +893,11 @@
     <div style="max-width:800px;margin:3rem auto 0;display:flex;flex-direction:column;gap:1rem;">
 
       <details style="background:white;border-radius:12px;padding:1.25rem 1.5rem;cursor:pointer;border:1px solid #e8e4dc;">
-        <summary style="font-weight:700;font-size:1rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;" data-lang="de">Was ist Diatomit (Kieselgur)?<span style="font-size:1.4rem;font-weight:300;color:var(--green);">+</span></summary>
-        <summary style="font-weight:700;font-size:1rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;" data-lang="en">What is diatomite (kieselgur)?<span style="font-size:1.4rem;font-weight:300;color:var(--green);">+</span></summary>
+        <summary style="font-weight:700;font-size:1rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;">
+          <span data-lang="de">Was ist Diatomit (Kieselgur)?</span>
+          <span data-lang="en">What is diatomite (kieselgur)?</span>
+          <span style="font-size:1.4rem;font-weight:300;color:var(--green);flex-shrink:0;margin-left:1rem;">+</span>
+        </summary>
         <p style="margin-top:1rem;font-size:0.92rem;color:#555;line-height:1.7;" data-lang="de">Diatomit ist ein natürliches Sedimentgestein, das aus den fossilen Überresten mikroskopisch kleiner Kieselalgen (Diatomeen) besteht. Diese Algen lebten vor Millionen von Jahren in Seen und Meeren und haben dabei Schalen aus Siliciumdioxid (SiO₂) gebildet. Nach dem Absterben sanken sie auf den Meeresgrund und wurden über Jahrtausende zu einem leichten, porösen Gestein. Diatomit enthält über 80 % SiO₂ und ist vollständig mineralischen Ursprungs – ohne chemische Zusätze.</p>
         <p style="margin-top:1rem;font-size:0.92rem;color:#555;line-height:1.7;" data-lang="en">Diatomite is a naturally occurring sedimentary rock made from the fossilised remains of microscopic algae called diatoms. These algae lived millions of years ago in lakes and oceans, forming shells of silica (SiO₂). After dying, they sank to the seabed and were compressed over millennia into a light, porous rock. Diatomite contains over 80% SiO₂ and is entirely mineral in origin — no chemical additives.</p>
         <a href="#contact" style="display:inline-block;margin-top:1rem;font-size:0.85rem;font-weight:700;color:var(--green);text-decoration:none;" data-lang="de">Haben Sie weitere Fragen? Schreiben Sie uns →</a>
@@ -856,8 +905,11 @@
       </details>
 
       <details style="background:white;border-radius:12px;padding:1.25rem 1.5rem;cursor:pointer;border:1px solid #e8e4dc;">
-        <summary style="font-weight:700;font-size:1rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;" data-lang="de">Ist Diatomit sicher für Menschen und Tiere?<span style="font-size:1.4rem;font-weight:300;color:var(--green);">+</span></summary>
-        <summary style="font-weight:700;font-size:1rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;" data-lang="en">Is diatomite safe for humans and animals?<span style="font-size:1.4rem;font-weight:300;color:var(--green);">+</span></summary>
+        <summary style="font-weight:700;font-size:1rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;">
+          <span data-lang="de">Ist Diatomit sicher für Menschen und Tiere?</span>
+          <span data-lang="en">Is diatomite safe for humans and animals?</span>
+          <span style="font-size:1.4rem;font-weight:300;color:var(--green);flex-shrink:0;margin-left:1rem;">+</span>
+        </summary>
         <p style="margin-top:1rem;font-size:0.92rem;color:#555;line-height:1.7;" data-lang="de">Ja. Natürlicher (nicht kalzinierter) Diatomit mit amorphem SiO₂-Anteil gilt als unbedenklich. Unser CORETRON E551c ist als Futtermittelzusatzstoff E551c gemäß EU-Verordnung (EG) Nr. 1831/2003 zugelassen und GMP+/FAMI-QS zertifiziert. Die Einstreu-Granulate sind rein mineralisch, ohne Chemikalien oder Bindemittel. Bei der Handhabung empfehlen wir das Tragen einer Staubschutzmaske, da Feinstaub bei jeglichem mineralischen Pulver zu vermeiden ist.</p>
         <p style="margin-top:1rem;font-size:0.92rem;color:#555;line-height:1.7;" data-lang="en">Yes. Natural (non-calcined) diatomite with amorphous SiO₂ is considered safe. Our CORETRON E551c is approved as feed additive E551c under EU Regulation (EC) No. 1831/2003 and GMP+/FAMI-QS certified. The bedding granules are purely mineral, with no chemicals or binders. When handling, we recommend a dust mask, as fine dust from any mineral powder should be avoided.</p>
         <a href="#contact" style="display:inline-block;margin-top:1rem;font-size:0.85rem;font-weight:700;color:var(--green);text-decoration:none;" data-lang="de">Technische Datenblätter anfordern →</a>
@@ -865,8 +917,11 @@
       </details>
 
       <details style="background:white;border-radius:12px;padding:1.25rem 1.5rem;cursor:pointer;border:1px solid #e8e4dc;">
-        <summary style="font-weight:700;font-size:1rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;" data-lang="de">Woher stammt der Diatomit von Diamix?<span style="font-size:1.4rem;font-weight:300;color:var(--green);">+</span></summary>
-        <summary style="font-weight:700;font-size:1rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;" data-lang="en">Where does Diamix diatomite come from?<span style="font-size:1.4rem;font-weight:300;color:var(--green);">+</span></summary>
+        <summary style="font-weight:700;font-size:1rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;">
+          <span data-lang="de">Woher stammt der Diatomit von Diamix?</span>
+          <span data-lang="en">Where does Diamix diatomite come from?</span>
+          <span style="font-size:1.4rem;font-weight:300;color:var(--green);flex-shrink:0;margin-left:1rem;">+</span>
+        </summary>
         <p style="margin-top:1rem;font-size:0.92rem;color:#555;line-height:1.7;" data-lang="de">Diamix bezieht Diatomit von zertifizierten Produzenten aus verschiedenen Ländern. Für futtermittelrelevante Produkte wie CORETRON E551c arbeiten wir ausschließlich mit Lieferanten zusammen, die die Anforderungen der GMP+ und FAMI-QS Zertifizierung erfüllen. Alle Chargen werden analysiert und mit Analysezertifikat (CoA) geliefert.</p>
         <p style="margin-top:1rem;font-size:0.92rem;color:#555;line-height:1.7;" data-lang="en">Diamix sources diatomite from certified producers in various countries. For feed-grade products such as CORETRON E551c, we work exclusively with suppliers that meet GMP+ and FAMI-QS certification requirements. All batches are analysed and supplied with a certificate of analysis (CoA).</p>
         <a href="#contact" style="display:inline-block;margin-top:1rem;font-size:0.85rem;font-weight:700;color:var(--green);text-decoration:none;" data-lang="de">CoA anfordern →</a>
@@ -874,8 +929,11 @@
       </details>
 
       <details style="background:white;border-radius:12px;padding:1.25rem 1.5rem;cursor:pointer;border:1px solid #e8e4dc;">
-        <summary style="font-weight:700;font-size:1rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;" data-lang="de">Was unterscheidet Diatomit von synthetischen Alternativen?<span style="font-size:1.4rem;font-weight:300;color:var(--green);">+</span></summary>
-        <summary style="font-weight:700;font-size:1rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;" data-lang="en">How does diatomite differ from synthetic alternatives?<span style="font-size:1.4rem;font-weight:300;color:var(--green);">+</span></summary>
+        <summary style="font-weight:700;font-size:1rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;">
+          <span data-lang="de">Was unterscheidet Diatomit von synthetischen Alternativen?</span>
+          <span data-lang="en">How does diatomite differ from synthetic alternatives?</span>
+          <span style="font-size:1.4rem;font-weight:300;color:var(--green);flex-shrink:0;margin-left:1rem;">+</span>
+        </summary>
         <p style="margin-top:1rem;font-size:0.92rem;color:#555;line-height:1.7;" data-lang="de">Diatomit ist ein reines Naturprodukt ohne Chemikalien, biologisch abbaubar und ökologisch unbedenklich. Im Vergleich zu synthetischen Absorptionsmitteln oder chemisch behandelten Einstreumaterialien entstehen keine problematischen Abbauprodukte. Zudem ist die Porenstruktur des Diatomits einzigartig: Sie ermöglicht eine hohe Absorption bei gleichzeitig geringem Gewicht – effizienter als viele konventionelle Alternativen.</p>
         <p style="margin-top:1rem;font-size:0.92rem;color:#555;line-height:1.7;" data-lang="en">Diatomite is a pure natural product with no chemicals, biodegradable and ecologically safe. Compared to synthetic absorbents or chemically treated bedding, it produces no problematic breakdown products. Its unique pore structure enables high absorption at low weight — more efficient than many conventional alternatives.</p>
         <a href="#contact" style="display:inline-block;margin-top:1rem;font-size:0.85rem;font-weight:700;color:var(--green);text-decoration:none;" data-lang="de">Produkte vergleichen – Anfrage stellen →</a>
@@ -883,8 +941,11 @@
       </details>
 
       <details style="background:white;border-radius:12px;padding:1.25rem 1.5rem;cursor:pointer;border:1px solid #e8e4dc;">
-        <summary style="font-weight:700;font-size:1rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;" data-lang="de">Liefert Diamix auch kleinere Mengen oder nur Big Bags?<span style="font-size:1.4rem;font-weight:300;color:var(--green);">+</span></summary>
-        <summary style="font-weight:700;font-size:1rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;" data-lang="en">Does Diamix deliver smaller quantities or only big bags?<span style="font-size:1.4rem;font-weight:300;color:var(--green);">+</span></summary>
+        <summary style="font-weight:700;font-size:1rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;align-items:center;">
+          <span data-lang="de">Liefert Diamix auch kleinere Mengen oder nur Big Bags?</span>
+          <span data-lang="en">Does Diamix deliver smaller quantities or only big bags?</span>
+          <span style="font-size:1.4rem;font-weight:300;color:var(--green);flex-shrink:0;margin-left:1rem;">+</span>
+        </summary>
         <p style="margin-top:1rem;font-size:0.92rem;color:#555;line-height:1.7;" data-lang="de">Die Verpackung richtet sich nach den Wünschen des Kunden. Auf Anfrage liefern wir sowohl in Big Bags als auch in verschiedenen Sackgrößen. Wir gehen gerne auf individuelle Anforderungen ein – Verpackungsform, Menge und Lieferbedingungen werden gemeinsam besprochen. Sprechen Sie uns einfach an.</p>
         <p style="margin-top:1rem;font-size:0.92rem;color:#555;line-height:1.7;" data-lang="en">Packaging is tailored to the customer's requirements. On request we can deliver in big bags as well as various bag sizes. We are happy to accommodate individual needs — packaging format, quantity and delivery terms are always open for discussion. Just get in touch.</p>
         <a href="#contact" style="display:inline-block;margin-top:1rem;font-size:0.85rem;font-weight:700;color:var(--green);text-decoration:none;" data-lang="de">Lieferbedingungen besprechen →</a>
@@ -925,13 +986,13 @@
           <div style="font-size:0.82rem;color:#6b7280;line-height:1.5;" data-lang="en">English technical data sheet — specifications, certifications, application. GMP+/FAMI-QS certified.</div>
         </div>
         <div style="display:flex;gap:0.5rem;margin-top:auto;padding-top:0.5rem;flex-wrap:wrap;">
-          <span style="background:#f3f4f6;border-radius:4px;padding:2px 8px;font-size:0.72rem;font-weight:600;color:#6b7280;">PDF · 271 KB</span>
+          <span style="background:#f3f4f6;border-radius:4px;padding:2px 8px;font-size:0.72rem;font-weight:600;color:#4b5563;">PDF · 271 KB</span>
           <span style="background:#d8f3dc;border-radius:4px;padding:2px 8px;font-size:0.72rem;font-weight:600;color:#2d6a4f;">GMP+ · FAMI-QS</span>
         </div>
-        <a href="docs/CORETRON_TDS_EN_2026.pdf" download style="display:flex;align-items:center;justify-content:center;gap:0.5rem;background:#2d6a4f;color:white;border-radius:8px;padding:10px 16px;font-size:0.85rem;font-weight:600;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#40916c'" onmouseout="this.style.background='#2d6a4f'">
+        <button onclick="openDownloadModal('coretron-tds','docs/CORETRON_TDS_EN_2026.pdf','Technical Data Sheet — CORETRON E551c','Technical Data Sheet — CORETRON E551c')" style="display:flex;align-items:center;justify-content:center;gap:0.5rem;background:#2d6a4f;color:white;border-radius:8px;padding:10px 16px;font-size:0.85rem;font-weight:600;border:none;cursor:pointer;width:100%;font-family:inherit;transition:background 0.2s;" onmouseover="this.style.background='#40916c'" onmouseout="this.style.background='#2d6a4f'">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           <span data-lang="de">Download TDS</span><span data-lang="en">Download TDS</span>
-        </a>
+        </button>
       </div>
 
       <!-- AGRITRON Farmer Brief -->
@@ -941,7 +1002,7 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c8963e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 0 20A10 10 0 0 1 12 2z"/><path d="M12 8v4l3 3"/></svg>
           </div>
           <div>
-            <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#c8963e;">AGRITRON</div>
+            <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#92570a;">AGRITRON</div>
           </div>
         </div>
         <div>
@@ -951,13 +1012,13 @@
           <div style="font-size:0.82rem;color:#6b7280;line-height:1.5;" data-lang="en">Short overview for farmers — mechanisms, study results, dosage. 1 page.</div>
         </div>
         <div style="display:flex;gap:0.5rem;margin-top:auto;padding-top:0.5rem;flex-wrap:wrap;">
-          <span style="background:#f3f4f6;border-radius:4px;padding:2px 8px;font-size:0.72rem;font-weight:600;color:#6b7280;">PDF · 227 KB</span>
-          <span style="background:#fdf3e3;border-radius:4px;padding:2px 8px;font-size:0.72rem;font-weight:600;color:#c8963e;">EU 2019/1009 · Öko-Landbau</span>
+          <span style="background:#f3f4f6;border-radius:4px;padding:2px 8px;font-size:0.72rem;font-weight:600;color:#4b5563;">PDF · 227 KB</span>
+          <span style="background:#fdf3e3;border-radius:4px;padding:2px 8px;font-size:0.72rem;font-weight:600;color:#92570a;">EU 2019/1009 · Öko-Landbau</span>
         </div>
-        <a href="docs/AGRITRON_Farmer_Brief_Mai2026.pdf" download style="display:flex;align-items:center;justify-content:center;gap:0.5rem;background:#c8963e;color:white;border-radius:8px;padding:10px 16px;font-size:0.85rem;font-weight:600;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#d4a84e'" onmouseout="this.style.background='#c8963e'">
+        <button onclick="openDownloadModal('agritron-brief','docs/AGRITRON_Farmer_Brief_Mai2026.pdf','Wie wirkt Kieselgur im Boden?','How does diatomite work in soil?')" style="display:flex;align-items:center;justify-content:center;gap:0.5rem;background:#c8963e;color:white;border-radius:8px;padding:10px 16px;font-size:0.85rem;font-weight:600;border:none;cursor:pointer;width:100%;font-family:inherit;transition:background 0.2s;" onmouseover="this.style.background='#d4a84e'" onmouseout="this.style.background='#c8963e'">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           <span data-lang="de">Download Info-Brief</span><span data-lang="en">Download Info Brief</span>
-        </a>
+        </button>
       </div>
 
       <!-- AGRITRON Flyer -->
@@ -977,7 +1038,7 @@
           <div style="font-size:0.82rem;color:#6b7280;line-height:1.5;" data-lang="en">Product overview, applications and contact details — ideal for sharing.</div>
         </div>
         <div style="display:flex;gap:0.5rem;margin-top:auto;padding-top:0.5rem;flex-wrap:wrap;">
-          <span style="background:#f3f4f6;border-radius:4px;padding:2px 8px;font-size:0.72rem;font-weight:600;color:#6b7280;">PDF · 515 KB</span>
+          <span style="background:#f3f4f6;border-radius:4px;padding:2px 8px;font-size:0.72rem;font-weight:600;color:#4b5563;">PDF · 515 KB</span>
           <span style="background:#d8f3dc;border-radius:4px;padding:2px 8px;font-size:0.72rem;font-weight:600;color:#2d6a4f;">Öko-Landbau</span>
         </div>
         <a href="docs/AGRITRON_Flyer_Mai2026.pdf" download style="display:flex;align-items:center;justify-content:center;gap:0.5rem;background:#2d6a4f;color:white;border-radius:8px;padding:10px 16px;font-size:0.85rem;font-weight:600;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#40916c'" onmouseout="this.style.background='#2d6a4f'">
@@ -1152,7 +1213,7 @@
 <button id="chat-bubble" onclick="toggleChat()" title="Chat mit uns">💬</button>
 <div id="chat-window">
   <div id="chat-header">
-    <span>Diamix Support</span>
+    <span>Diamix Support <span style="font-weight:400;font-size:11px;opacity:0.75;">(Beta)</span></span>
     <button onclick="toggleChat()">✕</button>
   </div>
   <div id="chat-messages">
@@ -1215,6 +1276,124 @@
     box.appendChild(d);
     box.scrollTop = box.scrollHeight;
     return d;
+  }
+</script>
+
+<!-- DOWNLOAD MODAL -->
+<div id="download-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.55);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:1rem;">
+  <div style="background:white;border-radius:16px;padding:2rem;max-width:420px;width:100%;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.25);">
+    <button onclick="closeDownloadModal()" style="position:absolute;top:1rem;right:1.25rem;background:none;border:none;cursor:pointer;font-size:1.6rem;line-height:1;color:#9ca3af;">×</button>
+    <div style="width:44px;height:44px;background:#d8f3dc;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2d6a4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    </div>
+    <h3 id="dl-modal-title" style="font-size:1.05rem;font-weight:800;color:#1a2332;margin-bottom:0.4rem;padding-right:1.5rem;"></h3>
+    <p id="dl-modal-sub" style="font-size:0.85rem;color:#6b7280;margin-bottom:1.5rem;line-height:1.5;"></p>
+    <form id="download-form" onsubmit="submitDownloadForm(event)">
+      <input type="text" id="dl-name" required style="width:100%;border:1.5px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:0.9rem;margin-bottom:0.65rem;outline:none;font-family:inherit;box-sizing:border-box;" onfocus="this.style.borderColor='#2d6a4f'" onblur="this.style.borderColor='#e5e7eb'" />
+      <input type="text" id="dl-company" required style="width:100%;border:1.5px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:0.9rem;margin-bottom:0.65rem;outline:none;font-family:inherit;box-sizing:border-box;" onfocus="this.style.borderColor='#2d6a4f'" onblur="this.style.borderColor='#e5e7eb'" />
+      <input type="email" id="dl-email" placeholder="E-Mail *" required style="width:100%;border:1.5px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:0.9rem;margin-bottom:0.65rem;outline:none;font-family:inherit;box-sizing:border-box;" onfocus="this.style.borderColor='#2d6a4f'" onblur="this.style.borderColor='#e5e7eb'" />
+      <select id="dl-application" style="width:100%;border:1.5px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:0.9rem;margin-bottom:0.65rem;outline:none;font-family:inherit;box-sizing:border-box;color:#374151;background:white;cursor:pointer;" onfocus="this.style.borderColor='#2d6a4f'" onblur="this.style.borderColor='#e5e7eb'">
+      </select>
+      <select id="dl-volume" style="width:100%;border:1.5px solid #e5e7eb;border-radius:8px;padding:10px 14px;font-size:0.9rem;margin-bottom:1.1rem;outline:none;font-family:inherit;box-sizing:border-box;color:#374151;background:white;cursor:pointer;" onfocus="this.style.borderColor='#2d6a4f'" onblur="this.style.borderColor='#e5e7eb'">
+      </select>
+      <button type="submit" id="dl-submit-btn" style="width:100%;background:#2d6a4f;color:white;border:none;border-radius:8px;padding:12px;font-size:0.92rem;font-weight:700;cursor:pointer;font-family:inherit;transition:background 0.2s;" onmouseover="this.style.background='#40916c'" onmouseout="this.style.background='#2d6a4f'">
+        <span id="dl-btn-text"></span>
+      </button>
+      <p id="dl-followup-note" style="font-size:0.78rem;color:#9ca3af;margin-top:0.75rem;text-align:center;line-height:1.5;"></p>
+    </form>
+    <div id="dl-success" style="display:none;text-align:center;padding:0.5rem 0 1rem;">
+      <div style="font-size:2.5rem;margin-bottom:0.75rem;color:#2d6a4f;">✓</div>
+      <p id="dl-success-title" style="font-weight:800;color:#1a2332;margin-bottom:0.3rem;font-size:1rem;"></p>
+      <p id="dl-success-sub" style="font-size:0.85rem;color:#6b7280;"></p>
+    </div>
+    <p id="dl-privacy" style="font-size:0.72rem;color:#9ca3af;margin-top:0.9rem;text-align:center;"></p>
+  </div>
+</div>
+
+<script>
+  let _dlDocId = '', _dlDocPath = '';
+
+  function openDownloadModal(docId, docPath, titleDe, titleEn) {
+    _dlDocId = docId;
+    _dlDocPath = docPath;
+    const isEn = document.body.classList.contains('lang-en');
+    document.getElementById('dl-modal-title').textContent = isEn ? titleEn : titleDe;
+    document.getElementById('dl-modal-sub').textContent = isEn
+      ? 'Leave your contact details — we\'ll send the PDF straight to your inbox.'
+      : 'Hinterlassen Sie Ihre Kontaktdaten – wir schicken das PDF direkt an Ihre E-Mail.';
+    document.getElementById('dl-name').placeholder = isEn ? 'Full Name *' : 'Name *';
+    document.getElementById('dl-company').placeholder = isEn ? 'Company *' : 'Unternehmen *';
+    document.getElementById('dl-btn-text').textContent = isEn ? 'Download now →' : 'Jetzt herunterladen →';
+    document.getElementById('dl-followup-note').textContent = isEn
+      ? 'We may send you relevant product information based on your request.'
+      : 'Wir senden Ihnen ggf. relevante Produktinformationen basierend auf Ihrer Anfrage.';
+    document.getElementById('dl-privacy').innerHTML = isEn
+      ? 'Your data will not be shared. <a href="datenschutz.html" style="color:#2d6a4f;">Privacy Policy</a>'
+      : 'Ihre Daten werden nicht weitergegeben. <a href="datenschutz.html" style="color:#2d6a4f;">Datenschutz</a>';
+    const appOpts = isEn
+      ? [['','Application (optional)'],['feed','Animal Feed / Feed additive'],['filtration','Water filtration'],['agriculture','Agriculture / Soil'],['industry','Industry / Absorption'],['other','Other']]
+      : [['','Anwendung (optional)'],['feed','Tierfutter / Futtermittelzusatz'],['filtration','Wasserfiltration'],['agriculture','Landwirtschaft / Boden'],['industry','Industrie / Absorption'],['other','Andere']];
+    const volOpts = isEn
+      ? [['','Est. volume (optional)'],['lt1','< 1 t/year'],['1to5','1–5 t/year'],['5to20','5–20 t/year'],['gt20','> 20 t/year']]
+      : [['','Geschätzter Bedarf (optional)'],['lt1','< 1 t/Jahr'],['1to5','1–5 t/Jahr'],['5to20','5–20 t/Jahr'],['gt20','> 20 t/Jahr']];
+    ['dl-application','dl-volume'].forEach((id, i) => {
+      const sel = document.getElementById(id);
+      sel.innerHTML = (i === 0 ? appOpts : volOpts).map(([v,l]) => `<option value="${v}">${l}</option>`).join('');
+    });
+    document.getElementById('download-form').style.display = '';
+    document.getElementById('dl-success').style.display = 'none';
+    document.getElementById('dl-submit-btn').disabled = false;
+    document.getElementById('dl-submit-btn').style.opacity = '1';
+    const modal = document.getElementById('download-modal');
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('dl-name').focus(), 50);
+  }
+
+  function closeDownloadModal() {
+    document.getElementById('download-modal').style.display = 'none';
+    document.body.style.overflow = '';
+    ['dl-name','dl-company','dl-email','dl-application','dl-volume'].forEach(id => document.getElementById(id).value = '');
+  }
+
+  document.getElementById('download-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeDownloadModal();
+  });
+
+  async function submitDownloadForm(e) {
+    e.preventDefault();
+    const btn = document.getElementById('dl-submit-btn');
+    btn.disabled = true;
+    btn.style.opacity = '0.6';
+    const isEn = document.body.classList.contains('lang-en');
+    const payload = {
+      name: document.getElementById('dl-name').value.trim(),
+      company: document.getElementById('dl-company').value.trim(),
+      email: document.getElementById('dl-email').value.trim(),
+      application: document.getElementById('dl-application').value,
+      volume: document.getElementById('dl-volume').value,
+      document_id: _dlDocId,
+      lang: isEn ? 'en' : 'de'
+    };
+    try {
+      await fetch('https://n8n.diamix.eu/webhook/download-lead', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload),
+        keepalive: true
+      });
+    } catch(err) {}
+    document.getElementById('download-form').style.display = 'none';
+    document.getElementById('dl-success-title').textContent = isEn ? 'Thank you! Download starting now.' : 'Danke! Download startet gleich.';
+    document.getElementById('dl-success-sub').textContent = isEn ? "We'll be in touch soon." : 'Wir melden uns in Kürze.';
+    document.getElementById('dl-success').style.display = '';
+    const a = document.createElement('a');
+    a.href = _dlDocPath;
+    a.download = '';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(closeDownloadModal, 3500);
   }
 </script>
 

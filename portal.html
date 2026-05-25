@@ -761,11 +761,11 @@
           <table>
             <thead>
               <tr>
-                <th>Company</th><th>Country</th><th>E-Mail</th><th>Products</th><th>Status</th><th>Source</th><th></th>
+                <th>Company</th><th>Contact</th><th>Country</th><th>E-Mail</th><th>Products</th><th>Status</th><th>Source</th><th></th>
               </tr>
             </thead>
             <tbody id="crm-customers-tbody">
-              <tr><td colspan="7" style="text-align:center;color:var(--gray);padding:2rem;">Loading...</td></tr>
+              <tr><td colspan="8" style="text-align:center;color:var(--gray);padding:2rem;">Loading...</td></tr>
             </tbody>
           </table>
         </div>
@@ -1707,11 +1707,11 @@
     const tbody = document.getElementById('crm-customers-tbody');
     const { data, error } = await sb
       .from('customers')
-      .select('*, deals(id), tasks(id,status)')
+      .select('*, deals(id), tasks(id,status), contacts(id,full_name,is_primary)')
       .order('created_at', { ascending: false });
 
     if (error) {
-      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--red);">Error loading customers.</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--red);">Error loading customers.</td></tr>';
       return;
     }
     crmCustomers = data || [];
@@ -1721,12 +1721,15 @@
   function renderCustomers() {
     const tbody = document.getElementById('crm-customers-tbody');
     if (!crmCustomers.length) {
-      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--gray);padding:2rem;">No customers yet. Use "→ CRM" from Access Requests or "+ Add Customer".</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--gray);padding:2rem;">No customers yet. Use "→ CRM" from Access Requests or "+ Add Customer".</td></tr>';
       return;
     }
-    tbody.innerHTML = crmCustomers.map(c => `
+    tbody.innerHTML = crmCustomers.map(c => {
+      const primaryContact = (c.contacts || []).find(ct => ct.is_primary) || (c.contacts || [])[0];
+      return `
       <tr class="crm-customer-row" onclick="toggleCustomerDetail('${c.id}')" style="${c.status === 'lead' && !c.deals?.length ? 'border-left:3px solid #dc2626;' : ''}">
         <td><strong>${escHtml(c.company_name)}</strong>${c.status === 'lead' && !c.deals?.length ? '<span style="margin-left:6px;background:#fee2e2;color:#dc2626;font-size:0.68rem;font-weight:700;border-radius:3px;padding:1px 5px;vertical-align:middle;">NEW</span>' : ''}${(() => { const open = (c.tasks||[]).filter(t=>t.status!=='done').length; return open > 0 ? `<span style="margin-left:6px;background:#fef3c7;color:#92400e;font-size:0.68rem;font-weight:700;border-radius:3px;padding:1px 6px;vertical-align:middle;">📋 ${open}</span>` : ''; })()}</td>
+        <td style="font-size:0.83rem;">${primaryContact ? escHtml(primaryContact.full_name) : '<span style="color:var(--gray);">—</span>'}</td>
         <td style="font-size:0.83rem;">${escHtml(c.country || '—')}</td>
         <td style="font-size:0.83rem;">${escHtml(c.email || '—')}</td>
         <td style="font-size:0.83rem;">${c.products ? `<span style="background:#d1fae5;color:#065f46;font-size:0.7rem;font-weight:700;padding:2px 7px;border-radius:10px;">${escHtml(c.products)}</span>` : '<span style="color:var(--gray);">—</span>'}</td>
@@ -1740,7 +1743,7 @@
         </td>
       </tr>
       <tr id="edit-row-${c.id}" style="display:none;">
-        <td colspan="7" style="padding:0;">
+        <td colspan="8" style="padding:0;">
           <div style="padding:1rem 1.5rem;background:#f8fafc;border-top:1px solid var(--gray-mid);">
             <div class="inline-form" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr));">
               <div><label>Company Name *</label><input id="ec-company-${c.id}" value="${escHtml(c.company_name)}" /></div>
@@ -1770,10 +1773,11 @@
         </td>
       </tr>
       <tr id="cust-detail-${c.id}" style="display:none;">
-        <td colspan="7" style="padding:0;">
+        <td colspan="8" style="padding:0;">
           <div class="customer-detail-panel" id="cust-panel-${c.id}">Loading...</div>
         </td>
-      </tr>`).join('');
+      </tr>`;
+    }).join('');
   }
 
   async function toggleCustomerDetail(id) {
@@ -1794,14 +1798,15 @@
     const panel = document.getElementById(`cust-panel-${customerId}`);
     if (!panel) return;
     panel.innerHTML = '<div style="padding:1rem;color:var(--gray);">Loading...</div>';
-    const [dealsRes, tasksRes] = await Promise.all([
+    const [dealsRes, tasksRes, contactsRes] = await Promise.all([
       sb.from('deals').select('*').eq('customer_id', customerId).order('created_at', { ascending: false }),
       sb.from('tasks').select('*').eq('customer_id', customerId).order('due_date',    { ascending: true }),
+      sb.from('contacts').select('*').eq('customer_id', customerId).order('is_primary', { ascending: false }),
     ]);
-    panel.innerHTML = renderCustomerDetail(customerId, dealsRes.data || [], tasksRes.data || []);
+    panel.innerHTML = renderCustomerDetail(customerId, dealsRes.data || [], tasksRes.data || [], contactsRes.data || []);
   }
 
-  function renderCustomerDetail(customerId, deals, tasks) {
+  function renderCustomerDetail(customerId, deals, tasks, contacts = []) {
     const stageOptions = ['new','contacted','sample_sent','testing','quoted','negotiating','won','lost'];
 
     const dealsHtml = deals.length
@@ -1891,9 +1896,46 @@
         </div>
       </div>`;
 
+    const contactsHtml = contacts.length
+      ? contacts.map(ct => `
+          <div style="display:flex;align-items:center;gap:0.75rem;padding:6px 0;border-bottom:1px solid var(--gray-mid);">
+            <div style="flex:1;">
+              <span style="font-size:0.88rem;font-weight:600;">${escHtml(ct.full_name)}</span>
+              ${ct.is_primary ? '<span style="margin-left:6px;background:#d1fae5;color:#065f46;font-size:0.65rem;font-weight:700;border-radius:3px;padding:1px 5px;">PRIMARY</span>' : ''}
+              ${ct.role ? `<span style="margin-left:4px;color:var(--gray);font-size:0.78rem;">· ${escHtml(ct.role)}</span>` : ''}
+              <div style="font-size:0.78rem;color:var(--gray);margin-top:2px;">
+                ${ct.email ? `<a href="mailto:${escHtml(ct.email)}" onclick="event.stopPropagation()" style="color:var(--green);">${escHtml(ct.email)}</a>` : ''}
+                ${ct.phone ? ` · ${escHtml(ct.phone)}` : ''}
+              </div>
+            </div>
+            <button onclick="deleteContact('${ct.id}','${customerId}')"
+              style="background:none;border:none;cursor:pointer;color:var(--gray);font-size:1.1rem;padding:0 4px;">×</button>
+          </div>`).join('')
+      : '<p style="color:var(--gray);font-size:0.85rem;padding:0.5rem 0;">No contacts yet.</p>';
+
+    const contactForm = `
+      <div id="add-contact-form-${customerId}" style="display:none;margin-bottom:1rem;">
+        <div class="inline-form" style="grid-template-columns:1fr 1fr;">
+          <div><label>Full Name *</label><input id="ct-name-${customerId}" placeholder="John Smith" /></div>
+          <div><label>Role</label><input id="ct-role-${customerId}" placeholder="Procurement Manager" /></div>
+          <div><label>E-Mail</label><input type="email" id="ct-email-${customerId}" placeholder="john@company.com" /></div>
+          <div><label>Phone</label><input id="ct-phone-${customerId}" placeholder="+49 123 456" /></div>
+          <div style="display:flex;gap:0.5rem;align-items:flex-end;">
+            <button class="btn-sm btn-sm-green" onclick="saveContact('${customerId}')">Save</button>
+            <button class="btn-sm btn-sm-gray"  onclick="toggleAddContactForm('${customerId}')">Cancel</button>
+          </div>
+        </div>
+      </div>`;
+
     return `<div style="display:grid;grid-template-columns:3fr 2fr;gap:1.5rem;">
       <div>
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;">
+          <strong style="font-size:0.9rem;">Contacts</strong>
+          <button class="btn-sm btn-sm-green" onclick="toggleAddContactForm('${customerId}')">+ Add Contact</button>
+        </div>
+        ${contactForm}
+        ${contactsHtml}
+        <div style="margin-top:1.5rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;">
           <strong style="font-size:0.9rem;">Deals</strong>
           <button class="btn-sm btn-sm-green" onclick="toggleAddDealForm('${customerId}')">+ Add Deal</button>
         </div>
@@ -1918,6 +1960,31 @@
   function toggleAddTaskForm(id) {
     const el = document.getElementById(`add-task-form-${id}`);
     if (el) el.style.display = el.style.display === 'none' ? '' : 'none';
+  }
+  function toggleAddContactForm(id) {
+    const el = document.getElementById(`add-contact-form-${id}`);
+    if (el) el.style.display = el.style.display === 'none' ? '' : 'none';
+  }
+
+  async function saveContact(customerId) {
+    const name  = document.getElementById(`ct-name-${customerId}`)?.value.trim();
+    const role  = document.getElementById(`ct-role-${customerId}`)?.value.trim();
+    const email = document.getElementById(`ct-email-${customerId}`)?.value.trim();
+    const phone = document.getElementById(`ct-phone-${customerId}`)?.value.trim();
+    if (!name) { alert('Full name is required'); return; }
+    const { data: existing } = await sb.from('contacts').select('id').eq('customer_id', customerId);
+    const is_primary = !existing || existing.length === 0;
+    const { error } = await sb.from('contacts').insert({ customer_id: customerId, full_name: name, role: role || null, email: email || null, phone: phone || null, is_primary });
+    if (error) { alert('Error: ' + error.message); return; }
+    await loadCustomerDetail(customerId);
+    await loadCustomers();
+  }
+
+  async function deleteContact(contactId, customerId) {
+    if (!confirm('Delete this contact?')) return;
+    await sb.from('contacts').delete().eq('id', contactId);
+    await loadCustomerDetail(customerId);
+    await loadCustomers();
   }
 
   async function saveDeal(customerId) {

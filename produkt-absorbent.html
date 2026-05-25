@@ -41,11 +41,20 @@
     .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 
     /* NAV */
-    nav { background: var(--navy); padding: 1rem 0; position: sticky; top: 0; z-index: 100; }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo img { height: 36px; width: auto; background: white; padding: 4px 10px; border-radius: 8px; }
-    .nav-back { color: rgba(255,255,255,0.8); font-size: 0.88rem; display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s; }
+    nav { background: var(--navy); padding: 0 2rem; height: 68px; position: sticky; top: 0; z-index: 100; display: flex; align-items: center; }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .nav-brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .nav-brand img { height: 36px; width: auto; background: white; padding: 3px 8px; border-radius: 6px; }
+    .nav-brand-divider { width: 1px; height: 20px; background: rgba(255,255,255,0.2); }
+    .nav-brand-name { font-size: 0.9rem; font-weight: 700; color: var(--green-mid); letter-spacing: 0.04em; }
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-link { font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: white; }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .nav-back { font-size: 0.82rem; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
     .nav-back:hover { color: white; }
+    .btn-nav { background: var(--green); color: white; padding: 8px 18px; border-radius: 7px; font-size: 0.82rem; font-weight: 600; text-decoration: none; transition: background 0.2s; }
+    .btn-nav:hover { background: var(--green-light); }
 
     /* HERO */
     .product-hero { background: linear-gradient(135deg, #1a2332 0%, #374151 100%); padding: 80px 0 60px; color: white; }
@@ -195,12 +204,17 @@
 <body>
 
 <nav>
-  <div class="container">
-    <div class="nav-inner">
-      <a href="index.html" class="nav-logo">
-        <img src="images/diamix-logo.png" alt="Diamix Europe GmbH" />
-      </a>
-      <a href="index.html" class="nav-back">← Zurück zur Hauptseite</a>
+  <div class="nav-inner" style="max-width:1100px;margin:0 auto;width:100%;">
+    <a href="index.html" class="nav-brand">
+      <img src="images/diamix-logo.png" alt="Diamix Europe GmbH" />
+    </a>
+    <div class="nav-links">
+      <a href="#spezifikationen" class="nav-link">Spezifikationen</a>
+      <a href="#anfragen" class="nav-link">Anfragen</a>
+    </div>
+    <div class="nav-right">
+      <a href="index.html" class="nav-back">← Hauptseite</a>
+      <a href="#anfragen" class="btn-nav">Anfrage senden</a>
     </div>
   </div>
 </nav>
@@ -228,7 +242,7 @@
 </section>
 
 <!-- SPECS -->
-<section class="specs-section">
+<section class="specs-section" id="spezifikationen">
   <div class="container">
     <h2>Technische Spezifikationen</h2>
     <div class="specs-grid">
