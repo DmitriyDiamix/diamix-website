@@ -76,6 +76,11 @@
     body.lang-en span[data-lang="en"] { display: inline !important; }
     body.lang-de a[data-lang="de"],
     body.lang-de span[data-lang="de"] { display: inline !important; }
+    /* flex-based link buttons must stay inline-flex so min-height is respected */
+    body.lang-en a.learn-more[data-lang="en"],
+    body.lang-en a.product-card-link[data-lang="en"] { display: inline-flex !important; }
+    body.lang-de a.learn-more[data-lang="de"],
+    body.lang-de a.product-card-link[data-lang="de"] { display: inline-flex !important; }
 
     /* ── NAV ── */
     nav {
@@ -252,7 +257,7 @@
     .product-card-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; }
     .product-card-body h3 { font-size: 1rem; font-weight: 800; color: var(--navy); margin-bottom: 0.4rem; }
     .product-card-body p { font-size: 0.82rem; color: var(--gray); line-height: 1.55; flex: 1; margin-bottom: 1rem; }
-    .product-card-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; font-weight: 700; color: var(--green); text-decoration: none; transition: gap 0.2s; }
+    .product-card-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; font-weight: 700; color: var(--green); text-decoration: none; transition: gap 0.2s; min-height: 44px; padding: 10px 0; }
     .product-card-link:hover { gap: 0.7rem; }
     @media (max-width: 900px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 500px) { .products-grid { grid-template-columns: 1fr; } }
