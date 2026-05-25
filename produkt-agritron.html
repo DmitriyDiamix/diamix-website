@@ -721,16 +721,16 @@
     }
   });
 
-  function setLang(lang) {
+  window.setLang = function(lang) {
     document.body.className = 'lang-' + lang;
     document.querySelectorAll('.lang-btn').forEach(function(b) {
       b.classList.toggle('active', b.textContent.toLowerCase() === lang);
     });
     localStorage.setItem('diamix-lang', lang);
-  }
+  };
   (function() {
     var saved = localStorage.getItem('diamix-lang') || 'de';
-    setLang(saved);
+    window.setLang(saved);
   })();
 })();
 </script>
