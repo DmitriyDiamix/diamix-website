@@ -36,6 +36,7 @@
     body { font-family: 'DM Sans', sans-serif; color: #1a2332; background: #fff; line-height: 1.6; }
     img { max-width: 100%; height: auto; display: block; }
     a { text-decoration: none; color: inherit; }
+    button { min-height: 44px; }
     h1, h2 { font-family: 'Playfair Display', serif; }
     h1, h2, h3 { text-wrap: balance; }
     :root { --green: #2d6a4f; --green-light: #40916c; --green-pale: #d8f3dc; --green-mid: #52b788; --navy: #1a2332; --gray: #6b7280; --gray-light: #f8f9fa; --gold: #c8963e; }
@@ -46,15 +47,14 @@
     .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; }
     .nav-brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
     .nav-brand img { height: 36px; width: auto; background: white; padding: 3px 8px; border-radius: 6px; }
-    .nav-brand-divider { width: 1px; height: 20px; background: rgba(255,255,255,0.2); }
     .nav-brand-name { font-size: 0.9rem; font-weight: 700; color: var(--green-mid); letter-spacing: 0.04em; }
     .nav-links { display: flex; align-items: center; gap: 1.5rem; }
-    .nav-link { font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.2s; }
+    .nav-link { font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.2s; min-height: 44px; display: flex; align-items: center; }
     .nav-link:hover { color: white; }
     .nav-right { display: flex; align-items: center; gap: 1rem; }
-    .nav-back { font-size: 0.82rem; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
+    .nav-back { font-size: 0.82rem; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; min-height: 44px; display: flex; align-items: center; }
     .nav-back:hover { color: white; }
-    .btn-nav { background: var(--green); color: white; padding: 8px 18px; border-radius: 7px; font-size: 0.82rem; font-weight: 600; text-decoration: none; transition: background 0.2s; }
+    .btn-nav { background: var(--green); color: white; padding: 8px 18px; border-radius: 7px; font-size: 0.82rem; font-weight: 600; text-decoration: none; transition: background 0.2s; min-height: 44px; display: flex; align-items: center; }
     .btn-nav:hover { background: var(--green-light); }
 
     /* HERO */
@@ -114,7 +114,6 @@
     .usecases-section h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.6rem; color: var(--navy); }
     .usecases-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
     .usecase-item { display: flex; gap: 1rem; align-items: flex-start; padding: 1.4rem; border: 1px solid #e5e7eb; border-radius: 12px; }
-
     .usecase-item h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.3rem; color: var(--navy); }
     .usecase-item p { font-size: 0.85rem; color: var(--gray); line-height: 1.6; }
 
@@ -132,13 +131,6 @@
     .disclaimer-inner { max-width: 860px; }
     .disclaimer-inner p { font-size: 0.8rem; color: var(--gray); line-height: 1.65; }
     .disclaimer-inner strong { color: #4b5563; }
-
-    /* CTA */
-    .cta-section { background: var(--green); padding: 80px 0; text-align: center; color: white; }
-    .cta-section h2 { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; }
-    .cta-section p { color: rgba(255,255,255,0.8); margin-bottom: 2rem; font-size: 1.05rem; }
-    .btn-primary { display: inline-block; background: white; color: var(--green); font-weight: 700; padding: 16px 36px; border-radius: 100px; font-size: 1rem; transition: all 0.2s; }
-    .btn-primary:hover { background: var(--green-pale); transform: translateY(-2px); }
 
     /* FORM SECTION */
     .form-section { background: var(--navy); padding: 100px 0; }
@@ -161,13 +153,29 @@
     .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(45,106,79,0.1); }
     .form-group textarea { resize: vertical; min-height: 96px; }
     .form-submit { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1.5rem; }
-    .btn-submit { width: 100%; background: var(--green); color: white; font-family: inherit; font-size: 0.95rem; font-weight: 700; padding: 14px 24px; border: none; border-radius: 8px; cursor: pointer; transition: background 0.15s; }
+    .btn-submit { width: 100%; background: var(--green); color: white; font-family: inherit; font-size: 0.95rem; font-weight: 700; padding: 14px 24px; border: none; border-radius: 8px; cursor: pointer; transition: background 0.15s; min-height: 44px; }
     .btn-submit:hover { background: var(--green-light); }
     .btn-submit:disabled { background: var(--gray); cursor: not-allowed; }
     .form-privacy { font-size: 0.75rem; color: var(--gray); text-align: center; line-height: 1.5; }
     .form-success { display: none; flex-direction: column; align-items: center; text-align: center; padding: 2rem 1rem; gap: 1rem; }
     .form-success h4 { font-size: 1.05rem; font-weight: 700; color: var(--navy); }
     .form-success p { font-size: 0.88rem; color: var(--gray); line-height: 1.6; }
+
+    [data-lang] { display: none !important; }
+    body.lang-en [data-lang="en"] { display: block !important; }
+    body.lang-de [data-lang="de"] { display: block !important; }
+    body.lang-en a[data-lang="en"],
+    body.lang-en span[data-lang="en"] { display: inline !important; }
+    body.lang-de a[data-lang="de"],
+    body.lang-de span[data-lang="de"] { display: inline !important; }
+    body.lang-en .btn-nav[data-lang="en"],
+    body.lang-de .btn-nav[data-lang="de"] { display: flex !important; }
+    body.lang-en .nav-link[data-lang="en"],
+    body.lang-de .nav-link[data-lang="de"] { display: flex !important; }
+    body.lang-en .nav-back[data-lang="en"],
+    body.lang-de .nav-back[data-lang="de"] { display: flex !important; }
+    .lang-btn { background: transparent; border: none; cursor: pointer; padding: 0 12px; min-height: 44px; min-width: 44px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; color: #6b7280; transition: all 0.2s; display: flex; align-items: center; justify-content: center; }
+    .lang-btn.active { background: #ffffff; color: #2d6a4f; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
 
     @media (max-width: 768px) {
       .product-hero-inner { grid-template-columns: 1fr; }
@@ -202,7 +210,7 @@
 })();
 </script>
 </head>
-<body>
+<body class="lang-de">
 
 <nav>
   <div class="nav-inner" style="max-width:1100px;margin:0 auto;width:100%;">
@@ -210,12 +218,20 @@
       <img src="images/diamix-logo.png" alt="Diamix Europe GmbH" />
     </a>
     <div class="nav-links">
-      <a href="#spezifikationen" class="nav-link">Spezifikationen</a>
-      <a href="#anfragen" class="nav-link">Anfragen</a>
+      <a href="#spezifikationen" class="nav-link" data-lang="de">Spezifikationen</a>
+      <a href="#spezifikationen" class="nav-link" data-lang="en">Specifications</a>
+      <a href="#anfragen" class="nav-link" data-lang="de">Anfragen</a>
+      <a href="#anfragen" class="nav-link" data-lang="en">Enquiries</a>
     </div>
     <div class="nav-right">
-      <a href="index.html" class="nav-back">← Hauptseite</a>
-      <a href="#anfragen" class="btn-nav">Anfrage senden</a>
+      <a href="index.html" class="nav-back" data-lang="de">← Hauptseite</a>
+      <a href="index.html" class="nav-back" data-lang="en">← Home</a>
+      <div style="display:flex;gap:2px;background:#2d3748;border-radius:8px;padding:3px;">
+        <button class="lang-btn active" onclick="setLang('de')">DE</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+      </div>
+      <a href="#anfragen" class="btn-nav" data-lang="de">Anfrage senden</a>
+      <a href="#anfragen" class="btn-nav" data-lang="en">Send Enquiry</a>
     </div>
   </div>
 </nav>
@@ -225,14 +241,20 @@
   <div class="container">
     <div class="product-hero-inner">
       <div>
-        <div class="product-tag">Industrieller Absorber</div>
-        <h1>Diamix Universal / Plus / Super Plus – Kieselgur <span>Absorptionsgranulat</span></h1>
-        <p>Kalziniertes Diatomit-Granulat für den industriellen Einsatz als mineralisches Absorptionsmittel. Geeignet für die schnelle Aufnahme von Ölen, Kraftstoffen und Chemikalien – nicht brennbar (Brandklasse A1), mineralisch und CLP-konform.</p>
+        <div class="product-tag" data-lang="de">Industrieller Absorber</div>
+        <div class="product-tag" data-lang="en">Industrial Absorbent</div>
+        <h1 data-lang="de">Diamix Universal / Plus / Super Plus – Kieselgur <span>Absorptionsgranulat</span></h1>
+        <h1 data-lang="en">Diamix Universal / Plus / Super Plus – Diatomite <span>Absorbent Granules</span></h1>
+        <p data-lang="de">Kalziniertes Diatomit-Granulat für den industriellen Einsatz als mineralisches Absorptionsmittel. Geeignet für die schnelle Aufnahme von Ölen, Kraftstoffen und Chemikalien – nicht brennbar (Brandklasse A1), mineralisch und CLP-konform.</p>
+        <p data-lang="en">Calcined diatomite granules for industrial use as a mineral absorbent. Designed for rapid absorption of oils, fuels and chemicals – non-combustible (fire class A1), mineral-based and CLP compliant.</p>
         <div class="product-badges">
-          <span class="product-badge">Brandklasse A1</span>
-          <span class="product-badge">Nicht brennbar</span>
-          <span class="product-badge">CLP-konform</span>
-          <span class="product-badge">Kalziniert</span>
+          <span class="product-badge" data-lang="de">Brandklasse A1</span>
+          <span class="product-badge" data-lang="en">Fire class A1</span>
+          <span class="product-badge" data-lang="de">Nicht brennbar</span>
+          <span class="product-badge" data-lang="en">Non-combustible</span>
+          <span class="product-badge">CLP-konform / CLP compliant</span>
+          <span class="product-badge" data-lang="de">Kalziniert</span>
+          <span class="product-badge" data-lang="en">Calcined</span>
         </div>
       </div>
       <div class="product-hero-img">
@@ -245,31 +267,41 @@
 <!-- SPECS -->
 <section class="specs-section" id="spezifikationen">
   <div class="container">
-    <h2>Technische Spezifikationen</h2>
+    <h2 data-lang="de">Technische Spezifikationen</h2>
+    <h2 data-lang="en">Technical Specifications</h2>
     <div class="specs-grid">
       <div class="spec-card">
-        <h4>Material</h4>
-        <p>Kalzinierter Diatomit <span>(thermisch behandelt)</span></p>
+        <h4 data-lang="de">Material</h4>
+        <h4 data-lang="en">Material</h4>
+        <p data-lang="de">Kalzinierter Diatomit <span>(thermisch behandelt)</span></p>
+        <p data-lang="en">Calcined diatomite <span>(thermally treated)</span></p>
       </div>
       <div class="spec-card">
-        <h4>Korngröße</h4>
-        <p>0,5 – 3 mm <span>Granulat</span></p>
+        <h4 data-lang="de">Korngröße</h4>
+        <h4 data-lang="en">Particle Size</h4>
+        <p>0,5 – 3 mm <span data-lang="de">Granulat</span><span data-lang="en">granules</span></p>
       </div>
       <div class="spec-card">
-        <h4>Absorptionskapazität</h4>
-        <p>&gt; 100% <span>des Eigengewichts (Öl)</span></p>
+        <h4 data-lang="de">Absorptionskapazität</h4>
+        <h4 data-lang="en">Absorption Capacity</h4>
+        <p>&gt; 100% <span data-lang="de">des Eigengewichts (Öl)</span><span data-lang="en">of own weight (oil)</span></p>
       </div>
       <div class="spec-card">
-        <h4>Schüttdichte</h4>
-        <p>~ 500 g/l <span>locker geschüttet</span></p>
+        <h4 data-lang="de">Schüttdichte</h4>
+        <h4 data-lang="en">Bulk Density</h4>
+        <p>~ 500 g/l <span data-lang="de">locker geschüttet</span><span data-lang="en">loose-poured</span></p>
       </div>
       <div class="spec-card">
-        <h4>Brandklasse</h4>
-        <p>A1 – nicht brennbar <span>nach EN 13501</span></p>
+        <h4 data-lang="de">Brandklasse</h4>
+        <h4 data-lang="en">Fire Class</h4>
+        <p data-lang="de">A1 – nicht brennbar <span>nach EN 13501</span></p>
+        <p data-lang="en">A1 – non-combustible <span>per EN 13501</span></p>
       </div>
       <div class="spec-card">
-        <h4>Verpackung</h4>
-        <p>25 kg Sack <span>/ Big Bag 500–1000 kg</span></p>
+        <h4 data-lang="de">Verpackung</h4>
+        <h4 data-lang="en">Packaging</h4>
+        <p data-lang="de">25 kg Sack <span>/ Big Bag 500–1000 kg</span></p>
+        <p data-lang="en">25 kg bag <span>/ Big Bag 500–1,000 kg</span></p>
       </div>
     </div>
   </div>
@@ -278,35 +310,45 @@
 <!-- BENEFITS -->
 <section class="benefits-section">
   <div class="container">
-    <h2>Vorteile & Anwendung</h2>
-    <p class="section-intro">Das Produkt wird in industriellen Umgebungen eingesetzt, in denen eine schnelle, sichere und dokumentierbare Absorption von Flüssigkeiten erforderlich ist.</p>
+    <h2 data-lang="de">Vorteile &amp; Anwendung</h2>
+    <h2 data-lang="en">Benefits &amp; Application</h2>
+    <p class="section-intro" data-lang="de">Das Produkt wird in industriellen Umgebungen eingesetzt, in denen eine schnelle, sichere und dokumentierbare Absorption von Flüssigkeiten erforderlich ist.</p>
+    <p class="section-intro" data-lang="en">The product is used in industrial environments where rapid, safe and documentable absorption of liquids is required.</p>
     <div class="benefits-list">
       <div class="benefit-item">
         <div class="benefit-icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
         <div>
-          <h4>Industrielle Ölbindung</h4>
-          <p>Schnelle Aufnahme von Mineralölen, Kraftstoffen und Hydraulikflüssigkeiten. Das Granulat wird aufgestreut, bindet die Flüssigkeit und kann anschließend als kontaminiertes Schüttgut fachgerecht entsorgt werden.</p>
+          <h4 data-lang="de">Industrielle Ölbindung</h4>
+          <h4 data-lang="en">Industrial Oil Absorption</h4>
+          <p data-lang="de">Schnelle Aufnahme von Mineralölen, Kraftstoffen und Hydraulikflüssigkeiten. Das Granulat wird aufgestreut, bindet die Flüssigkeit und kann anschließend als kontaminiertes Schüttgut fachgerecht entsorgt werden.</p>
+          <p data-lang="en">Rapid absorption of mineral oils, fuels and hydraulic fluids. The granules are spread over the spill, bind the liquid and can then be disposed of as contaminated bulk material in accordance with regulations.</p>
         </div>
       </div>
       <div class="benefit-item">
         <div class="benefit-icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
         <div>
-          <h4>Nicht brennbar – Brandklasse A1</h4>
-          <p>Als mineralisches Produkt der Brandklasse A1 nach EN 13501 eignet sich das Granulat für den Einsatz in Bereichen mit erhöhtem Brandrisiko oder in der Nähe von Gefahrstoffen, wo organische Absorber nicht verwendet werden dürfen.</p>
+          <h4 data-lang="de">Nicht brennbar – Brandklasse A1</h4>
+          <h4 data-lang="en">Non-Combustible – Fire Class A1</h4>
+          <p data-lang="de">Als mineralisches Produkt der Brandklasse A1 nach EN 13501 eignet sich das Granulat für den Einsatz in Bereichen mit erhöhtem Brandrisiko oder in der Nähe von Gefahrstoffen, wo organische Absorber nicht verwendet werden dürfen.</p>
+          <p data-lang="en">As a mineral product of fire class A1 per EN 13501, the granules are suitable for use in areas with elevated fire risk or near hazardous substances where organic absorbents may not be used.</p>
         </div>
       </div>
       <div class="benefit-item">
         <div class="benefit-icon-wrap"><svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg></div>
         <div>
-          <h4>Für viele industrielle Flüssigkeiten geeignet</h4>
-          <p>Das Granulat ist für eine Vielzahl industrieller Flüssigkeiten einsetzbar. Die Eignung für spezifische Chemikalien, Säuren oder Laugen sollte im Einzelfall geprüft werden – technische Datenblätter sind auf Anfrage verfügbar.</p>
+          <h4 data-lang="de">Für viele industrielle Flüssigkeiten geeignet</h4>
+          <h4 data-lang="en">Suitable for Many Industrial Liquids</h4>
+          <p data-lang="de">Das Granulat ist für eine Vielzahl industrieller Flüssigkeiten einsetzbar. Die Eignung für spezifische Chemikalien, Säuren oder Laugen sollte im Einzelfall geprüft werden – technische Datenblätter sind auf Anfrage verfügbar.</p>
+          <p data-lang="en">The granules can be used for a wide range of industrial liquids. Suitability for specific chemicals, acids or alkalis should be assessed case by case – technical data sheets are available on request.</p>
         </div>
       </div>
       <div class="benefit-item">
         <div class="benefit-icon-wrap"><svg viewBox="0 0 24 24"><path d="M21 10V6a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 6v4"/><path d="M3 10l9 5 9-5"/><path d="M12 22V12"/><path d="M3 10v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V10"/></svg></div>
         <div>
-          <h4>Lieferung ab Deutschland</h4>
-          <p>Verfügbar aus unserem Lager in Deutschland. Lieferung europaweit in 25-kg-Säcken oder Big Bags (500–1.000 kg), mit vollständiger Produktdokumentation und Sicherheitsdatenblatt (SDS).</p>
+          <h4 data-lang="de">Lieferung ab Deutschland</h4>
+          <h4 data-lang="en">Delivery from Germany</h4>
+          <p data-lang="de">Verfügbar aus unserem Lager in Deutschland. Lieferung europaweit in 25-kg-Säcken oder Big Bags (500–1.000 kg), mit vollständiger Produktdokumentation und Sicherheitsdatenblatt (SDS).</p>
+          <p data-lang="en">Available from our warehouse in Germany. EU-wide delivery in 25 kg bags or Big Bags (500–1,000 kg), with complete product documentation and safety data sheet (SDS).</p>
         </div>
       </div>
     </div>
@@ -316,23 +358,34 @@
 <!-- WHY CALCINED -->
 <section class="calcined-section">
   <div class="container">
-    <h2>Warum kalzinierter Diatomit?</h2>
-    <p class="section-intro">Kalzinierung ist ein thermischer Prozess, der die physikalische Struktur des Diatomits gezielt verändert – mit messbaren Auswirkungen auf die Leistung als Absorptionsmittel.</p>
+    <h2 data-lang="de">Warum kalzinierter Diatomit?</h2>
+    <h2 data-lang="en">Why Calcined Diatomite?</h2>
+    <p class="section-intro" data-lang="de">Kalzinierung ist ein thermischer Prozess, der die physikalische Struktur des Diatomits gezielt verändert – mit messbaren Auswirkungen auf die Leistung als Absorptionsmittel.</p>
+    <p class="section-intro" data-lang="en">Calcination is a thermal process that deliberately modifies the physical structure of diatomite – with measurable effects on performance as an absorbent.</p>
     <div class="calcined-grid">
       <div class="calcined-card">
-        <div class="c-label">Struktur</div>
-        <h4>Optimierte Porosität</h4>
-        <p>Durch die thermische Behandlung bei hohen Temperaturen wird die natürliche Porenstruktur des Diatomits stabilisiert und erweitert. Das Ergebnis ist ein höheres Aufnahmevolumen im Vergleich zu unbehandelten Rohdiatomiten.</p>
+        <div class="c-label" data-lang="de">Struktur</div>
+        <div class="c-label" data-lang="en">Structure</div>
+        <h4 data-lang="de">Optimierte Porosität</h4>
+        <h4 data-lang="en">Optimised Porosity</h4>
+        <p data-lang="de">Durch die thermische Behandlung bei hohen Temperaturen wird die natürliche Porenstruktur des Diatomits stabilisiert und erweitert. Das Ergebnis ist ein höheres Aufnahmevolumen im Vergleich zu unbehandelten Rohdiatomiten.</p>
+        <p data-lang="en">High-temperature thermal treatment stabilises and expands the natural pore structure of diatomite. The result is a higher absorption volume compared to untreated raw diatomite.</p>
       </div>
       <div class="calcined-card">
-        <div class="c-label">Leistung</div>
-        <h4>Höhere Absorptionskapazität</h4>
-        <p>Die vergrößerte innere Oberfläche kalzinierter Partikel ermöglicht eine schnellere und vollständigere Aufnahme von Flüssigkeiten. Absorptionswerte von über 100 % des Eigengewichts sind charakteristisch für diesen Produkttyp.</p>
+        <div class="c-label" data-lang="de">Leistung</div>
+        <div class="c-label" data-lang="en">Performance</div>
+        <h4 data-lang="de">Höhere Absorptionskapazität</h4>
+        <h4 data-lang="en">Higher Absorption Capacity</h4>
+        <p data-lang="de">Die vergrößerte innere Oberfläche kalzinierter Partikel ermöglicht eine schnellere und vollständigere Aufnahme von Flüssigkeiten. Absorptionswerte von über 100 % des Eigengewichts sind charakteristisch für diesen Produkttyp.</p>
+        <p data-lang="en">The enlarged internal surface area of calcined particles enables faster and more complete liquid uptake. Absorption values exceeding 100% of own weight are characteristic of this product type.</p>
       </div>
       <div class="calcined-card">
-        <div class="c-label">Stabilität</div>
-        <h4>Mechanisch stabile Granulate</h4>
-        <p>Kalziniertes Diatomit-Granulat weist eine höhere mechanische Stabilität auf als natürliche Varianten. Es bricht beim Aufstreuen und Aufnehmen weniger ab, erzeugt weniger Feinstaub und ist einfacher zu handhaben.</p>
+        <div class="c-label" data-lang="de">Stabilität</div>
+        <div class="c-label" data-lang="en">Stability</div>
+        <h4 data-lang="de">Mechanisch stabile Granulate</h4>
+        <h4 data-lang="en">Mechanically Stable Granules</h4>
+        <p data-lang="de">Kalziniertes Diatomit-Granulat weist eine höhere mechanische Stabilität auf als natürliche Varianten. Es bricht beim Aufstreuen und Aufnehmen weniger ab, erzeugt weniger Feinstaub und ist einfacher zu handhaben.</p>
+        <p data-lang="en">Calcined diatomite granules show higher mechanical stability than natural variants. They break up less during spreading and collection, generate less fine dust and are easier to handle.</p>
       </div>
     </div>
   </div>
@@ -341,35 +394,45 @@
 <!-- USE CASES -->
 <section class="usecases-section">
   <div class="container">
-    <h2>Typische Einsatzbereiche</h2>
-    <p class="section-intro">Das Granulat wird überall dort eingesetzt, wo Flüssigkeiten sicher und schnell gebunden werden müssen – in der Routine wie im Notfall.</p>
+    <h2 data-lang="de">Typische Einsatzbereiche</h2>
+    <h2 data-lang="en">Typical Applications</h2>
+    <p class="section-intro" data-lang="de">Das Granulat wird überall dort eingesetzt, wo Flüssigkeiten sicher und schnell gebunden werden müssen – in der Routine wie im Notfall.</p>
+    <p class="section-intro" data-lang="en">The granules are used wherever liquids must be contained quickly and safely – both in routine operations and emergency situations.</p>
     <div class="usecases-grid">
       <div class="usecase-item">
         <div class="usecase-icon-wrap"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
         <div>
-          <h4>Werkstätten & Industriehallen</h4>
-          <p>Routineeinsatz bei Ölwechsel, Leckagen an Maschinen und Fahrzeugen sowie bei allgemeiner Betriebsverschmutzung durch Schmierstoffe.</p>
+          <h4 data-lang="de">Werkstätten &amp; Industriehallen</h4>
+          <h4 data-lang="en">Workshops &amp; Industrial Facilities</h4>
+          <p data-lang="de">Routineeinsatz bei Ölwechsel, Leckagen an Maschinen und Fahrzeugen sowie bei allgemeiner Betriebsverschmutzung durch Schmierstoffe.</p>
+          <p data-lang="en">Routine use during oil changes, machine and vehicle leaks, and general workshop contamination from lubricants.</p>
         </div>
       </div>
       <div class="usecase-item">
         <div class="usecase-icon-wrap"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
         <div>
-          <h4>Transport & Logistik</h4>
-          <p>Mitführen als Notfallabsorber in Transportfahrzeugen und auf Lagerflächen – zur schnellen Reaktion bei Kraftstoff- oder Flüssigkeitsleckagen.</p>
+          <h4 data-lang="de">Transport &amp; Logistik</h4>
+          <h4 data-lang="en">Transport &amp; Logistics</h4>
+          <p data-lang="de">Mitführen als Notfallabsorber in Transportfahrzeugen und auf Lagerflächen – zur schnellen Reaktion bei Kraftstoff- oder Flüssigkeitsleckagen.</p>
+          <p data-lang="en">Carried as emergency absorbent in transport vehicles and on storage areas – for rapid response to fuel or liquid leaks.</p>
         </div>
       </div>
       <div class="usecase-item">
         <div class="usecase-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
         <div>
-          <h4>Wartung & Instandhaltung</h4>
-          <p>Einsatz bei geplanten Wartungsarbeiten an hydraulischen Anlagen, Kompressoren und industriellen Maschinen als Standardabsorptionsmittel.</p>
+          <h4 data-lang="de">Wartung &amp; Instandhaltung</h4>
+          <h4 data-lang="en">Maintenance &amp; Servicing</h4>
+          <p data-lang="de">Einsatz bei geplanten Wartungsarbeiten an hydraulischen Anlagen, Kompressoren und industriellen Maschinen als Standardabsorptionsmittel.</p>
+          <p data-lang="en">Used during planned maintenance of hydraulic systems, compressors and industrial machinery as a standard absorbent.</p>
         </div>
       </div>
       <div class="usecase-item">
         <div class="usecase-icon-wrap"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
         <div>
-          <h4>Notfall-Ölbindemittel</h4>
-          <p>Bereitstellung als Notfallmaterial in Produktionsbetrieben, auf Tankstellen und in Lagereinrichtungen – für den sofortigen Einsatz bei ungeplanten Austritten.</p>
+          <h4 data-lang="de">Notfall-Ölbindemittel</h4>
+          <h4 data-lang="en">Emergency Oil Absorbent</h4>
+          <p data-lang="de">Bereitstellung als Notfallmaterial in Produktionsbetrieben, auf Tankstellen und in Lagereinrichtungen – für den sofortigen Einsatz bei ungeplanten Austritten.</p>
+          <p data-lang="en">Kept as emergency material in production facilities, petrol stations and storage sites – for immediate deployment on unplanned spills.</p>
         </div>
       </div>
     </div>
@@ -379,24 +442,34 @@
 <!-- POSITIONING -->
 <section class="positioning-section">
   <div class="container">
-    <h2>Zuverlässige industrielle Lösung</h2>
-    <p class="section-intro">Diamix Europe liefert kein anonymes Schüttgut – sondern ein definiertes, dokumentiertes Industrieprodukt mit gleichbleibenden Eigenschaften.</p>
+    <h2 data-lang="de">Zuverlässige industrielle Lösung</h2>
+    <h2 data-lang="en">Reliable Industrial Solution</h2>
+    <p class="section-intro" data-lang="de">Diamix Europe liefert kein anonymes Schüttgut – sondern ein definiertes, dokumentiertes Industrieprodukt mit gleichbleibenden Eigenschaften.</p>
+    <p class="section-intro" data-lang="en">Diamix Europe does not supply anonymous bulk material – but a defined, documented industrial product with consistent properties.</p>
     <div class="positioning-grid">
       <div class="positioning-card">
-        <h4>Gleichbleibende Qualität</h4>
-        <p>Jede Lieferung entspricht der definierten Produktspezifikation. Analysezertifikate (CoA) und Sicherheitsdatenblätter (SDS) werden standardmäßig bereitgestellt.</p>
+        <h4 data-lang="de">Gleichbleibende Qualität</h4>
+        <h4 data-lang="en">Consistent Quality</h4>
+        <p data-lang="de">Jede Lieferung entspricht der definierten Produktspezifikation. Analysezertifikate (CoA) und Sicherheitsdatenblätter (SDS) werden standardmäßig bereitgestellt.</p>
+        <p data-lang="en">Every delivery meets the defined product specification. Analysis certificates (CoA) and safety data sheets (SDS) are provided as standard.</p>
       </div>
       <div class="positioning-card">
-        <h4>Definierte Korngröße</h4>
-        <p>Die Korngrößenverteilung 0,5–3 mm ist auf industrielle Handhabungsanforderungen abgestimmt – reduzierter Feinanteil, kontrollierbares Staubverhalten.</p>
+        <h4 data-lang="de">Definierte Korngröße</h4>
+        <h4 data-lang="en">Defined Particle Size</h4>
+        <p data-lang="de">Die Korngrößenverteilung 0,5–3 mm ist auf industrielle Handhabungsanforderungen abgestimmt – reduzierter Feinanteil, kontrollierbares Staubverhalten.</p>
+        <p data-lang="en">The particle size distribution 0.5–3 mm is matched to industrial handling requirements – reduced fines content, controllable dust behaviour.</p>
       </div>
       <div class="positioning-card">
-        <h4>Kalkulierbare Leistung</h4>
-        <p>Bekannte Absorptionskapazität und Schüttdichte ermöglichen eine verlässliche Planung von Verbrauchsmengen und Lagerhaltung.</p>
+        <h4 data-lang="de">Kalkulierbare Leistung</h4>
+        <h4 data-lang="en">Predictable Performance</h4>
+        <p data-lang="de">Bekannte Absorptionskapazität und Schüttdichte ermöglichen eine verlässliche Planung von Verbrauchsmengen und Lagerhaltung.</p>
+        <p data-lang="en">Known absorption capacity and bulk density enable reliable planning of consumption volumes and stock management.</p>
       </div>
       <div class="positioning-card">
-        <h4>Technischer Support</h4>
-        <p>Bei Fragen zur Eignung für spezifische Anwendungen oder Flüssigkeiten stehen wir für eine technische Beratung zur Verfügung.</p>
+        <h4 data-lang="de">Technischer Support</h4>
+        <h4 data-lang="en">Technical Support</h4>
+        <p data-lang="de">Bei Fragen zur Eignung für spezifische Anwendungen oder Flüssigkeiten stehen wir für eine technische Beratung zur Verfügung.</p>
+        <p data-lang="en">For questions about suitability for specific applications or liquids, we are available for technical consultation.</p>
       </div>
     </div>
   </div>
@@ -407,63 +480,86 @@
   <div class="container">
     <div class="form-inner">
       <div class="form-intro">
-        <div class="section-label">Produktanfrage</div>
-        <h2>Muster oder Angebot anfordern.</h2>
-        <p>Wir liefern Produktmuster mit vollständigem Datenblatt und Sicherheitsdatenblatt — ohne Mindestmenge, ohne Verpflichtung. Anfragen beantworten wir innerhalb von 24 Stunden.</p>
+        <div class="section-label" data-lang="de">Produktanfrage</div>
+        <div class="section-label" data-lang="en">Product Enquiry</div>
+        <h2 data-lang="de">Muster oder Angebot anfordern.</h2>
+        <h2 data-lang="en">Request a Sample or Quote.</h2>
+        <p data-lang="de">Wir liefern Produktmuster mit vollständigem Datenblatt und Sicherheitsdatenblatt — ohne Mindestmenge, ohne Verpflichtung. Anfragen beantworten wir innerhalb von 24 Stunden.</p>
+        <p data-lang="en">We supply product samples with a complete data sheet and safety data sheet — no minimum order, no obligation. Enquiries are answered within 24 hours.</p>
         <ul class="form-promise-list">
-          <li>Rückmeldung innerhalb von 24 Stunden (Werktage)</li>
-          <li>Musterlieferung mit CoA und SDS auf Anfrage</li>
-          <li>Lieferung aus Deutschland — EU-weit</li>
-          <li>Big Bags (500–1000 kg) oder Schüttgut</li>
+          <li data-lang="de">Rückmeldung innerhalb von 24 Stunden (Werktage)</li>
+          <li data-lang="en">Response within 24 hours (business days)</li>
+          <li data-lang="de">Musterlieferung mit CoA und SDS auf Anfrage</li>
+          <li data-lang="en">Sample delivery with CoA and SDS on request</li>
+          <li data-lang="de">Lieferung aus Deutschland — EU-weit</li>
+          <li data-lang="en">Delivery from Germany — EU-wide</li>
+          <li data-lang="de">Big Bags (500–1000 kg) oder Schüttgut</li>
+          <li data-lang="en">Big Bags (500–1,000 kg) or bulk</li>
         </ul>
       </div>
       <div class="form-card">
-        <h3>Anfrage senden</h3>
-        <p class="form-subtitle">Diamix Universal / Plus / Super Plus · Kalzinierter Diatomit</p>
+        <h3 data-lang="de">Anfrage senden</h3>
+        <h3 data-lang="en">Send Enquiry</h3>
+        <p class="form-subtitle" data-lang="de">Diamix Universal / Plus / Super Plus · Kalzinierter Diatomit</p>
+        <p class="form-subtitle" data-lang="en">Diamix Universal / Plus / Super Plus · Calcined Diatomite</p>
         <form id="sample-form" novalidate>
           <div class="form-row">
             <div class="form-group">
-              <label for="f-name">Vorname &amp; Nachname <span class="req">*</span></label>
+              <label for="f-name" data-lang="de">Vorname &amp; Nachname <span class="req">*</span></label>
+              <label for="f-name" data-lang="en">First &amp; Last Name <span class="req">*</span></label>
               <input type="text" id="f-name" name="name" placeholder="Max Mustermann" required />
             </div>
             <div class="form-group">
-              <label for="f-company">Firma / Betrieb <span class="req">*</span></label>
+              <label for="f-company" data-lang="de">Firma / Betrieb <span class="req">*</span></label>
+              <label for="f-company" data-lang="en">Company <span class="req">*</span></label>
               <input type="text" id="f-company" name="company" placeholder="Muster GmbH" required />
             </div>
           </div>
           <div class="form-group">
-            <label for="f-email">E-Mail-Adresse <span class="req">*</span></label>
-            <input type="email" id="f-email" name="email" placeholder="ihre@email.de" required />
+            <label for="f-email" data-lang="de">E-Mail-Adresse <span class="req">*</span></label>
+            <label for="f-email" data-lang="en">Email Address <span class="req">*</span></label>
+            <input type="email" id="f-email" name="email" placeholder="name@company.com" required />
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label for="f-application">Anwendungsbereich</label>
+              <label for="f-application" data-lang="de">Anwendungsbereich</label>
+              <label for="f-application" data-lang="en">Application area</label>
               <input type="text" id="f-application" name="application" placeholder="z.B. Werkstatt, Industrie, Transport" />
             </div>
             <div class="form-group">
-              <label for="f-volume">Jahresbedarf (ca.)</label>
+              <label for="f-volume" data-lang="de">Jahresbedarf (ca.)</label>
+              <label for="f-volume" data-lang="en">Annual volume (approx.)</label>
               <select id="f-volume" name="volume">
-                <option value="">Bitte wählen …</option>
+                <option value="" data-lang="de">Bitte wählen …</option>
+                <option value="" data-lang="en">Please select …</option>
                 <option value="unter 5t">Unter 5 t/Jahr</option>
                 <option value="5-25t">5 – 25 t/Jahr</option>
                 <option value="25-100t">25 – 100 t/Jahr</option>
                 <option value="ueber 100t">Über 100 t/Jahr</option>
-                <option value="unbekannt">Noch unklar</option>
+                <option value="unbekannt" data-lang="de">Noch unklar</option>
+                <option value="unbekannt" data-lang="en">Not yet known</option>
               </select>
             </div>
           </div>
           <div class="form-group">
-            <label for="f-message">Anmerkungen / spezifische Anforderungen</label>
+            <label for="f-message" data-lang="de">Anmerkungen / spezifische Anforderungen</label>
+            <label for="f-message" data-lang="en">Notes / specific requirements</label>
             <textarea id="f-message" name="message" placeholder="Welche Flüssigkeiten sollen absorbiert werden? Besondere Anforderungen an Körnung oder Verpackung?"></textarea>
           </div>
           <div class="form-submit">
-            <button type="submit" class="btn-submit" id="submit-btn">Anfrage absenden</button>
-            <p class="form-privacy">Mit dem Absenden stimmen Sie zu, dass Diamix Europe GmbH Ihre Daten zur Bearbeitung Ihrer Anfrage verwendet. Keine Weitergabe an Dritte.</p>
+            <button type="submit" class="btn-submit" id="submit-btn">
+              <span data-lang="de">Anfrage absenden</span>
+              <span data-lang="en">Submit Enquiry</span>
+            </button>
+            <p class="form-privacy" data-lang="de">Mit dem Absenden stimmen Sie zu, dass Diamix Europe GmbH Ihre Daten zur Bearbeitung Ihrer Anfrage verwendet. Keine Weitergabe an Dritte.</p>
+            <p class="form-privacy" data-lang="en">By submitting you agree that Diamix Europe GmbH uses your data to process your enquiry. No sharing with third parties.</p>
           </div>
         </form>
         <div class="form-success" id="form-success" style="display:none;">
-          <h4>✓ Anfrage eingegangen</h4>
-          <p>Vielen Dank! Wir melden uns innerhalb von 24 Stunden mit weiteren Details.</p>
+          <h4 data-lang="de">✓ Anfrage eingegangen</h4>
+          <h4 data-lang="en">✓ Enquiry received</h4>
+          <p data-lang="de">Vielen Dank! Wir melden uns innerhalb von 24 Stunden mit weiteren Details.</p>
+          <p data-lang="en">Thank you! We will be in touch within 24 hours with further details.</p>
         </div>
         <div id="form-error" style="display:none; background:#fff3f3; border:1.5px solid #f5a0a0; border-radius:10px; padding:1rem 1.2rem; font-size:0.88rem; color:#c0392b; margin-top:1rem;"></div>
       </div>
@@ -475,7 +571,8 @@
 <section class="disclaimer-section">
   <div class="container">
     <div class="disclaimer-inner">
-      <p><strong>Hinweis:</strong> Dieses Produkt ist ein mineralisches Absorptionsmittel auf Basis von kalziniertem Diatomit. Es ist nicht klassifiziert als Gefahrstoff im Sinne der CLP-Verordnung (EG) Nr. 1272/2008. Die Eignung für spezifische Flüssigkeiten, Chemikalien oder Einsatzbedingungen ist vom Anwender im Einzelfall zu prüfen. Die Verantwortung für die bestimmungsgemäße Verwendung sowie die Einhaltung geltender nationaler und europäischer Vorschriften zur Abfallentsorgung liegt beim Verwender. Sicherheitsdatenblatt (SDS) und technisches Datenblatt sind auf Anfrage erhältlich.</p>
+      <p data-lang="de"><strong>Hinweis:</strong> Dieses Produkt ist ein mineralisches Absorptionsmittel auf Basis von kalziniertem Diatomit. Es ist nicht klassifiziert als Gefahrstoff im Sinne der CLP-Verordnung (EG) Nr. 1272/2008. Die Eignung für spezifische Flüssigkeiten, Chemikalien oder Einsatzbedingungen ist vom Anwender im Einzelfall zu prüfen. Die Verantwortung für die bestimmungsgemäße Verwendung sowie die Einhaltung geltender nationaler und europäischer Vorschriften zur Abfallentsorgung liegt beim Verwender. Sicherheitsdatenblatt (SDS) und technisches Datenblatt sind auf Anfrage erhältlich.</p>
+      <p data-lang="en"><strong>Notice:</strong> This product is a mineral absorbent based on calcined diatomite. It is not classified as a hazardous substance under CLP Regulation (EC) No 1272/2008. Suitability for specific liquids, chemicals or operating conditions must be assessed by the user in each individual case. Responsibility for intended use and compliance with applicable national and European waste disposal regulations rests with the user. Safety data sheet (SDS) and technical data sheet are available on request.</p>
     </div>
   </div>
 </section>
@@ -499,6 +596,7 @@
   var errorEl = document.getElementById('form-error');
   var submitBtn = document.getElementById('submit-btn');
   if (!form) return;
+  function isEn() { return document.body.classList.contains('lang-en'); }
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
     errorEl.style.display = 'none';
@@ -509,7 +607,9 @@
     var volume = document.getElementById('f-volume').value;
     var message = document.getElementById('f-message').value.trim();
     if (!name || !company || !email) {
-      errorEl.innerHTML = 'Bitte füllen Sie alle Pflichtfelder aus (Name, Firma und E-Mail).';
+      errorEl.innerHTML = isEn()
+        ? 'Please fill in all required fields (Name, Company and Email).'
+        : 'Bitte füllen Sie alle Pflichtfelder aus (Name, Firma und E-Mail).';
       errorEl.style.display = 'block';
       return;
     }
@@ -518,23 +618,39 @@
     if (volume) { msgBody += '\nJahresbedarf: ' + volume; }
     if (message) { msgBody += '\n\nAnmerkungen:\n' + message; }
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Wird gesendet…';
+    submitBtn.querySelector('[data-lang="de"]').textContent = 'Wird gesendet…';
+    submitBtn.querySelector('[data-lang="en"]').textContent = 'Sending…';
     try {
       var resp = await fetch('https://n8n.diamix.eu/webhook/contact-form', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name, email: email, message: msgBody, lang: 'de' })
+        body: JSON.stringify({ name: name, email: email, message: msgBody, lang: isEn() ? 'en' : 'de' })
       });
       if (!resp.ok) { throw new Error('HTTP ' + resp.status); }
       form.style.display = 'none';
       successEl.style.display = 'flex';
     } catch (err) {
-      errorEl.innerHTML = 'Beim Senden ist ein Fehler aufgetreten. Bitte schreiben Sie uns direkt an <a href="mailto:office@diamix.eu">office@diamix.eu</a>.';
-      errorEl.style.display = 'block';
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Anfrage absenden';
+      submitBtn.querySelector('[data-lang="de"]').textContent = 'Anfrage absenden';
+      submitBtn.querySelector('[data-lang="en"]').textContent = 'Submit Enquiry';
+      errorEl.innerHTML = isEn()
+        ? 'An error occurred. Please write to us directly: <a href="mailto:office@diamix.eu">office@diamix.eu</a>'
+        : 'Beim Senden ist ein Fehler aufgetreten. Bitte schreiben Sie uns direkt an <a href="mailto:office@diamix.eu">office@diamix.eu</a>.';
+      errorEl.style.display = 'block';
     }
   });
+
+  function setLang(lang) {
+    document.body.className = 'lang-' + lang;
+    document.querySelectorAll('.lang-btn').forEach(function(b) {
+      b.classList.toggle('active', b.textContent.toLowerCase() === lang);
+    });
+    localStorage.setItem('diamix-lang', lang);
+  }
+  (function() {
+    var saved = localStorage.getItem('diamix-lang') || 'de';
+    setLang(saved);
+  })();
 })();
 </script>
 

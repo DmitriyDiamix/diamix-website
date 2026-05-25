@@ -74,7 +74,7 @@
 
     .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 
-    /* ââ NAV ââ */
+    /* NAV */
     nav {
       background: var(--navy);
       padding: 1rem 0;
@@ -122,7 +122,7 @@
     }
     .nav-links .nav-cta:hover { background: var(--green-light); color: white; }
 
-    /* ââ HERO ââ */
+    /* HERO */
     .product-hero {
       background: linear-gradient(135deg, #1a2332 0%, #2d6a4f 100%);
       padding: 80px 0 60px;
@@ -252,7 +252,7 @@
       opacity: 0.7;
     }
 
-    /* ââ BENEFITS ââ */
+    /* BENEFITS */
     .benefits-section { padding: 80px 0; }
     .section-header { margin-bottom: 2rem; }
     .section-header h2 {
@@ -293,7 +293,7 @@
       line-height: 1.6;
     }
 
-    /* ââ SPECS ââ */
+    /* SPECS */
     .specs-section { padding: 80px 0; background: var(--gray-light); }
     .specs-section h2 {
       font-size: 1.8rem;
@@ -331,7 +331,7 @@
       font-weight: 400;
     }
 
-    /* ââ GRANULE SIZES ââ */
+    /* GRANULE SIZES */
     .granule-section { padding: 80px 0; }
     .granule-section .section-header h2 {
       font-size: 1.8rem;
@@ -398,7 +398,7 @@
       margin-top: 0.5rem;
     }
 
-    /* ââ APPLICATIONS ââ */
+    /* APPLICATIONS */
     .apps-section { padding: 80px 0; background: var(--gray-light); }
     .apps-section .section-header h2 {
       font-size: 1.8rem;
@@ -458,7 +458,7 @@
       line-height: 1.45;
     }
 
-        /* ─── FORM ─── */
+    /* FORM */
     .form-section {
       padding: 96px 0;
       background: var(--navy);
@@ -605,6 +605,7 @@
       border-radius: 8px;
       cursor: pointer;
       transition: background 0.15s, transform 0.15s;
+      min-height: 44px;
     }
     .btn-submit:hover { background: var(--green-light); transform: translateY(-1px); }
     .btn-submit:disabled { background: var(--gray); cursor: not-allowed; transform: none; }
@@ -624,6 +625,18 @@
     }
     .form-success h4 { font-size: 1.05rem; font-weight: 700; color: var(--navy); }
     .form-success p { font-size: 0.88rem; color: var(--gray); line-height: 1.6; }
+
+    [data-lang] { display: none !important; }
+    body.lang-en [data-lang="en"] { display: block !important; }
+    body.lang-de [data-lang="de"] { display: block !important; }
+    body.lang-en a[data-lang="en"],
+    body.lang-en span[data-lang="en"] { display: inline !important; }
+    body.lang-de a[data-lang="de"],
+    body.lang-de span[data-lang="de"] { display: inline !important; }
+    body.lang-en .nav-links a[data-lang="en"],
+    body.lang-de .nav-links a[data-lang="de"] { display: flex !important; }
+    .lang-btn { background: transparent; border: none; cursor: pointer; padding: 0 12px; min-height: 44px; min-width: 44px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.6); transition: all 0.2s; display: flex; align-items: center; justify-content: center; }
+    .lang-btn.active { background: rgba(255,255,255,0.15); color: white; }
 
     @media (max-width: 1024px) {
       .apps-grid { grid-template-columns: repeat(3, 1fr); }
@@ -646,7 +659,7 @@
     }
   </style>
 </head>
-<body>
+<body class="lang-de">
 
 <!-- NAV -->
 <nav>
@@ -656,10 +669,18 @@
         <img src="images/diamix-logo.png" alt="Diamix Europe GmbH" />
       </a>
       <div class="nav-links">
-        <a href="index.html" class="nav-label">Startseite</a>
-        <a href="index.html#products" class="nav-label">Produkte</a>
-        <a href="index.html#contact" class="nav-label">Kontakt</a>
-        <a href="#muster-anfragen" class="nav-cta">Muster anfragen</a>
+        <a href="index.html" class="nav-label" data-lang="de">Startseite</a>
+        <a href="index.html" class="nav-label" data-lang="en">Home</a>
+        <a href="index.html#products" class="nav-label" data-lang="de">Produkte</a>
+        <a href="index.html#products" class="nav-label" data-lang="en">Products</a>
+        <a href="index.html#contact" class="nav-label" data-lang="de">Kontakt</a>
+        <a href="index.html#contact" class="nav-label" data-lang="en">Contact</a>
+        <div style="display:flex;gap:2px;background:rgba(255,255,255,0.1);border-radius:8px;padding:3px;">
+          <button class="lang-btn active" onclick="setLang('de')">DE</button>
+          <button class="lang-btn" onclick="setLang('en')">EN</button>
+        </div>
+        <a href="#muster-anfragen" class="nav-cta" data-lang="de">Muster anfragen</a>
+        <a href="#muster-anfragen" class="nav-cta" data-lang="en">Request Sample</a>
       </div>
     </div>
   </div>
@@ -670,16 +691,22 @@
   <div class="container">
     <div class="product-hero-inner">
       <div>
-        <div class="product-tag">Natürliche Mineralstreu</div>
+        <div class="product-tag" data-lang="de">Natürliche Mineralstreu</div>
+        <div class="product-tag" data-lang="en">Natural Mineral Bedding</div>
         <h1>DIAMIX <span>Einstreu</span></h1>
-        <p class="hero-tagline">Mineralische Stallstreu auf Basis von natürlichem Diatomit-Granulat — hohe Feuchtigkeitsabsorption, verbesserte Stallhygiene, ohne Chemikalien.</p>
+        <p class="hero-tagline" data-lang="de">Mineralische Stallstreu auf Basis von natürlichem Diatomit-Granulat — hohe Feuchtigkeitsabsorption, verbesserte Stallhygiene, ohne Chemikalien.</p>
+        <p class="hero-tagline" data-lang="en">Mineral stable bedding based on natural diatomite granules — high moisture absorption, improved stable hygiene, chemical-free.</p>
         <div class="product-badges">
-          <span class="product-badge">100% natürlicher Diatomit</span>
-          <span class="product-badge">Ohne Chemie</span>
+          <span class="product-badge" data-lang="de">100% natürlicher Diatomit</span>
+          <span class="product-badge" data-lang="en">100% natural diatomite</span>
+          <span class="product-badge" data-lang="de">Ohne Chemie</span>
+          <span class="product-badge" data-lang="en">Chemical-free</span>
           <span class="product-badge">pH-neutral</span>
-          <span class="product-badge">Lieferung ab Deutschland</span>
+          <span class="product-badge" data-lang="de">Lieferung ab Deutschland</span>
+          <span class="product-badge" data-lang="en">Delivered from Germany</span>
         </div>
-        <a href="#muster-anfragen" class="btn-primary">Muster anfragen →</a>
+        <a href="#muster-anfragen" class="btn-primary" data-lang="de">Muster anfragen →</a>
+        <a href="#muster-anfragen" class="btn-primary" data-lang="en">Request Sample →</a>
       </div>
       <div class="hero-visual">
         <img
@@ -710,7 +737,7 @@
           </div>
           <div class="hero-visual-label">
             <strong>DIAMIX Einstreu</strong>
-            <span>Diatomit-Granulat · natürlich & mineralisch</span>
+            <span>Diatomit-Granulat · natürlich &amp; mineralisch</span>
           </div>
         </div>
       </div>
@@ -722,36 +749,46 @@
 <section class="benefits-section">
   <div class="container">
     <div class="section-header">
-      <h2>Vorteile auf einen Blick</h2>
-      <p class="section-intro">DIAMIX Einstreu wird von Landwirten und Stallbetreibern eingesetzt, die eine hygienische, trockene und naturbasierte Alternative zu konventionellen Einstreumaterialien suchen.</p>
+      <h2 data-lang="de">Vorteile auf einen Blick</h2>
+      <h2 data-lang="en">Benefits at a Glance</h2>
+      <p class="section-intro" data-lang="de">DIAMIX Einstreu wird von Landwirten und Stallbetreibern eingesetzt, die eine hygienische, trockene und naturbasierte Alternative zu konventionellen Einstreumaterialien suchen.</p>
+      <p class="section-intro" data-lang="en">DIAMIX Einstreu is used by farmers and stable operators looking for a hygienic, dry and nature-based alternative to conventional bedding materials.</p>
     </div>
     <div class="benefits-list">
       <div class="benefit-item">
         <div class="benefit-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2d7a4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6 8 4 12 4 15a8 8 0 0 0 16 0c0-3-2-7-8-13z"/></svg></div>
         <div>
-          <h4>Hohe Feuchtigkeitsabsorption</h4>
-          <p>Der natürliche Diatomit nimmt Feuchtigkeit effizient auf und gibt sie kontrolliert ab. Nassstellen im Stall werden reduziert – der Untergrund bleibt trockener, länger.</p>
+          <h4 data-lang="de">Hohe Feuchtigkeitsabsorption</h4>
+          <h4 data-lang="en">High Moisture Absorption</h4>
+          <p data-lang="de">Der natürliche Diatomit nimmt Feuchtigkeit effizient auf und gibt sie kontrolliert ab. Nassstellen im Stall werden reduziert – der Untergrund bleibt trockener, länger.</p>
+          <p data-lang="en">Natural diatomite absorbs moisture efficiently and releases it in a controlled manner. Wet spots in the stable are reduced – the surface stays drier for longer.</p>
         </div>
       </div>
       <div class="benefit-item">
         <div class="benefit-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2d7a4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z"/><polyline points="9 12 11 14 15 10"/></svg></div>
         <div>
-          <h4>Verbesserte Stallhygiene</h4>
-          <p>Trockene Liegeflächen hemmen Ammoniakbildung und Bakterienwachstum. Weniger Feuchtigkeit bedeutet weniger KeimÂ­belastung – ohne den Einsatz von Desinfektionsmitteln.</p>
+          <h4 data-lang="de">Verbesserte Stallhygiene</h4>
+          <h4 data-lang="en">Improved Stable Hygiene</h4>
+          <p data-lang="de">Trockene Liegeflächen hemmen Ammoniakbildung und Bakterienwachstum. Weniger Feuchtigkeit bedeutet weniger Keimbelastung – ohne den Einsatz von Desinfektionsmitteln.</p>
+          <p data-lang="en">Dry lying areas inhibit ammonia formation and bacterial growth. Less moisture means lower microbial load – without the use of disinfectants.</p>
         </div>
       </div>
       <div class="benefit-item">
         <div class="benefit-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2d7a4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3"/><path d="M12 11v6m-4 4h8"/><path d="M6 20c0-3.31 2.69-6 6-6s6 2.69 6 6"/></svg></div>
         <div>
-          <h4>Natürliches Mineralprodukt</h4>
-          <p>DIAMIX Einstreu besteht ausschließlich aus natürlichem Diatomit-Granulat – kein Zusatz von Chemikalien, Duftstoffen oder synthetischen Bindemitteln. pH-neutral und unbedenklich.</p>
+          <h4 data-lang="de">Natürliches Mineralprodukt</h4>
+          <h4 data-lang="en">Natural Mineral Product</h4>
+          <p data-lang="de">DIAMIX Einstreu besteht ausschließlich aus natürlichem Diatomit-Granulat – kein Zusatz von Chemikalien, Duftstoffen oder synthetischen Bindemitteln. pH-neutral und unbedenklich.</p>
+          <p data-lang="en">DIAMIX Einstreu consists exclusively of natural diatomite granules – no chemical additives, fragrances or synthetic binders. pH-neutral and safe.</p>
         </div>
       </div>
       <div class="benefit-item">
         <div class="benefit-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2d7a4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
         <div>
-          <h4>Reduzierte Nassstellen</h4>
-          <p>Die gleichmäßige Verteilung der Granulate sorgt für eine flächige Feuchtigkeitsaufnahme – keine lokalen Pfützenbildungen, weniger Arbeit beim Nachstreuen.</p>
+          <h4 data-lang="de">Reduzierte Nassstellen</h4>
+          <h4 data-lang="en">Reduced Wet Spots</h4>
+          <p data-lang="de">Die gleichmäßige Verteilung der Granulate sorgt für eine flächige Feuchtigkeitsaufnahme – keine lokalen Pfützenbildungen, weniger Arbeit beim Nachstreuen.</p>
+          <p data-lang="en">The even distribution of granules ensures uniform moisture absorption – no localised pooling, less labour for re-bedding.</p>
         </div>
       </div>
     </div>
@@ -761,31 +798,38 @@
 <!-- TECHNICAL SPECS -->
 <section class="specs-section">
   <div class="container">
-    <h2>Technische Spezifikationen</h2>
+    <h2 data-lang="de">Technische Spezifikationen</h2>
+    <h2 data-lang="en">Technical Specifications</h2>
     <div class="specs-grid">
       <div class="spec-card">
-        <h4>SiOâ-Gehalt</h4>
-        <p>ca. 85 % <span>amorphes Siliziumdioxid</span></p>
+        <h4>SiO₂</h4>
+        <p>ca. 85 % <span data-lang="de">amorphes Siliziumdioxid</span><span data-lang="en">amorphous silicon dioxide</span></p>
       </div>
       <div class="spec-card">
-        <h4>Schüttdichte</h4>
-        <p>ca. 0,6 g/ml <span>Richtwert, körnungsabhängig</span></p>
+        <h4 data-lang="de">Schüttdichte</h4>
+        <h4 data-lang="en">Bulk Density</h4>
+        <p>ca. 0,6 g/ml <span data-lang="de">Richtwert, körnungsabhängig</span><span data-lang="en">indicative, varies by grade</span></p>
       </div>
       <div class="spec-card">
-        <h4>Feuchtegehalt</h4>
-        <p>&lt; 3 % <span>bei Lieferung</span></p>
+        <h4 data-lang="de">Feuchtegehalt</h4>
+        <h4 data-lang="en">Moisture Content</h4>
+        <p>&lt; 3 % <span data-lang="de">bei Lieferung</span><span data-lang="en">at delivery</span></p>
       </div>
       <div class="spec-card">
-        <h4>pH-Wert</h4>
-        <p>7,0 – 8,5 <span>pH-neutral bis schwach basisch</span></p>
+        <h4>pH</h4>
+        <p>7,0 – 8,5 <span data-lang="de">pH-neutral bis schwach basisch</span><span data-lang="en">neutral to slightly alkaline</span></p>
       </div>
       <div class="spec-card">
-        <h4>Ursprung</h4>
-        <p>Natürlicher Diatomit <span>unbehandelt, kein Calcinierprozess</span></p>
+        <h4 data-lang="de">Ursprung</h4>
+        <h4 data-lang="en">Origin</h4>
+        <p data-lang="de">Natürlicher Diatomit <span>unbehandelt, kein Calcinierprozess</span></p>
+        <p data-lang="en">Natural diatomite <span>untreated, no calcination</span></p>
       </div>
       <div class="spec-card">
-        <h4>Verpackung</h4>
-        <p>Big Bag 500–1.000 kg <span>/ 25-kg-Sack auf Anfrage</span></p>
+        <h4 data-lang="de">Verpackung</h4>
+        <h4 data-lang="en">Packaging</h4>
+        <p data-lang="de">Big Bag 500–1.000 kg <span>/ 25-kg-Sack auf Anfrage</span></p>
+        <p data-lang="en">Big Bag 500–1,000 kg <span>/ 25 kg bag on request</span></p>
       </div>
     </div>
   </div>
@@ -795,24 +839,32 @@
 <section class="granule-section">
   <div class="container">
     <div class="section-header">
-      <h2>Lieferbare Körnung</h2>
-      <p class="section-intro">Drei Korngrößen — abgestimmt auf unterschiedliche TierÂ­arten und Einsatzbedingungen. Wir helfen bei der Auswahl der passenden Fraktion für Ihren Betrieb.</p>
+      <h2 data-lang="de">Lieferbare Körnung</h2>
+      <h2 data-lang="en">Available Particle Sizes</h2>
+      <p class="section-intro" data-lang="de">Drei Korngrößen — abgestimmt auf unterschiedliche Tierarten und Einsatzbedingungen. Wir helfen bei der Auswahl der passenden Fraktion für Ihren Betrieb.</p>
+      <p class="section-intro" data-lang="en">Three particle sizes — matched to different animal species and operating conditions. We help you select the right fraction for your operation.</p>
     </div>
     <div class="granule-list">
       <div class="granule-card">
-        <div class="g-label">Universal</div>
-        <h4>0,8 – 2,0 mm <span class="g-size-badge">Standardkörnung</span></h4>
-        <p>Universell einsetzbar für alle Tierarten. Gute Balance aus Feuchtigkeitsabsorption und Handhabbarkeit. Geeignet für BoxenÂ­einstreuung sowie als Deckschicht über Langstroh oder Sägemehl.</p>
+        <div class="g-label" data-lang="de">Universal</div>
+        <div class="g-label" data-lang="en">Universal</div>
+        <h4>0,8 – 2,0 mm <span class="g-size-badge" data-lang="de">Standardkörnung</span><span class="g-size-badge" data-lang="en">Standard grade</span></h4>
+        <p data-lang="de">Universell einsetzbar für alle Tierarten. Gute Balance aus Feuchtigkeitsabsorption und Handhabbarkeit. Geeignet für Boxeneinstreuung sowie als Deckschicht über Langstroh oder Sägemehl.</p>
+        <p data-lang="en">Suitable for all animal species. Good balance of moisture absorption and ease of handling. Suitable for box bedding and as a top layer over long straw or sawdust.</p>
       </div>
       <div class="granule-card">
-        <div class="g-label">Premium — Rinder &amp; Pferde</div>
-        <h4>1 – 3 mm <span class="g-size-badge">Empfohlen für Großtiere</span></h4>
-        <p>Etwas gröbere Körnung für Rinder- und Pferdeboxen. Höhere Schichtdicke ermöglicht bessere Drainageleistung bei starker Beanspruchung. Weniger Staubentwicklung beim Einstreuen.</p>
+        <div class="g-label" data-lang="de">Premium — Rinder &amp; Pferde</div>
+        <div class="g-label" data-lang="en">Premium — Cattle &amp; Horses</div>
+        <h4>1 – 3 mm <span class="g-size-badge" data-lang="de">Empfohlen für Großtiere</span><span class="g-size-badge" data-lang="en">Recommended for large animals</span></h4>
+        <p data-lang="de">Etwas gröbere Körnung für Rinder- und Pferdeboxen. Höhere Schichtdicke ermöglicht bessere Drainageleistung bei starker Beanspruchung. Weniger Staubentwicklung beim Einstreuen.</p>
+        <p data-lang="en">Slightly coarser grade for cattle and horse boxes. Greater layer depth provides better drainage performance under heavy use. Less dust during spreading.</p>
       </div>
       <div class="granule-card">
-        <div class="g-label">Drainage</div>
-        <h4>3 – 6 mm <span class="g-size-badge">Unterlagschicht</span></h4>
-        <p>Grobe Fraktion als Drainageschicht unter konventioneller Einstreu. Leitet Flüssigkeit ab und reduziert Staunässe im Bodenaufbau. Typisch eingesetzt als 3–5 cm Basisschicht.</p>
+        <div class="g-label" data-lang="de">Drainage</div>
+        <div class="g-label" data-lang="en">Drainage</div>
+        <h4>3 – 6 mm <span class="g-size-badge" data-lang="de">Unterlagschicht</span><span class="g-size-badge" data-lang="en">Base layer</span></h4>
+        <p data-lang="de">Grobe Fraktion als Drainageschicht unter konventioneller Einstreu. Leitet Flüssigkeit ab und reduziert Staunässe im Bodenaufbau. Typisch eingesetzt als 3–5 cm Basisschicht.</p>
+        <p data-lang="en">Coarse fraction as a drainage layer beneath conventional bedding. Channels liquid away and reduces waterlogging in the floor structure. Typically applied as a 3–5 cm base layer.</p>
       </div>
     </div>
   </div>
@@ -822,44 +874,56 @@
 <section class="apps-section">
   <div class="container">
     <div class="section-header">
-      <h2>Einsatzbereiche</h2>
-      <p class="section-intro">DIAMIX Einstreu eignet sich für alle gängigen Stalltypen — vom Milchviehbetrieb bis zur Kleintierhaltung.</p>
+      <h2 data-lang="de">Einsatzbereiche</h2>
+      <h2 data-lang="en">Applications</h2>
+      <p class="section-intro" data-lang="de">DIAMIX Einstreu eignet sich für alle gängigen Stalltypen — vom Milchviehbetrieb bis zur Kleintierhaltung.</p>
+      <p class="section-intro" data-lang="en">DIAMIX Einstreu is suitable for all common stable types — from dairy farms to small animal housing.</p>
     </div>
     <div class="apps-grid">
       <div class="app-card">
         <div class="app-icon">
           <svg viewBox="0 0 26 26" aria-hidden="true"><ellipse cx="13" cy="15" rx="7" ry="5"/><circle cx="13" cy="8.5" r="3.5"/><line x1="8" y1="20" x2="7" y2="24"/><line x1="11" y1="20" x2="10.5" y2="24"/><line x1="15" y1="20" x2="15.5" y2="24"/><line x1="18" y1="20" x2="19" y2="24"/><path d="M9.5 6.5 Q8 4 6 4.5" stroke-width="1.5"/><path d="M16.5 6.5 Q18 4 20 4.5" stroke-width="1.5"/></svg>
         </div>
-        <h4>Rinder</h4>
-        <p>Liegeboxen, Laufstall, Milchkühe &amp; Mastrinder</p>
+        <h4 data-lang="de">Rinder</h4>
+        <h4 data-lang="en">Cattle</h4>
+        <p data-lang="de">Liegeboxen, Laufstall, Milchkühe &amp; Mastrinder</p>
+        <p data-lang="en">Cubicles, loose housing, dairy &amp; beef cattle</p>
       </div>
       <div class="app-card">
         <div class="app-icon">
           <svg viewBox="0 0 26 26" aria-hidden="true"><path d="M8 22 L8 14 Q8 8 13 7 Q17 6 18 9 L19 12 Q20 14 18 15 L16 15 Q14 15 13 17 L12 22 Z"/><line x1="19" y1="9" x2="22" y2="6"/><line x1="19" y1="10" x2="23" y2="9"/><circle cx="16.5" cy="10" r="0.8" fill="var(--green)" stroke="none"/></svg>
         </div>
-        <h4>Pferde</h4>
-        <p>Einzelboxen, Offenställe, Pensionspferde</p>
+        <h4 data-lang="de">Pferde</h4>
+        <h4 data-lang="en">Horses</h4>
+        <p data-lang="de">Einzelboxen, Offenställe, Pensionspferde</p>
+        <p data-lang="en">Individual boxes, open stables, livery horses</p>
       </div>
       <div class="app-card">
         <div class="app-icon">
           <svg viewBox="0 0 26 26" aria-hidden="true"><ellipse cx="13" cy="16" rx="6" ry="5"/><circle cx="13" cy="9" r="3.5"/><path d="M10.5 7.5 Q9 4 7 5 Q9 6 9.5 8"/><path d="M10 11.5 L7 13" stroke-width="1.5"/><line x1="11" y1="21" x2="10" y2="24.5"/><line x1="13" y1="21" x2="13" y2="24.5"/><line x1="15" y1="21" x2="16" y2="24.5"/><path d="M14.5 8.5 L16.5 8" stroke-width="1.5"/></svg>
         </div>
-        <h4>Geflügel</h4>
-        <p>Bodenplatteneinstreue, Mastgeflügel, Legehennen</p>
+        <h4 data-lang="de">Geflügel</h4>
+        <h4 data-lang="en">Poultry</h4>
+        <p data-lang="de">Bodenplatteneinstreue, Mastgeflügel, Legehennen</p>
+        <p data-lang="en">Floor bedding, broilers, laying hens</p>
       </div>
       <div class="app-card">
         <div class="app-icon">
           <svg viewBox="0 0 26 26" aria-hidden="true"><ellipse cx="13" cy="15" rx="7" ry="5.5"/><circle cx="13" cy="8.5" r="3.5"/><ellipse cx="13" cy="10" rx="2" ry="1.3"/><circle cx="12.3" cy="10" r="0.5" fill="var(--green)" stroke="none"/><circle cx="13.7" cy="10" r="0.5" fill="var(--green)" stroke="none"/><path d="M20 12 Q23 10 22 8 Q21 7 20 9" stroke-width="1.4"/><line x1="9" y1="20.5" x2="8" y2="24"/><line x1="12" y1="20.5" x2="11.5" y2="24"/><line x1="14" y1="20.5" x2="14.5" y2="24"/><line x1="17" y1="20.5" x2="18" y2="24"/></svg>
         </div>
-        <h4>Schweine</h4>
-        <p>Abferkelbuchten, Sauenstall, Ferkelaufzucht</p>
+        <h4 data-lang="de">Schweine</h4>
+        <h4 data-lang="en">Pigs</h4>
+        <p data-lang="de">Abferkelbuchten, Sauenstall, Ferkelaufzucht</p>
+        <p data-lang="en">Farrowing pens, sow housing, piglet rearing</p>
       </div>
       <div class="app-card">
         <div class="app-icon">
           <svg viewBox="0 0 26 26" aria-hidden="true"><ellipse cx="13" cy="17" rx="5.5" ry="4.5"/><circle cx="13" cy="11" r="3"/><path d="M11 8.5 Q10.5 4 9 3"/><path d="M15 8.5 Q15.5 4 17 3"/><circle cx="12" cy="11" r="0.6" fill="var(--green)" stroke="none"/><line x1="16" y1="15" x2="19" y2="14" stroke-width="1.2"/><line x1="16" y1="16" x2="19" y2="16" stroke-width="1.2"/></svg>
         </div>
-        <h4>Kleintiere</h4>
-        <p>Kaninchen, Schafe, Ziegen, Kleintiergehege</p>
+        <h4 data-lang="de">Kleintiere</h4>
+        <h4 data-lang="en">Small Animals</h4>
+        <p data-lang="de">Kaninchen, Schafe, Ziegen, Kleintiergehege</p>
+        <p data-lang="en">Rabbits, sheep, goats, small animal enclosures</p>
       </div>
     </div>
   </div>
@@ -870,63 +934,86 @@
   <div class="container">
     <div class="form-inner">
       <div class="form-intro">
-        <div class="section-label">Musteranfrage</div>
-        <h2>Testen Sie DIAMIX Einstreu in Ihrem Betrieb.</h2>
-        <p>Wir liefern Produktmuster mit vollständigem Datenblatt — ohne Mindestmenge, ohne Verpflichtung. Anfragen beantworten wir innerhalb von 24 Stunden.</p>
+        <div class="section-label" data-lang="de">Musteranfrage</div>
+        <div class="section-label" data-lang="en">Sample Request</div>
+        <h2 data-lang="de">Testen Sie DIAMIX Einstreu in Ihrem Betrieb.</h2>
+        <h2 data-lang="en">Test DIAMIX Einstreu on your farm.</h2>
+        <p data-lang="de">Wir liefern Produktmuster mit vollständigem Datenblatt — ohne Mindestmenge, ohne Verpflichtung. Anfragen beantworten wir innerhalb von 24 Stunden.</p>
+        <p data-lang="en">We supply product samples with a complete data sheet — no minimum order, no obligation. Enquiries are answered within 24 hours.</p>
         <ul class="form-promise-list">
-          <li>Rückmeldung innerhalb von 24 Stunden (Werktage)</li>
-          <li>Kostenlose Musterlieferung auf Anfrage</li>
-          <li>Lieferung aus Deutschland — EU-weit</li>
-          <li>Technisches Datenblatt wird mitgeliefert</li>
+          <li data-lang="de">Rückmeldung innerhalb von 24 Stunden (Werktage)</li>
+          <li data-lang="en">Response within 24 hours (business days)</li>
+          <li data-lang="de">Kostenlose Musterlieferung auf Anfrage</li>
+          <li data-lang="en">Free sample delivery on request</li>
+          <li data-lang="de">Lieferung aus Deutschland — EU-weit</li>
+          <li data-lang="en">Delivery from Germany — EU-wide</li>
+          <li data-lang="de">Technisches Datenblatt wird mitgeliefert</li>
+          <li data-lang="en">Technical data sheet included</li>
         </ul>
       </div>
       <div class="form-card">
-        <h3>Musteranfrage senden</h3>
-        <p class="form-subtitle">DIAMIX Einstreu · Diatomit-Granulat, natur</p>
+        <h3 data-lang="de">Musteranfrage senden</h3>
+        <h3 data-lang="en">Send Sample Request</h3>
+        <p class="form-subtitle" data-lang="de">DIAMIX Einstreu · Diatomit-Granulat, natur</p>
+        <p class="form-subtitle" data-lang="en">DIAMIX Einstreu · Natural Diatomite Granules</p>
         <form id="sample-form" novalidate>
           <div class="form-row">
             <div class="form-group">
-              <label for="f-name">Vorname &amp; Nachname <span class="req">*</span></label>
+              <label for="f-name" data-lang="de">Vorname &amp; Nachname <span class="req">*</span></label>
+              <label for="f-name" data-lang="en">First &amp; Last Name <span class="req">*</span></label>
               <input type="text" id="f-name" name="name" placeholder="Max Mustermann" required />
             </div>
             <div class="form-group">
-              <label for="f-company">Betrieb / Firma <span class="req">*</span></label>
+              <label for="f-company" data-lang="de">Betrieb / Firma <span class="req">*</span></label>
+              <label for="f-company" data-lang="en">Farm / Company <span class="req">*</span></label>
               <input type="text" id="f-company" name="company" placeholder="Landwirtschaft Müller GbR" required />
             </div>
           </div>
           <div class="form-group">
-            <label for="f-email">E-Mail-Adresse <span class="req">*</span></label>
-            <input type="email" id="f-email" name="email" placeholder="ihre@email.de" required />
+            <label for="f-email" data-lang="de">E-Mail-Adresse <span class="req">*</span></label>
+            <label for="f-email" data-lang="en">Email Address <span class="req">*</span></label>
+            <input type="email" id="f-email" name="email" placeholder="name@farm.com" required />
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label for="f-animal">Tierart</label>
+              <label for="f-animal" data-lang="de">Tierart</label>
+              <label for="f-animal" data-lang="en">Animal species</label>
               <input type="text" id="f-animal" name="animal" placeholder="z.B. Rinder, Pferde, Geflügel" />
             </div>
             <div class="form-group">
-              <label for="f-volume">Jahresbedarf (ca.)</label>
+              <label for="f-volume" data-lang="de">Jahresbedarf (ca.)</label>
+              <label for="f-volume" data-lang="en">Annual volume (approx.)</label>
               <select id="f-volume" name="volume">
-                <option value="">Bitte wählen …</option>
+                <option value="" data-lang="de">Bitte wählen …</option>
+                <option value="" data-lang="en">Please select …</option>
                 <option value="unter 5t">Unter 5 t/Jahr</option>
                 <option value="5-25t">5 – 25 t/Jahr</option>
                 <option value="25-100t">25 – 100 t/Jahr</option>
                 <option value="ueber 100t">Über 100 t/Jahr</option>
-                <option value="unbekannt">Noch unklar</option>
+                <option value="unbekannt" data-lang="de">Noch unklar</option>
+                <option value="unbekannt" data-lang="en">Not yet known</option>
               </select>
             </div>
           </div>
           <div class="form-group">
-            <label for="f-message">Stallgröße &amp; gewünschte Körnung</label>
+            <label for="f-message" data-lang="de">Stallgröße &amp; gewünschte Körnung</label>
+            <label for="f-message" data-lang="en">Stable size &amp; preferred particle size</label>
             <textarea id="f-message" name="message" placeholder="Kurze Beschreibung Ihres Betriebs, Stallgröße, bevorzugte Körnung (0,8–2 mm / 1–3 mm / 3–6 mm) …"></textarea>
           </div>
           <div class="form-submit">
-            <button type="submit" class="btn-submit" id="submit-btn">Musteranfrage absenden</button>
-            <p class="form-privacy">Mit dem Absenden stimmen Sie zu, dass Diamix Europe GmbH Ihre Daten zur Bearbeitung Ihrer Anfrage verwendet. Keine Weitergabe an Dritte.</p>
+            <button type="submit" class="btn-submit" id="submit-btn">
+              <span data-lang="de">Musteranfrage absenden</span>
+              <span data-lang="en">Submit Sample Request</span>
+            </button>
+            <p class="form-privacy" data-lang="de">Mit dem Absenden stimmen Sie zu, dass Diamix Europe GmbH Ihre Daten zur Bearbeitung Ihrer Anfrage verwendet. Keine Weitergabe an Dritte.</p>
+            <p class="form-privacy" data-lang="en">By submitting you agree that Diamix Europe GmbH uses your data to process your enquiry. No sharing with third parties.</p>
           </div>
         </form>
         <div class="form-success" id="form-success" style="display:none;">
-          <h4>✓ Anfrage eingegangen</h4>
-          <p>Vielen Dank! Wir melden uns innerhalb von 24 Stunden mit weiteren Details zu Ihrem Muster.</p>
+          <h4 data-lang="de">✓ Anfrage eingegangen</h4>
+          <h4 data-lang="en">✓ Request received</h4>
+          <p data-lang="de">Vielen Dank! Wir melden uns innerhalb von 24 Stunden mit weiteren Details zu Ihrem Muster.</p>
+          <p data-lang="en">Thank you! We will be in touch within 24 hours with further details about your sample.</p>
         </div>
         <div id="form-error" style="display:none; background:#fff3f3; border:1.5px solid #f5a0a0; border-radius:10px; padding:1rem 1.2rem; font-size:0.88rem; color:#c0392b; margin-top:1rem;"></div>
       </div>
@@ -937,7 +1024,8 @@
 <!-- DISCLAIMER -->
 <section style="background:#f8f8f6;padding:2rem 0;border-top:1px solid #e8e4dc;">
   <div class="container">
-    <p style="font-size:0.82rem;color:#777;line-height:1.6;max-width:860px;"><strong>Hinweis:</strong> Dieses Produkt ist ein mineralisches Einstreumaterial auf Basis von natürlichem Diatomit. Das Produkt ist kein Tierarzneimittel und entfaltet keine medizinische oder pharmakologische Wirkung. Die konkrete Anwendung hängt von den jeweiligen Einsatzbedingungen ab. Die Verantwortung für den sachgerechten Einsatz liegt beim Anwender. Technische Datenblätter auf Anfrage.</p>
+    <p style="font-size:0.82rem;color:#777;line-height:1.6;max-width:860px;" data-lang="de"><strong>Hinweis:</strong> Dieses Produkt ist ein mineralisches Einstreumaterial auf Basis von natürlichem Diatomit. Das Produkt ist kein Tierarzneimittel und entfaltet keine medizinische oder pharmakologische Wirkung. Die konkrete Anwendung hängt von den jeweiligen Einsatzbedingungen ab. Die Verantwortung für den sachgerechten Einsatz liegt beim Anwender. Technische Datenblätter auf Anfrage.</p>
+    <p style="font-size:0.82rem;color:#777;line-height:1.6;max-width:860px;" data-lang="en"><strong>Notice:</strong> This product is a mineral bedding material based on natural diatomite. The product is not a veterinary medicinal product and has no medical or pharmacological effect. The specific application depends on the respective operating conditions. Responsibility for correct use lies with the user. Technical data sheets are available on request.</p>
   </div>
 </section>
 
@@ -967,6 +1055,8 @@
 
   if (!form) return;
 
+  function isEn() { return document.body.classList.contains('lang-en'); }
+
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
     errorEl.style.display = 'none';
@@ -979,43 +1069,53 @@
     var message = document.getElementById('f-message').value.trim();
 
     if (!name || !company || !email) {
-      errorEl.innerHTML = 'Bitte füllen Sie alle Pflichtfelder aus (Name, Betrieb und E-Mail).';
+      errorEl.innerHTML = isEn()
+        ? 'Please fill in all required fields (Name, Farm/Company and Email).'
+        : 'Bitte füllen Sie alle Pflichtfelder aus (Name, Betrieb und E-Mail).';
       errorEl.style.display = 'block';
       return;
     }
 
-    var msgBody = 'Musteranfrage – DIAMIX Einstreu
-
-Name: ' + name + '
-Firma: ' + company;
-    if (animal) { msgBody += '
-Tierart: ' + animal; }
-    if (volume) { msgBody += '
-Jahresbedarf: ' + volume; }
-    if (message) { msgBody += '
-
-Nachricht:
-' + message; }
+    var msgBody = 'Musteranfrage – DIAMIX Einstreu\n\nName: ' + name + '\nFirma: ' + company;
+    if (animal) { msgBody += '\nTierart: ' + animal; }
+    if (volume) { msgBody += '\nJahresbedarf: ' + volume; }
+    if (message) { msgBody += '\n\nNachricht:\n' + message; }
 
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Wird gesendet…';
+    submitBtn.querySelector('[data-lang="de"]').textContent = 'Wird gesendet…';
+    submitBtn.querySelector('[data-lang="en"]').textContent = 'Sending…';
 
     try {
       var resp = await fetch('https://n8n.diamix.eu/webhook/contact-form', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name, email: email, message: msgBody, lang: 'de' })
+        body: JSON.stringify({ name: name, email: email, message: msgBody, lang: isEn() ? 'en' : 'de' })
       });
       if (!resp.ok) { throw new Error('HTTP ' + resp.status); }
       form.style.display = 'none';
       successEl.style.display = 'flex';
     } catch (err) {
-      errorEl.innerHTML = 'Beim Senden ist ein Fehler aufgetreten. Bitte schreiben Sie uns direkt an <a href="mailto:office@diamix.eu">office@diamix.eu</a>.';
-      errorEl.style.display = 'block';
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Musteranfrage absenden';
+      submitBtn.querySelector('[data-lang="de"]').textContent = 'Musteranfrage absenden';
+      submitBtn.querySelector('[data-lang="en"]').textContent = 'Submit Sample Request';
+      errorEl.innerHTML = isEn()
+        ? 'An error occurred. Please write to us directly: <a href="mailto:office@diamix.eu">office@diamix.eu</a>'
+        : 'Beim Senden ist ein Fehler aufgetreten. Bitte schreiben Sie uns direkt an <a href="mailto:office@diamix.eu">office@diamix.eu</a>.';
+      errorEl.style.display = 'block';
     }
   });
+
+  function setLang(lang) {
+    document.body.className = 'lang-' + lang;
+    document.querySelectorAll('.lang-btn').forEach(function(b) {
+      b.classList.toggle('active', b.textContent.toLowerCase() === lang);
+    });
+    localStorage.setItem('diamix-lang', lang);
+  }
+  (function() {
+    var saved = localStorage.getItem('diamix-lang') || 'de';
+    setLang(saved);
+  })();
 })();
 </script>
 
