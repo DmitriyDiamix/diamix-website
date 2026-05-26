@@ -6,6 +6,27 @@
   <link rel="canonical" href="https://www.diamix.eu/diamix-einstreu.html" />
   <title>Natural Bedding Granules — Diamix Europe GmbH</title>
   <script>window.location.replace("diamix-einstreu.html");</script>
+<script>
+(function() {
+  var SUPA_URL = "https://tucmaxyzgfsocwkaxpsu.supabase.co";
+  var SUPA_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR1Y21heHl6Z2Zzb2N3a2F4cHN1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUxMDcxOTYsImV4cCI6MjA5MDY4MzE5Nn0.aY87_aJcc2A63tqp8enE5sHSSQiw8wVj4lceQXp5Y-8";
+  var startTime = Date.now();
+  var sessionId = sessionStorage.getItem("dmx_sid") || (Math.random().toString(36).slice(2));
+  sessionStorage.setItem("dmx_sid", sessionId);
+  function pad(n){return ("0"+n).slice(-2);}
+  function localISO(){var d=new Date(),o=-d.getTimezoneOffset(),s=o>=0?"+":"-";return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())+"T"+pad(d.getHours())+":"+pad(d.getMinutes())+":"+pad(d.getSeconds())+s+pad(Math.floor(Math.abs(o)/60))+":"+pad(Math.abs(o)%60);}
+  function send(t) {
+    fetch(SUPA_URL + "/rest/v1/page_views", {
+      method: "POST",
+      headers: {"Content-Type":"application/json","apikey":SUPA_KEY,"Authorization":"Bearer "+SUPA_KEY,"Prefer":"return=minimal"},
+      body: JSON.stringify({created_at:localISO(),page:window.location.pathname,referrer:document.referrer||null,user_agent:navigator.userAgent.slice(0,200),language:navigator.language||null,session_id:sessionId,time_on_page:t||null}),
+      keepalive: true
+    });
+  }
+  window.addEventListener("load", function(){ send(null); });
+  window.addEventListener("beforeunload", function(){ send(Math.round((Date.now()-startTime)/1000)); });
+})();
+</script>
 </head>
 <body>
   <p>Diese Seite wurde verschoben. <a href="diamix-einstreu.html">Weiter zu Natural Bedding Granules →</a></p>
