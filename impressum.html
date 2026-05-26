@@ -80,11 +80,13 @@
   var startTime = Date.now();
   var sessionId = sessionStorage.getItem("dmx_sid") || (Math.random().toString(36).slice(2));
   sessionStorage.setItem("dmx_sid", sessionId);
+  function pad(n){return ('0'+n).slice(-2);}
+  function localISO(){var d=new Date(),o=-d.getTimezoneOffset(),s=o>=0?'+':'-';return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+'T'+pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds())+s+pad(Math.floor(Math.abs(o)/60))+':'+pad(Math.abs(o)%60);}
   function send(t) {
     fetch(SUPA_URL + "/rest/v1/page_views", {
       method: "POST",
       headers: {"Content-Type":"application/json","apikey":SUPA_KEY,"Authorization":"Bearer "+SUPA_KEY,"Prefer":"return=minimal"},
-      body: JSON.stringify({page:window.location.pathname,referrer:document.referrer||null,user_agent:navigator.userAgent.slice(0,200),language:navigator.language||null,session_id:sessionId,time_on_page:t||null}),
+      body: JSON.stringify({created_at:localISO(),page:window.location.pathname,referrer:document.referrer||null,user_agent:navigator.userAgent.slice(0,200),language:navigator.language||null,session_id:sessionId,time_on_page:t||null}),
       keepalive: true
     });
   }
